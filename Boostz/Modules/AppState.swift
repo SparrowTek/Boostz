@@ -12,6 +12,8 @@ public class AppState {
     enum Sheet: Int, Identifiable {
         case settings
         case transactions
+        case send
+        case receive
         
         var id: Int { rawValue }
     }

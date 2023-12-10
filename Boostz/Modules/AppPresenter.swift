@@ -23,6 +23,12 @@ struct AppPresenter: View {
                     case .transactions:
                         Text("TRANSACTIONS")
                             .presentationDragIndicator(.visible)
+                    case .send:
+                        Text("SEND")
+                            .presentationDragIndicator(.visible)
+                    case .receive:
+                        Text("RECEIVE")
+                            .presentationDragIndicator(.visible)
                     }
                 }
         }
@@ -46,6 +52,8 @@ struct ContentView: View {
                 Button("Send", action: sendSats)
                 Button("Receive", action: receiveSats)
             }
+            .buttonStyle(.boostz)
+            .padding()
         }
         .commonView()
         .toolbar {
@@ -60,11 +68,11 @@ struct ContentView: View {
     }
     
     private func sendSats() {
-        
+        state.sheet = .send
     }
     
     private func receiveSats() {
-        
+        state.sheet = .receive
     }
     
     private func showTransactions() {
