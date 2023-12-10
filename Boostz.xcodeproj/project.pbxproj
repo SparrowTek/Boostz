@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6C1A41112B25E3A2005598A8 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1A41102B25E3A2005598A8 /* AlbyKit */; };
+		6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F12B26505D00C566C0 /* AppState.swift */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
-		6CDD4BEE2B25210E00C6C324 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* ContentView.swift */; };
+		6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */; };
 		6CDD4BF02B25210F00C6C324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEF2B25210F00C6C324 /* Assets.xcassets */; };
 		6CDD4BF32B25210F00C6C324 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BF22B25210F00C6C324 /* Preview Assets.xcassets */; };
 		6CDD4C022B25253300C6C324 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4C012B25253300C6C324 /* Colors.xcassets */; };
@@ -17,10 +18,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C5AE8F12B26505D00C566C0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		6CC430EA2B25DDE900ED3B6A /* Boostz.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Boostz.xcconfig; sourceTree = "<group>"; };
 		6CDD4BE82B25210E00C6C324 /* Boostz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boostz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostzApp.swift; sourceTree = "<group>"; };
-		6CDD4BED2B25210E00C6C324 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPresenter.swift; sourceTree = "<group>"; };
 		6CDD4BEF2B25210F00C6C324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CDD4BF22B25210F00C6C324 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6CDD4BFF2B2524F600C6C324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,7 +111,8 @@
 		6CDD4BFB2B25245500C6C324 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				6CDD4BED2B25210E00C6C324 /* ContentView.swift */,
+				6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */,
+				6C5AE8F12B26505D00C566C0 /* AppState.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -213,7 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CDD4BEE2B25210E00C6C324 /* ContentView.swift in Sources */,
+				6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */,
+				6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */,
 				6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

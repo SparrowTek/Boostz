@@ -17,7 +17,7 @@ struct BoostzApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppPresenter()
         }
     }
     
