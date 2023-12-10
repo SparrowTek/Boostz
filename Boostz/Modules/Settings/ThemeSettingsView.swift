@@ -33,6 +33,7 @@ struct ThemeSettingsView: View {
                 ColorPicker("dark mode tint", selection: $darkModeColor)
             }
         }
+        .commonView()
         .onAppear(perform: setSelectedColorScheme)
         .onAppear(perform: setTintColors)
         .onChange(of: selectedColorScheme, updateColorScheme)

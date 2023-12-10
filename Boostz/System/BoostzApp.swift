@@ -20,6 +20,7 @@ struct BoostzApp: App {
         WindowGroup {
             AppPresenter()
                 .environment(state)
+                .setTheme()
         }
     }
     

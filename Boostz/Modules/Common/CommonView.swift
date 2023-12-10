@@ -14,6 +14,7 @@ fileprivate struct CommonView: ViewModifier {
                 .ignoresSafeArea()
             content
         }
+        .setTheme()
     }
 }
 

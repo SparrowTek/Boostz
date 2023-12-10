@@ -7,13 +7,64 @@
     "%lld Sats" : {
 
     },
+    "about" : {
+
+    },
+    "About" : {
+
+    },
+    "Alby" : {
+
+    },
+    "ALBY INFO" : {
+
+    },
+    "color scheme" : {
+
+    },
+    "dark" : {
+
+    },
+    "dark mode tint" : {
+
+    },
+    "Done" : {
+
+    },
+    "light" : {
+
+    },
+    "light mode tint" : {
+
+    },
+    "privacy" : {
+
+    },
+    "Privacy policy" : {
+
+    },
     "Receive" : {
+
+    },
+    "RECEIVE" : {
+
+    },
+    "Selected Color Scheme" : {
 
     },
     "Send" : {
 
     },
-    "SETTINGS" : {
+    "SEND" : {
+
+    },
+    "settings" : {
+
+    },
+    "system" : {
+
+    },
+    "theme" : {
 
     },
     "TRANSACTIONS" : {
