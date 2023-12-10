@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AlbyClientID</key>
+	<string>$(ALBY_CLIENT_ID)</string>
+	<key>AlbyClientSecret</key>
+	<string>$(ALBY_CLIENT_SECRET)</string>
+	<key>OauthRedirectUri</key>
+	<string>$(OAUTH_REDIRECT_URI)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>

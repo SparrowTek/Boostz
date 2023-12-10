@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C1A41112B25E3A2005598A8 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1A41102B25E3A2005598A8 /* AlbyKit */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
 		6CDD4BEE2B25210E00C6C324 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* ContentView.swift */; };
 		6CDD4BF02B25210F00C6C324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEF2B25210F00C6C324 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C1A41112B25E3A2005598A8 /* AlbyKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +151,9 @@
 			dependencies = (
 			);
 			name = Boostz;
+			packageProductDependencies = (
+				6C1A41102B25E3A2005598A8 /* AlbyKit */,
+			);
 			productName = Boostz;
 			productReference = 6CDD4BE82B25210E00C6C324 /* Boostz.app */;
 			productType = "com.apple.product-type.application";
@@ -177,6 +182,9 @@
 				Base,
 			);
 			mainGroup = 6CDD4BDF2B25210E00C6C324;
+			packageReferences = (
+				6C1A410F2B25E3A2005598A8 /* XCRemoteSwiftPackageReference "AlbyKit" */,
+			);
 			productRefGroup = 6CDD4BE92B25210E00C6C324 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -418,6 +426,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6C1A410F2B25E3A2005598A8 /* XCRemoteSwiftPackageReference "AlbyKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SparrowTek/AlbyKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6C1A41102B25E3A2005598A8 /* AlbyKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C1A410F2B25E3A2005598A8 /* XCRemoteSwiftPackageReference "AlbyKit" */;
+			productName = AlbyKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6CDD4BE02B25210E00C6C324 /* Project object */;
 }

@@ -19,3 +19,6 @@ By participating in this project you agree to abide by the [Contributor Code of 
 - `cp User.xcconfig.template User.xcconfig`
 - update `User.xcconfig` with your personal information
 - build/run with Xcode
+
+**Tip** for OAUTH_REDIRECT_URI in `User.xccongif` to properly escape forward slashes you'll need to do something like this.
+Assume you want your redirect URI to be boostz://alby, then `boostz:/$()/alby` is how you should enter this field. Notice the `$()`
