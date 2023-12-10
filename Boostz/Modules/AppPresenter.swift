@@ -18,8 +18,8 @@ struct AppPresenter: View {
                 .sheet(item: $state.sheet) {
                     switch $0 {
                     case .settings:
-                        Text("SETTINGS")
-                            .presentationDragIndicator(.visible)
+                        SettingsPresenter()
+                            .environment(state.settingsState)
                     case .transactions:
                         Text("TRANSACTIONS")
                             .presentationDragIndicator(.visible)

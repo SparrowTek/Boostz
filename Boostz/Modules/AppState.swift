@@ -19,4 +19,7 @@ public class AppState {
     }
     
     var sheet: Sheet?
+    
+    @ObservationIgnored
+    lazy var settingsState = SettingsState(parentState: self)
 }
