@@ -4,7 +4,19 @@
     "" : {
 
     },
-    "Hello, world!" : {
+    "%lld Sats" : {
+
+    },
+    "Receive" : {
+
+    },
+    "Send" : {
+
+    },
+    "SETTINGS" : {
+
+    },
+    "TRANSACTIONS" : {
 
     }
   },

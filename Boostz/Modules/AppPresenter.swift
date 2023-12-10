@@ -47,6 +47,7 @@ struct ContentView: View {
                 Button("Receive", action: receiveSats)
             }
         }
+        .commonView()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("", systemImage: "slider.horizontal.3", action: openSettings)

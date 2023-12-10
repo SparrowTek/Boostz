@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		6C1A41112B25E3A2005598A8 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1A41102B25E3A2005598A8 /* AlbyKit */; };
 		6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F12B26505D00C566C0 /* AppState.swift */; };
+		6C5AE8F52B265BB800C566C0 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F42B265BB800C566C0 /* CommonView.swift */; };
+		6C5AE8F72B265D2300C566C0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F62B265D2300C566C0 /* Color.swift */; };
+		6C5AE8F92B265E3700C566C0 /* Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F82B265E3700C566C0 /* Build.swift */; };
+		6C5AE8FB2B26612C00C566C0 /* Build+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8FA2B26612C00C566C0 /* Build+Constants.swift */; };
+		6C5AE8FD2B26617D00C566C0 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8FC2B26617D00C566C0 /* Theme.swift */; };
+		6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8FE2B2661A000C566C0 /* OptionalString.swift */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
 		6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */; };
 		6CDD4BF02B25210F00C6C324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEF2B25210F00C6C324 /* Assets.xcassets */; };
@@ -19,6 +25,12 @@
 
 /* Begin PBXFileReference section */
 		6C5AE8F12B26505D00C566C0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		6C5AE8F42B265BB800C566C0 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
+		6C5AE8F62B265D2300C566C0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		6C5AE8F82B265E3700C566C0 /* Build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Build.swift; sourceTree = "<group>"; };
+		6C5AE8FA2B26612C00C566C0 /* Build+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Build+Constants.swift"; sourceTree = "<group>"; };
+		6C5AE8FC2B26617D00C566C0 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		6C5AE8FE2B2661A000C566C0 /* OptionalString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalString.swift; sourceTree = "<group>"; };
 		6CC430EA2B25DDE900ED3B6A /* Boostz.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Boostz.xcconfig; sourceTree = "<group>"; };
 		6CDD4BE82B25210E00C6C324 /* Boostz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boostz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostzApp.swift; sourceTree = "<group>"; };
@@ -42,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C5AE8F32B265BA900C566C0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6C5AE8F42B265BB800C566C0 /* CommonView.swift */,
+				6C5AE8FC2B26617D00C566C0 /* Theme.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		6CC430E92B25DDC900ED3B6A /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +115,8 @@
 			children = (
 				6CDD4BFF2B2524F600C6C324 /* Info.plist */,
 				6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */,
+				6C5AE8F82B265E3700C566C0 /* Build.swift */,
+				6C5AE8FA2B26612C00C566C0 /* Build+Constants.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -111,6 +134,7 @@
 		6CDD4BFB2B25245500C6C324 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6C5AE8F32B265BA900C566C0 /* Common */,
 				6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */,
 				6C5AE8F12B26505D00C566C0 /* AppState.swift */,
 			);
@@ -134,6 +158,8 @@
 		6CDD4BFE2B25247F00C6C324 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6C5AE8F62B265D2300C566C0 /* Color.swift */,
+				6C5AE8FE2B2661A000C566C0 /* OptionalString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,8 +243,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */,
+				6C5AE8FD2B26617D00C566C0 /* Theme.swift in Sources */,
+				6C5AE8FB2B26612C00C566C0 /* Build+Constants.swift in Sources */,
 				6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */,
+				6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */,
+				6C5AE8F92B265E3700C566C0 /* Build.swift in Sources */,
 				6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */,
+				6C5AE8F72B265D2300C566C0 /* Color.swift in Sources */,
+				6C5AE8F52B265BB800C566C0 /* CommonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BOOSTZ_ENV = DEVELOPMENT;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Boostz/Preview Content\"";
@@ -382,6 +415,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BOOSTZ_ENV = PRODUCTION;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Boostz/Preview Content\"";

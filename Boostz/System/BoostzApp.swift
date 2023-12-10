@@ -10,6 +10,7 @@ import AlbyKit
 
 @main
 struct BoostzApp: App {
+    @State private var state = AppState()
     
     init() {
         setupAlbyKit()
@@ -18,6 +19,7 @@ struct BoostzApp: App {
     var body: some Scene {
         WindowGroup {
             AppPresenter()
+                .environment(state)
         }
     }
     
@@ -26,6 +28,6 @@ struct BoostzApp: App {
               let clientID = infoDictionary["AlbyClientID"] as? String,
               let clientSecret = infoDictionary["AlbyClientSecret"] as? String,
               let redirectURI = infoDictionary["OauthRedirectUri"] as? String else { fatalError("AlbyKit clientID, clientSecret, and oauth redirectURI are not properly set in your User.xcconfig file") }
-        AlbyKit.setup(api: .prod, clientID: clientID, clientSecret: clientSecret, redirectURI: redirectURI)
+        AlbyKit.setup(api: Build.shared.environment.alby, clientID: clientID, clientSecret: clientSecret, redirectURI: redirectURI)
     }
 }
