@@ -11,6 +11,7 @@ import AlbyKit
 @main
 struct BoostzApp: App {
     @State private var state = AppState()
+    @State private var albyKit = AlbyKit()
     
     init() {
         setupAlbyKit()
@@ -20,6 +21,7 @@ struct BoostzApp: App {
         WindowGroup {
             AppPresenter()
                 .environment(state)
+                .environment(albyKit)
                 .setTheme()
         }
     }
