@@ -19,6 +19,7 @@
 		6C5AE9042B2668EC00C566C0 /* SettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE9032B2668EC00C566C0 /* SettingsState.swift */; };
 		6C5AE9062B26692600C566C0 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE9052B26692600C566C0 /* SettingsPresenter.swift */; };
 		6C5AE9082B26694D00C566C0 /* ThemeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE9072B26694D00C566C0 /* ThemeSettingsView.swift */; };
+		6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5F72B3F0F3B0073C816 /* Vault */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
 		6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */; };
 		6CDD4BF02B25210F00C6C324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEF2B25210F00C6C324 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C1A41112B25E3A2005598A8 /* AlbyKit in Frameworks */,
+				6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +204,7 @@
 			name = Boostz;
 			packageProductDependencies = (
 				6C1A41102B25E3A2005598A8 /* AlbyKit */,
+				6C73E5F72B3F0F3B0073C816 /* Vault */,
 			);
 			productName = Boostz;
 			productReference = 6CDD4BE82B25210E00C6C324 /* Boostz.app */;
@@ -233,6 +236,7 @@
 			mainGroup = 6CDD4BDF2B25210E00C6C324;
 			packageReferences = (
 				6C1A410F2B25E3A2005598A8 /* XCRemoteSwiftPackageReference "AlbyKit" */,
+				6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */,
 			);
 			productRefGroup = 6CDD4BE92B25210E00C6C324 /* Products */;
 			projectDirPath = "";
@@ -498,6 +502,14 @@
 				kind = branch;
 			};
 		};
+		6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SparrowTek/Vault";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -505,6 +517,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6C1A410F2B25E3A2005598A8 /* XCRemoteSwiftPackageReference "AlbyKit" */;
 			productName = AlbyKit;
+		};
+		6C73E5F72B3F0F3B0073C816 /* Vault */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */;
+			productName = Vault;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
