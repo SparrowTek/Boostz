@@ -9,6 +9,13 @@ import Foundation
 
 @Observable
 public class AppState {
+    enum Route: Int, Identifiable {
+        case wallet
+        case setup
+        
+        var id: Int { rawValue }
+    }
+    
     enum Sheet: Int, Identifiable {
         case settings
         case transactions
@@ -19,6 +26,7 @@ public class AppState {
     }
     
     var sheet: Sheet?
+    var route: Route = .setup
     
     @ObservationIgnored
     lazy var settingsState = SettingsState(parentState: self)
