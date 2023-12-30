@@ -17,8 +17,10 @@ struct AppPresenter: View {
         switch state.route {
         case .setup:
             SetupPresenter()
+                .environment(state.setupState)
         case .wallet:
             WalletPresenter()
+                .environment(state.walletState)
         }
     }
 }

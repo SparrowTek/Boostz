@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Vault
 
 @Observable
 public class AppState {
@@ -21,20 +22,47 @@ public class AppState {
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
     @ObservationIgnored
-    lazy var setuoState = SetupState(parentState: self)
+    lazy var setupState = SetupState(parentState: self)
+    
+    init() {
+        setupVault()
+        checkAlbyTokenStatus()
+    }
+    
+    private func checkAlbyTokenStatus() {
+        guard let token = try? Vault.getPrivateKey(), !token.isEmpty else { return }
+        route = .wallet
+    }
     
     func onOpenURL(_ url: URL) async {
-        print("### onOpenURL: \(url)")
         guard let infoDictionary = Bundle.main.infoDictionary,
               let urlScheme = infoDictionary["AppURLScheme"] as? String,
-              url.scheme == urlScheme,
-              url.pathComponents.count >= 2 else { return }
+              url.scheme == urlScheme else { return }
         
-        switch url.pathComponents[1] {
+        switch url.host() {
         case "alby":
-            break
+            guard let token = url.query() else { return }
+            let modifiedToken = token.replacingOccurrences(of: "code=", with: "")
+            
+            do {
+                try Vault.savePrivateKey(modifiedToken)
+                setupState.dismissSheet()
+                route = .wallet
+            } catch {
+                // TODO: alert user to try again
+            }
         default:
             break
         }
+    }
+    
+    private func setupVault() {
+        Vault.configure(KeychainConfiguration(serviceName: "boostz", accessGroup: nil, accountName: "albyToken"))
+//#if DEBUG
+//Vault.configure(KeychainConfiguration(serviceName: "boostz", accessGroup: nil, accountName: "albyToken"))
+//#else
+        // TODO: figure out how to set the accessGroup with the xcconfig
+//Vault.configure(KeychainConfiguration(serviceName: "boostz", accessGroup: accessGroup, accountName: "mfl cookie"))
+//#endif
     }
 }

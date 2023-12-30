@@ -26,4 +26,8 @@ class SetupState {
     init(parentState: AppState) {
         self.parentState = parentState
     }
+    
+    func dismissSheet() {
+        sheet = nil
+    }
 }
