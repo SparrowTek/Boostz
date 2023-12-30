@@ -35,24 +35,26 @@ public class AppState {
     }
     
     func onOpenURL(_ url: URL) async {
-        guard let infoDictionary = Bundle.main.infoDictionary,
-              let urlScheme = infoDictionary["AppURLScheme"] as? String,
-              url.scheme == urlScheme else { return }
+        guard url.scheme == "boostz" else { return }
         
         switch url.host() {
         case "alby":
-            guard let token = url.query() else { return }
-            let modifiedToken = token.replacingOccurrences(of: "code=", with: "")
-            
-            do {
-                try Vault.savePrivateKey(modifiedToken)
-                setupState.dismissSheet()
-                route = .wallet
-            } catch {
-                // TODO: alert user to try again
-            }
+            saveAlbyToken(url: url)
         default:
             break
+        }
+    }
+    
+    private func saveAlbyToken(url: URL) {
+        guard let token = url.query() else { return }
+        let modifiedToken = token.replacingOccurrences(of: "code=", with: "")
+        
+        do {
+            try Vault.savePrivateKey(modifiedToken)
+            setupState.dismissSheet()
+            route = .wallet
+        } catch {
+            // TODO: alert user to try again
         }
     }
     

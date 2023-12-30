@@ -43,8 +43,7 @@ struct BoostzApp: App {
     private func setupAlbyKit() {
         guard let infoDictionary = Bundle.main.infoDictionary,
               let clientID = infoDictionary["AlbyClientID"] as? String,
-              let clientSecret = infoDictionary["AlbyClientSecret"] as? String,
-              let redirectURI = infoDictionary["OauthRedirectUri"] as? String else { fatalError("AlbyKit clientID, clientSecret, and oauth redirectURI are not properly set in your User.xcconfig file") }
-        AlbyKit.setup(api: Build.shared.environment.alby, clientID: clientID, clientSecret: clientSecret, redirectURI: redirectURI)
+              let clientSecret = infoDictionary["AlbyClientSecret"] as? String else { fatalError("AlbyKit clientID, clientSecret, and oauth redirectURI are not properly set in your User.xcconfig file") }
+        AlbyKit.setup(api: Build.shared.environment.alby, clientID: clientID, clientSecret: clientSecret, redirectURI: "boostz://alby")
     }
 }
