@@ -25,6 +25,9 @@
     "BOOSTZ" : {
 
     },
+    "Cancel" : {
+
+    },
     "color scheme" : {
 
     },
@@ -47,6 +50,15 @@
 
     },
     "light mode tint" : {
+
+    },
+    "Logout" : {
+
+    },
+    "Logout and clear all data" : {
+
+    },
+    "Logout?" : {
 
     },
     "privacy" : {

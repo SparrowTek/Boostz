@@ -58,6 +58,16 @@ public class AppState {
         }
     }
     
+    func logout() {
+        do {
+            try Vault.deletePrivateKey()
+            route = .setup
+            // TODO: delete any app stored data here
+        } catch {
+            // TODO: Alert user that logout failed
+        }
+    }
+    
     private func setupVault() {
         Vault.configure(KeychainConfiguration(serviceName: "boostz", accessGroup: nil, accountName: "albyToken"))
 //#if DEBUG

@@ -28,4 +28,9 @@ class WalletState {
     init(parentState: AppState) {
         self.parentState = parentState
     }
+    
+    func logout() {
+        sheet = nil
+        parentState.logout()
+    }
 }

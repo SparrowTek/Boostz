@@ -15,6 +15,10 @@ struct SettingsPresenter: View {
         
         NavigationStack(path: $state.path) {
             SettingsView()
+                .confirmationDialog("Logout?", isPresented: $state.presentLogoutDialog) {
+                    Button("Logout", role: .destructive, action: logout)
+                    Button("Cancel", role: .cancel, action: {})
+                }
                 .navigationDestination(for: SettingsState.NavigationLink.self) {
                     switch $0 {
                     case .privacy:
@@ -34,9 +38,14 @@ struct SettingsPresenter: View {
         }
         
     }
+    
+    private func logout() {
+        state.logout()
+    }
 }
 
 struct SettingsView: View {
+    @Environment(SettingsState.self) private var state
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -60,6 +69,9 @@ struct SettingsView: View {
                     Label("theme", systemImage: "line.3.crossed.swirl.circle.fill")
                 }
             }
+            
+            Button("Logout and clear all data", systemImage: "bolt.trianglebadge.exclamationmark.fill", role: .destructive, action: logoutAlert)
+                .foregroundStyle(.red)
         }
         .commonView()
         .navigationTitle("settings")
@@ -68,6 +80,10 @@ struct SettingsView: View {
                 Button("Done", action: { dismiss() })
             }
         }
+    }
+    
+    private func logoutAlert() {
+        state.presentLogoutDialog = true
     }
 }
 
