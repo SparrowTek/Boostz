@@ -12,6 +12,8 @@ import AlbyKit
 struct BoostzApp: App {
     @State private var state = AppState()
     @State private var albyKit = AlbyKit()
+    @State private var url: URL?
+    @State private var onOpenURLTrigger = PlainTaskTrigger()
     
     init() {
         setupAlbyKit()
@@ -23,7 +25,19 @@ struct BoostzApp: App {
                 .environment(state)
                 .environment(albyKit)
                 .setTheme()
+                .onOpenURL { url = $0 }
+                .onChange(of: url, triggerOnOpenUrl)
+                .task($onOpenURLTrigger) { await openUrl() }
         }
+    }
+    
+    private func triggerOnOpenUrl() {
+        onOpenURLTrigger.trigger()
+    }
+    
+    private func openUrl() async {
+        guard let url else { return }
+        await state.onOpenURL(url)
     }
     
     private func setupAlbyKit() {
