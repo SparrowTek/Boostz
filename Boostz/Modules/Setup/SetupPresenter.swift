@@ -37,12 +37,14 @@ fileprivate struct SetupView: View {
             Text("Boostz")
                 .font(.largeTitle)
                 .bold()
+                .setForegroundStyle()
             
             Spacer()
             
             HStack {
                 Text("Connect Via:")
                     .font(.title)
+                    .setForegroundStyle()
                 Spacer()
             }
             .padding(.horizontal)
@@ -72,7 +74,16 @@ fileprivate struct SetupView: View {
         let color = colorScheme == .light ? lightThemeColor.color : darkThemeColor.color
         let tintColor = UIColor(color)
         
-        guard let safariVC = try? alby.oauthService.authenticateWithSwiftUI(preferredControlerTintColor: tintColor, preferredBarTintColor: primaryBackground, withScopes: [.accountRead, .balanceRead]) else { return }
+        guard let safariVC = try? alby.oauthService.authenticateWithSwiftUI(
+            preferredControlerTintColor: tintColor,
+            preferredBarTintColor: primaryBackground,
+            withScopes: [.accountRead,
+                         .invoicesCreate,
+                         .invoicesRead,
+                         .transactionsRead,
+                         .balanceRead,
+                         .paymentsSend]
+        ) else { return }
         state.sheet = .auth(safariVC)
     }
 }
