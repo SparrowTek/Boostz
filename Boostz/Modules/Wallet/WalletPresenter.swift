@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WalletPresenter: View {
-    @Environment(AppState.self) private var state
+    @Environment(WalletState.self) private var state
     
     var body: some View {
         @Bindable var state = state
@@ -36,7 +36,7 @@ struct WalletPresenter: View {
 }
 
 struct WalletView: View {
-    @Environment(AppState.self) private var state
+    @Environment(WalletState.self) private var state
     @State private var sats = 999_999_999
     
     var body: some View {
@@ -86,5 +86,5 @@ struct WalletView: View {
 
 #Preview {
     WalletPresenter()
-        .environment(AppState())
+        .environment(WalletState(parentState: .init()))
 }

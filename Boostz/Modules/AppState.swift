@@ -16,18 +16,10 @@ public class AppState {
         var id: Int { rawValue }
     }
     
-    enum Sheet: Int, Identifiable {
-        case settings
-        case transactions
-        case send
-        case receive
-        
-        var id: Int { rawValue }
-    }
-    
-    var sheet: Sheet?
     var route: Route = .setup
     
     @ObservationIgnored
-    lazy var settingsState = SettingsState(parentState: self)
+    lazy var walletState = WalletState(parentState: self)
+    @ObservationIgnored
+    lazy var setuoState = SetupState(parentState: self)
 }

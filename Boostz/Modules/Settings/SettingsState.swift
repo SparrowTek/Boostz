@@ -16,10 +16,10 @@ class SettingsState {
         case theme
     }
     
-    private unowned let parentState: AppState
+    private unowned let parentState: WalletState
     var path: [SettingsState.NavigationLink] = []
     
-    init(parentState: AppState) {
+    init(parentState: WalletState) {
         self.parentState = parentState
     }
 }

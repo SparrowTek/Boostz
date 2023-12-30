@@ -75,6 +75,6 @@ struct SettingsView: View {
     Text("BOOSTZ")
         .sheet(isPresented: .constant(true)) {
             SettingsPresenter()
-                .environment(SettingsState(parentState: .init()))
+                .environment(SettingsState(parentState: .init(parentState: .init())))
         }
 }

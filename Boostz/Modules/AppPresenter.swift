@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlbyKit
 
 struct AppPresenter: View {
     @Environment(AppState.self) private var state
@@ -15,7 +16,7 @@ struct AppPresenter: View {
         
         switch state.route {
         case .setup:
-            Text("Setup")
+            SetupPresenter()
         case .wallet:
             WalletPresenter()
         }
@@ -25,4 +26,6 @@ struct AppPresenter: View {
 #Preview {
     AppPresenter()
         .environment(AppState())
+        .environment(AlbyKit())
+        .environment(SetupState(parentState: .init()))
 }
