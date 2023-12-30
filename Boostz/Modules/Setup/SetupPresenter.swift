@@ -28,6 +28,9 @@ struct SetupPresenter: View {
 fileprivate struct SetupView: View {
     @Environment(SetupState.self) private var state
     @Environment(AlbyKit.self) private var alby
+    @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
+    @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         VStack {
@@ -44,7 +47,7 @@ fileprivate struct SetupView: View {
             }
             .padding(.horizontal)
             
-            Button(action: albyLogin) {
+            Button(action: loginWithAlby) {
                 ZStack {
                     Color.albyBackground
                     Image(.alby)
@@ -62,9 +65,14 @@ fileprivate struct SetupView: View {
         .commonView()
     }
     
-    private func albyLogin() {
+    private func loginWithAlby() {
         // TODO: handle the failed try
-        guard let safariVC = try? alby.oauthService.authenticateWithSwiftUI(withScopes: [.accountRead, .balanceRead]) else { return }
+        
+        let primaryBackground = UIColor(Color.primaryBackground)
+        let color = colorScheme == .light ? lightThemeColor.color : darkThemeColor.color
+        let tintColor = UIColor(color)
+        
+        guard let safariVC = try? alby.oauthService.authenticateWithSwiftUI(preferredControlerTintColor: tintColor, preferredBarTintColor: primaryBackground, withScopes: [.accountRead, .balanceRead]) else { return }
         state.sheet = .auth(safariVC)
     }
 }
