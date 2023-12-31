@@ -38,22 +38,33 @@ struct WalletPresenter: View {
 struct WalletView: View {
     @Environment(WalletState.self) private var state
     @State private var sats = 999_999_999
+    @State private var reachability = Reachability()
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Text("\(sats) Sats")
-                .font(.title)
-            
-            Spacer()
-            
-            HStack {
-                Button("Send", action: sendSats)
-                Button("Receive", action: receiveSats)
+        ZStack {
+            if !reachability.isReachable {
+                VStack {
+                    NetworkNotReachable()
+                    Spacer()
+                }
+                .transition(.move(edge: .top))
             }
-            .buttonStyle(.boostz)
-            .padding()
+            
+            VStack {
+                Spacer()
+                
+                Text("\(sats) Sats")
+                    .font(.title)
+                
+                Spacer()
+                
+                HStack {
+                    Button("Send", action: sendSats)
+                    Button("Receive", action: receiveSats)
+                }
+                .buttonStyle(.boostz)
+                .padding()
+            }
         }
         .commonView()
         .toolbar {
@@ -65,6 +76,7 @@ struct WalletView: View {
                 Button("", systemImage: "bolt.fill", action: showTransactions)
             }
         }
+        .task { await reachability.startMonitoring() }
     }
     
     private func sendSats() {
@@ -81,6 +93,23 @@ struct WalletView: View {
     
     private func openSettings() {
         state.sheet = .settings
+    }
+}
+
+fileprivate struct NetworkNotReachable: View {
+    var body: some View {
+        ZStack {
+            Color.red
+                .frame(height: 44)
+                .frame(maxWidth: .infinity)
+            
+            HStack {
+                Image(systemName: "network.slash")
+                Text("poor network connection")
+            }
+            .foregroundStyle(.white)
+            .font(.headline)
+        }
     }
 }
 

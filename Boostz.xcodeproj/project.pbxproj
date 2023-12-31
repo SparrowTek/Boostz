@@ -27,6 +27,8 @@
 		6C73E5FB2B3F0F8E0073C816 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5FA2B3F0F8E0073C816 /* AlbyKit */; };
 		6C73E5FF2B3F2BEA0073C816 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73E5FE2B3F2BEA0073C816 /* WalletPresenter.swift */; };
 		6C8A87672B41A42100080639 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87662B41A42100080639 /* ConfigView.swift */; };
+		6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87682B41B7EC00080639 /* Reachability.swift */; };
+		6C8A876B2B41B7FB00080639 /* NWPathMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
 		6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */; };
 		6CDD4BF02B25210F00C6C324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEF2B25210F00C6C324 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		6C5AE9072B26694D00C566C0 /* ThemeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettingsView.swift; sourceTree = "<group>"; };
 		6C73E5FE2B3F2BEA0073C816 /* WalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
 		6C8A87662B41A42100080639 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
+		6C8A87682B41B7EC00080639 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWPathMonitor.swift; sourceTree = "<group>"; };
 		6CC430EA2B25DDE900ED3B6A /* Boostz.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Boostz.xcconfig; sourceTree = "<group>"; };
 		6CDD4BE82B25210E00C6C324 /* Boostz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boostz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostzApp.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				6C119A2F2B40BF48008368BE /* TaskTrigger.swift */,
+				6C8A87682B41B7EC00080639 /* Reachability.swift */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			children = (
 				6C5AE8F62B265D2300C566C0 /* Color.swift */,
 				6C5AE8FE2B2661A000C566C0 /* OptionalString.swift */,
+				6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */,
 				6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */,
 				6C5AE8F92B265E3700C566C0 /* Build.swift in Sources */,
+				6C8A876B2B41B7FB00080639 /* NWPathMonitor.swift in Sources */,
 				6C119A2E2B40984E008368BE /* WalletState.swift in Sources */,
 				6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */,
 				6C8A87672B41A42100080639 /* ConfigView.swift in Sources */,
@@ -329,6 +336,7 @@
 				6C119A2C2B40981D008368BE /* AuthState.swift in Sources */,
 				6C5AE9062B26692600C566C0 /* SettingsPresenter.swift in Sources */,
 				6C119A2A2B409714008368BE /* AuthPresenter.swift in Sources */,
+				6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */,
 				6C119A302B40BF48008368BE /* TaskTrigger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
