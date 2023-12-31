@@ -23,6 +23,7 @@ struct BoostzButton: ButtonStyle {
             .border(color)
             .font(.headline)
             .foregroundStyle(color)
+            .contentShape(Rectangle())
     }
 }
 
