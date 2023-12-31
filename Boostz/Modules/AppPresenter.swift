@@ -15,9 +15,9 @@ struct AppPresenter: View {
         @Bindable var state = state
         
         switch state.route {
-        case .setup:
-            SetupPresenter()
-                .environment(state.setupState)
+        case .auth:
+            AuthPresenter()
+                .environment(state.authState)
         case .wallet:
             WalletPresenter()
                 .environment(state.walletState)
@@ -29,5 +29,5 @@ struct AppPresenter: View {
     AppPresenter()
         .environment(AppState())
         .environment(AlbyKit())
-        .environment(SetupState(parentState: .init()))
+        .environment(AuthState(parentState: .init()))
 }

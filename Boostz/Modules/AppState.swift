@@ -12,17 +12,17 @@ import Vault
 public class AppState {
     enum Route: Int, Identifiable {
         case wallet
-        case setup
+        case auth
         
         var id: Int { rawValue }
     }
     
-    var route: Route = .setup
+    var route: Route = .auth
     
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
     @ObservationIgnored
-    lazy var setupState = SetupState(parentState: self)
+    lazy var authState = AuthState(parentState: self)
     
     init() {
         setupVault()
@@ -51,7 +51,7 @@ public class AppState {
         
         do {
             try Vault.savePrivateKey(modifiedToken)
-            setupState.dismissSheet()
+            authState.dismissSheet()
             route = .wallet
         } catch {
             // TODO: alert user to try again
@@ -61,7 +61,7 @@ public class AppState {
     func logout() {
         do {
             try Vault.deletePrivateKey()
-            route = .setup
+            route = .auth
             // TODO: delete any app stored data here
         } catch {
             // TODO: Alert user that logout failed

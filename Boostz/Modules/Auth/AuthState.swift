@@ -1,5 +1,5 @@
 //
-//  SetupState.swift
+//  AuthState.swift
 //  Boostz
 //
 //  Created by Thomas Rademaker on 12/30/23.
@@ -9,7 +9,7 @@ import Foundation
 import AlbyKit
 
 @Observable
-class SetupState {
+class AuthState {
     enum Sheet: Identifiable {
         case auth(SafariView)
         

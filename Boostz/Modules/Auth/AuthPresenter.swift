@@ -1,5 +1,5 @@
 //
-//  SetupPresenter.swift
+//  AuthPresenter.swift
 //  Boostz
 //
 //  Created by Thomas Rademaker on 12/30/23.
@@ -8,13 +8,13 @@
 import SwiftUI
 import AlbyKit
 
-struct SetupPresenter: View {
-    @Environment(SetupState.self) private var state
+struct AuthPresenter: View {
+    @Environment(AuthState.self) private var state
     
     var body: some View {
         @Bindable var state = state
         
-        SetupView()
+        AuthView()
             .sheet(item: $state.sheet) {
                 switch $0 {
                 case .auth(let safariView):
@@ -25,8 +25,8 @@ struct SetupPresenter: View {
     }
 }
 
-fileprivate struct SetupView: View {
-    @Environment(SetupState.self) private var state
+fileprivate struct AuthView: View {
+    @Environment(AuthState.self) private var state
     @Environment(AlbyKit.self) private var alby
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
@@ -89,7 +89,7 @@ fileprivate struct SetupView: View {
 }
 
 #Preview {
-    SetupPresenter()
-        .environment(SetupState(parentState: .init()))
+    AuthPresenter()
+        .environment(AuthState(parentState: .init()))
         .environment(AlbyKit())
 }
