@@ -18,6 +18,8 @@ struct AppPresenter: View {
         case .auth:
             AuthPresenter()
                 .environment(state.authState)
+        case .config:
+            ConfigView()
         case .wallet:
             WalletPresenter()
                 .environment(state.walletState)

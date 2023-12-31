@@ -13,6 +13,7 @@ public class AppState {
     enum Route: Int, Identifiable {
         case wallet
         case auth
+        case config
         
         var id: Int { rawValue }
     }
@@ -52,7 +53,7 @@ public class AppState {
         do {
             try Vault.savePrivateKey(modifiedToken)
             authState.dismissSheet()
-            route = .wallet
+            route = .config
         } catch {
             // TODO: alert user to try again
         }

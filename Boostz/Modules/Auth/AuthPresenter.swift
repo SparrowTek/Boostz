@@ -64,6 +64,7 @@ fileprivate struct AuthView: View {
             
             Spacer()
         }
+        .padding()
         .commonView()
     }
     
