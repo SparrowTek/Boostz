@@ -64,11 +64,11 @@ struct SettingsView: View {
                 }
             }
             
-            Section {
-                NavigationLink(value: SettingsState.NavigationLink.theme) {
-                    Label("theme", systemImage: "line.3.crossed.swirl.circle.fill")
-                }
-            }
+//            Section {
+//                NavigationLink(value: SettingsState.NavigationLink.theme) {
+//                    Label("theme", systemImage: "line.3.crossed.swirl.circle.fill")
+//                }
+//            }
             
             Button("Logout and clear all data", systemImage: "bolt.trianglebadge.exclamationmark.fill", role: .destructive, action: logoutAlert)
                 .foregroundStyle(.red)

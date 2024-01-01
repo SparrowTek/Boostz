@@ -34,6 +34,7 @@ struct ThemeSettingsView: View {
             }
         }
         .commonView()
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: setSelectedColorScheme)
         .onAppear(perform: setTintColors)
         .onChange(of: selectedColorScheme, updateColorScheme)
