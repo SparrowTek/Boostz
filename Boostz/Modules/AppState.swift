@@ -27,6 +27,7 @@ public class AppState {
     lazy var authState = AuthState(parentState: self)
     
     init() {
+        AlbyKit.setDelegate(self)
         checkAlbyTokenStatus()
     }
     
@@ -77,8 +78,20 @@ public class AppState {
         }
     }
     
-    func deleteAlbyTokens() throws {
+    private func deleteAlbyTokens() throws {
         try Vault.deletePrivateKey(keychainConfiguration: .albyToken)
         try Vault.deletePrivateKey(keychainConfiguration: .albyRefreshToken)
+    }
+}
+
+extension AppState: AlbyKitDelegate {
+    public func tokenUpdated(_ token: Token) {
+        print("TOKEN UPDATED: \(token)")
+        try? Vault.savePrivateKey(token.accessToken, keychainConfiguration: .albyToken)
+        try? Vault.savePrivateKey(token.refreshToken, keychainConfiguration: .albyRefreshToken)
+    }
+    
+    public func unautherizedUser() {
+        logout()
     }
 }
