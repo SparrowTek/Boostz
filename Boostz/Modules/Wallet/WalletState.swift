@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AlbyKit
 
 @Observable
 class WalletState {
@@ -19,6 +20,10 @@ class WalletState {
     }
     
     var sheet: Sheet?
+    var accountSummary: AccountSummary?
+    var accountBalance: AccountBalance?
+    var me: PersonalInformation?
+    var keysend: Keysend?
     
     private unowned let parentState: AppState
     

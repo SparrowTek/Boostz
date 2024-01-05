@@ -31,7 +31,9 @@ public class AppState {
     }
     
     private func checkAlbyTokenStatus() {
-        guard let token = try? Vault.getPrivateKey(keychainConfiguration: .albyToken), !token.isEmpty else { return }
+        guard let accessToken = try? Vault.getPrivateKey(keychainConfiguration: .albyToken),
+              let refreshToken = try? Vault.getPrivateKey(keychainConfiguration: .albyRefreshToken) else { return }
+        AlbyKit.set(accessToken: accessToken, refreshToken: refreshToken)
         route = .config
     }
     
@@ -58,6 +60,7 @@ public class AppState {
         do {
             try Vault.savePrivateKey(token.accessToken, keychainConfiguration: .albyToken)
             try Vault.savePrivateKey(token.refreshToken, keychainConfiguration: .albyRefreshToken)
+            AlbyKit.set(accessToken: token.accessToken, refreshToken: token.refreshToken)
             route = .config
         } catch {
             // TODO: handle failed save
