@@ -61,12 +61,14 @@ extension Build.Environment {
 
     /// Convert build environment to AlbyKit API environment
     var alby: API {
-        switch self {
-        case .development:
-            return .dev
-        case .production:
-            return .prod
-        }
+//        switch self {
+//        case .development:
+//            return .dev
+//        case .production:
+//            return .prod
+//        }
+        // TODO: get dev environment working
+        .prod
     }
 }
 

@@ -22,6 +22,7 @@ class AuthState {
     
     private unowned let parentState: AppState
     var sheet: Sheet?
+    var albyCode: String?
     
     init(parentState: AppState) {
         self.parentState = parentState
@@ -29,5 +30,9 @@ class AuthState {
     
     func dismissSheet() {
         sheet = nil
+    }
+    
+    func saveAlbyToken(_ token: Token) {
+        parentState.saveAlbyToken(token)
     }
 }

@@ -31,6 +31,7 @@ fileprivate struct AuthView: View {
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
     @Environment(\.colorScheme) private var colorScheme
+    @State private var getAlbyTokenTrigger = PlainTaskTrigger()
     
     var body: some View {
         VStack {
@@ -66,6 +67,24 @@ fileprivate struct AuthView: View {
         }
         .padding()
         .commonView()
+        .onChange(of: state.albyCode, triggerGetAlbyToken)
+        .task($getAlbyTokenTrigger) { await getAlbyToken() }
+    }
+    
+    private func triggerGetAlbyToken() {
+        getAlbyTokenTrigger.trigger()
+    }
+    
+    private func getAlbyToken() async {
+        guard let code = state.albyCode, !code.isEmpty else { return } // TODO: handle the guard or return??
+        
+        do {
+            let token = try await alby.oauthService.requestAccessToken(code: code)
+            state.saveAlbyToken(token)
+        } catch {
+            // TODO: alert user of error
+            print("### ERROR: \(error)")
+        }
     }
     
     private func loginWithAlby() {
@@ -75,7 +94,7 @@ fileprivate struct AuthView: View {
         let color = colorScheme == .light ? lightThemeColor.color : darkThemeColor.color
         let tintColor = UIColor(color)
         
-        guard let safariVC = try? alby.oauthService.authenticateWithSwiftUI(
+        guard let safariVC = try? alby.oauthService.getAuthCodeWithSwiftUI(
             preferredControlerTintColor: tintColor,
             preferredBarTintColor: primaryBackground,
             withScopes: [.accountRead,
