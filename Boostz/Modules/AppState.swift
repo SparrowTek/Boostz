@@ -70,7 +70,6 @@ public class AppState {
     
     func logout() {
         do {
-            try Vault.deletePrivateKey()
             try deleteAlbyTokens()
             route = .auth
         } catch {
