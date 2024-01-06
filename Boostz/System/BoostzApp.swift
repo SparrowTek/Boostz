@@ -23,7 +23,6 @@ struct BoostzApp: App {
                 .environment(state)
                 .environment(albyKit)
                 .setTheme()
-                .onOpenURL()
         }
     }
     

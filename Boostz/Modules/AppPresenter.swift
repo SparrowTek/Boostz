@@ -14,16 +14,19 @@ struct AppPresenter: View {
     var body: some View {
         @Bindable var state = state
         
-        switch state.route {
-        case .auth:
-            AuthPresenter()
-                .environment(state.authState)
-        case .config:
-            ConfigView()
-        case .wallet:
-            WalletPresenter()
-                .environment(state.walletState)
+        Group {
+            switch state.route {
+            case .auth:
+                AuthPresenter()
+                    .environment(state.authState)
+            case .config:
+                ConfigView()
+            case .wallet:
+                WalletPresenter()
+                    .environment(state.walletState)
+            }
         }
+        .onOpenURL()
     }
 }
 

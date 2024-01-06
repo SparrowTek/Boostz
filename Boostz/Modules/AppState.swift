@@ -20,6 +20,7 @@ public class AppState {
     }
     
     var route: Route = .auth
+    var loginToConfig = false
     
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
@@ -62,6 +63,7 @@ public class AppState {
             try Vault.savePrivateKey(token.accessToken, keychainConfiguration: .albyToken)
             try Vault.savePrivateKey(token.refreshToken, keychainConfiguration: .albyRefreshToken)
             AlbyKit.set(accessToken: token.accessToken, refreshToken: token.refreshToken)
+            loginToConfig = true
             route = .config
         } catch {
             // TODO: handle failed save
