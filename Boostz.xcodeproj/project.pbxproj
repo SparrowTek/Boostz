@@ -30,6 +30,7 @@
 		6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87682B41B7EC00080639 /* Reachability.swift */; };
 		6C8A876B2B41B7FB00080639 /* NWPathMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */; };
 		6CBA920F2B46EAC8002FCA12 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */; };
+		6CCEEC612B4987EE003BB066 /* OnOpenURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
 		6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */; };
 		6CDD4BF02B25210F00C6C324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEF2B25210F00C6C324 /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWPathMonitor.swift; sourceTree = "<group>"; };
 		6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
 		6CC430EA2B25DDE900ED3B6A /* Boostz.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Boostz.xcconfig; sourceTree = "<group>"; };
+		6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnOpenURL.swift; sourceTree = "<group>"; };
 		6CDD4BE82B25210E00C6C324 /* Boostz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boostz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostzApp.swift; sourceTree = "<group>"; };
 		6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPresenter.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				6C5AE8F42B265BB800C566C0 /* CommonView.swift */,
 				6C5AE8FC2B26617D00C566C0 /* Theme.swift */,
 				6C5AE9002B26627C00C566C0 /* BoostzButtonStyle.swift */,
+				6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */,
 				6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */,
 				6C5AE8F92B265E3700C566C0 /* Build.swift in Sources */,
+				6CCEEC612B4987EE003BB066 /* OnOpenURL.swift in Sources */,
 				6C8A876B2B41B7FB00080639 /* NWPathMonitor.swift in Sources */,
 				6C119A2E2B40984E008368BE /* WalletState.swift in Sources */,
 				6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */,
