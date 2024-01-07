@@ -48,6 +48,8 @@ struct SettingsView: View {
     @Environment(SettingsState.self) private var state
     @Environment(\.dismiss) private var dismiss
     
+    // TODO: add links to source code for app and albyKit
+    // add link for value 4 value to support development
     var body: some View {
         Form {
             Section {
