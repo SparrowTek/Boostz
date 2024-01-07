@@ -29,22 +29,22 @@ fileprivate struct SyncConfigData: ViewModifier {
     
     private func getAccountInfo() async {
         print("### GET DATA")
-        do {
-            async let accountSummary = try alby.accountService.getAccountSummary()
-            async let accountBalance = try alby.accountService.getAccountBalance()
-            async let me = try alby.accountService.getPersonalInformation()
-            state.setAccountSummary(try await accountSummary)
-            state.setAccountBalance(try await accountBalance)
-            state.setMe(try await me)
-            state.route = .wallet
-        } catch {
-            print("### ERROR: \(error)")
-            if case .statusCode(let code, _) = error as? NetworkError, code == .unauthorized {
-                state.logout()
-            } else {
-                state.route = .wallet
-            }
-        }
+//        do {
+//            async let accountSummary = try alby.accountService.getAccountSummary()
+//            async let accountBalance = try alby.accountService.getAccountBalance()
+//            async let me = try alby.accountService.getPersonalInformation()
+//            state.setAccountSummary(try await accountSummary)
+//            state.setAccountBalance(try await accountBalance)
+//            state.setMe(try await me)
+//            state.route = .wallet
+//        } catch {
+//            print("### ERROR: \(error)")
+//            if case .statusCode(let code, _) = error as? NetworkError, code == .unauthorized {
+//                state.logout()
+//            } else {
+//                state.route = .wallet
+//            }
+//        }
     }
 }
 

@@ -90,21 +90,22 @@ fileprivate struct AuthView: View {
     private func loginWithAlby() {
         // TODO: handle the failed try
         
-        let primaryBackground = UIColor(Color.primaryBackground)
-        let color = colorScheme == .light ? lightThemeColor.color : darkThemeColor.color
-        let tintColor = UIColor(color)
-        
-        guard let safariVC = try? alby.oauthService.getAuthCodeWithSwiftUI(
-            preferredControlerTintColor: tintColor,
-            preferredBarTintColor: primaryBackground,
-            withScopes: [.accountRead,
-                         .invoicesCreate,
-                         .invoicesRead,
-                         .transactionsRead,
-                         .balanceRead,
-                         .paymentsSend]
-        ) else { return }
-        state.sheet = .auth(safariVC)
+        state.goToConfig()
+//        let primaryBackground = UIColor(Color.primaryBackground)
+//        let color = colorScheme == .light ? lightThemeColor.color : darkThemeColor.color
+//        let tintColor = UIColor(color)
+//        
+//        guard let safariVC = try? alby.oauthService.getAuthCodeWithSwiftUI(
+//            preferredControlerTintColor: tintColor,
+//            preferredBarTintColor: primaryBackground,
+//            withScopes: [.accountRead,
+//                         .invoicesCreate,
+//                         .invoicesRead,
+//                         .transactionsRead,
+//                         .balanceRead,
+//                         .paymentsSend]
+//        ) else { return }
+//        state.sheet = .auth(safariVC)
     }
 }
 

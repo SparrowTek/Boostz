@@ -35,4 +35,9 @@ class AuthState {
     func saveAlbyToken(_ token: Token) {
         parentState.saveAlbyToken(token)
     }
+    
+    // TODO: temp method
+    func goToConfig() {
+        parentState.goToConfig()
+    }
 }
