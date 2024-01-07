@@ -10,8 +10,13 @@ import SwiftUI
 
 @Observable
 class Reachability {
+    enum ConnectionState {
+        case notReachable
+        case degradedPerformance
+        case good
+    }
     
-    var isReachable = true
+    var connectionState: ConnectionState = .good
     
     func startMonitoring() async {
         let monitor = NWPathMonitor()
@@ -21,6 +26,12 @@ class Reachability {
     }
     
     private func evaluatePath(_ path: NWPath) {
-        withAnimation(.easeInOut(duration: 1.0)) { isReachable = path.status == .satisfied }
+        withAnimation(.easeInOut(duration: 1.0)) {
+            if path.status == .satisfied {
+                connectionState = .good
+            } else {
+                connectionState = .notReachable
+            }
+        }
     }
 }

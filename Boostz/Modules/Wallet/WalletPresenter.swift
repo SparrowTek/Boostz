@@ -38,11 +38,10 @@ struct WalletPresenter: View {
 struct WalletView: View {
     @Environment(WalletState.self) private var state
     @State private var sats = 999_999_999
-    @State private var reachability = Reachability()
     
     var body: some View {
         ZStack {
-            if !reachability.isReachable {
+            if state.reachability.connectionState != .good {
                 VStack {
                     NetworkNotReachable()
                     Spacer()
@@ -76,7 +75,7 @@ struct WalletView: View {
                 Button("", systemImage: "bolt.fill", action: showTransactions)
             }
         }
-        .task { await reachability.startMonitoring() }
+        .task { await state.reachability.startMonitoring() }
     }
     
     private func sendSats() {

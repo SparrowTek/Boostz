@@ -20,7 +20,6 @@ public class AppState {
     }
     
     var route: Route = .auth
-    var loginToConfig = false
     
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
@@ -33,9 +32,7 @@ public class AppState {
     }
     
     private func checkAlbyTokenStatus() {
-        guard let accessToken = try? Vault.getPrivateKey(keychainConfiguration: .albyToken),
-              let refreshToken = try? Vault.getPrivateKey(keychainConfiguration: .albyRefreshToken) else { return }
-        AlbyKit.set(accessToken: accessToken, refreshToken: refreshToken)
+        guard let accessToken = try? Vault.getPrivateKey(keychainConfiguration: .albyToken), !accessToken.isEmpty else { return }
         route = .config
     }
     
@@ -62,8 +59,6 @@ public class AppState {
         do {
             try Vault.savePrivateKey(token.accessToken, keychainConfiguration: .albyToken)
             try Vault.savePrivateKey(token.refreshToken, keychainConfiguration: .albyRefreshToken)
-            AlbyKit.set(accessToken: token.accessToken, refreshToken: token.refreshToken)
-            loginToConfig = true
             route = .config
         } catch {
             // TODO: handle failed save
@@ -94,5 +89,21 @@ extension AppState: AlbyKitDelegate {
     
     public func unautherizedUser() {
         logout()
+    }
+    
+    public func reachabilityNormalPerformance() {
+        walletState.reachability.connectionState = .good
+    }
+    
+    public func reachabilityDegradedNetworkPerformanceDetected() {
+        walletState.reachability.connectionState = .degradedPerformance
+    }
+    
+    public func getAccessToken() -> String? {
+        try? Vault.getPrivateKey(keychainConfiguration: .albyToken)
+    }
+    
+    public func getFreshToken() -> String? {
+        try? Vault.getPrivateKey(keychainConfiguration: .albyRefreshToken)
     }
 }
