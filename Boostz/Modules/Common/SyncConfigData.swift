@@ -20,12 +20,15 @@ fileprivate struct SyncConfigData: ViewModifier {
     }
     
     private func triggerDataSync() {
+        print("### TRIGGER")
         guard state.triggerDataSync else { return }
+        print("### past guard")
         state.triggerDataSync = false
         dataSyncTrigger.trigger()
     }
     
     private func getAccountInfo() async {
+        print("### GET DATA")
         do {
             async let accountSummary = try alby.accountService.getAccountSummary()
             async let accountBalance = try alby.accountService.getAccountBalance()
@@ -35,6 +38,7 @@ fileprivate struct SyncConfigData: ViewModifier {
             state.setMe(try await me)
             state.route = .wallet
         } catch {
+            print("### ERROR: \(error)")
             if case .statusCode(let code, _) = error as? NetworkError, code == .unauthorized {
                 state.logout()
             } else {
