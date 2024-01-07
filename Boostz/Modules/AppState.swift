@@ -37,7 +37,6 @@ public class AppState {
     }
     
     func onOpenURL(_ url: URL) async {
-        print("URL: \(url)") // TODO: delete print statement
         guard url.scheme == "boostz" else { return }
         
         switch url.host() {
@@ -82,7 +81,6 @@ public class AppState {
 
 extension AppState: AlbyKitDelegate {
     public func tokenUpdated(_ token: Token) {
-        print("TOKEN UPDATED: \(token)")
         try? Vault.savePrivateKey(token.accessToken, keychainConfiguration: .albyToken)
         try? Vault.savePrivateKey(token.refreshToken, keychainConfiguration: .albyRefreshToken)
     }
