@@ -10,6 +10,7 @@ import AlbyKit
 
 struct ConfigView: View {
     @Environment(AppState.self) private var state
+    @Environment(AlbyKit.self) private var alby
     
     var body: some View {
         VStack {
@@ -36,8 +37,22 @@ struct ConfigView: View {
     }
     
     private func getAccountInfo() async {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        state.route = .wallet
+        do {
+            // TODO: commiting this but it is WIP
+            let accountSummary = try await alby.accountService.getAccountSummary()
+            async let accountBalance = try alby.accountService.getAccountBalance()
+            async let me = try alby.accountService.getPersonalInformation()
+            print("accountSummary: \(String(describing: accountSummary))")
+            print("accountBalance: \(String(describing: try await accountBalance))")
+            print("me: \(String(describing: try await me))")
+            state.route = .wallet
+        } catch {
+            if case .statusCode(let code, _) = error as? NetworkError, code == .unauthorized {
+                state.logout()
+            } else {
+                state.route = .wallet
+            }
+        }
     }
 }
 
