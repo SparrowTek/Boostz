@@ -49,6 +49,7 @@ fileprivate struct SetThemeViewModifier: ViewModifier {
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.colorScheme) private var colorSchemeString: String?
     @Environment(\.colorScheme) private var colorScheme
+    var themeUIKitHack = ThemeUIKitHack()
     
     private var setColorScheme: ColorScheme? {
         switch colorSchemeString {
@@ -61,7 +62,27 @@ fileprivate struct SetThemeViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .tint(colorScheme == .light ? lightThemeColor.color : darkThemeColor.color)
-            .preferredColorScheme(setColorScheme)
+//            .preferredColorScheme(setColorScheme)
+            .onChange(of: setColorScheme, hackThatColorScheme)
+    }
+    
+    private func hackThatColorScheme() {
+        themeUIKitHack.overrideApplicationThemeStyle()
+    }
+}
+
+// FIXME: Yuck - delete this UIKit hack once SwiftUI is fixed
+fileprivate class ThemeUIKitHack {
+    @AppStorage(Build.Constants.UserDefault.colorScheme) private var colorSchemeString: String?
+    
+    func overrideApplicationThemeStyle() {
+        let userInterfaceStyle: UIUserInterfaceStyle = switch colorSchemeString {
+        case Build.Constants.Theme.light: .light
+        case Build.Constants.Theme.dark: .dark
+        default: .unspecified
+        }
+        
+        UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow }?.overrideUserInterfaceStyle = userInterfaceStyle
     }
 }
 
