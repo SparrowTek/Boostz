@@ -40,3 +40,9 @@ class WalletState {
         parentState.logout()
     }
 }
+
+extension WalletState: ReachabilityDelegate {
+    func triggerDataSync() {
+        parentState.triggerDataSync = true
+    }
+}

@@ -20,6 +20,7 @@ public class AppState {
     }
     
     var route: Route = .auth
+    var triggerDataSync = false
     
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
@@ -76,6 +77,19 @@ public class AppState {
     private func deleteAlbyTokens() throws {
         try Vault.deletePrivateKey(keychainConfiguration: .albyToken)
         try Vault.deletePrivateKey(keychainConfiguration: .albyRefreshToken)
+    }
+    
+    // MARK: update wallet state
+    func setAccountSummary(_ accountSummary: AccountSummary) {
+        walletState.accountSummary = accountSummary
+    }
+    
+    func setAccountBalance(_ accountBalance: AccountBalance) {
+        walletState.accountBalance = accountBalance
+    }
+    
+    func setMe(_ me: PersonalInformation) {
+        walletState.me = me
     }
 }
 

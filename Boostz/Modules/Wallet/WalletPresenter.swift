@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlbyKit
 
 struct WalletPresenter: View {
     @Environment(WalletState.self) private var state
@@ -37,7 +38,6 @@ struct WalletPresenter: View {
 
 struct WalletView: View {
     @Environment(WalletState.self) private var state
-    @State private var sats = 999_999_999
     
     var body: some View {
         ZStack {
@@ -52,8 +52,14 @@ struct WalletView: View {
             VStack {
                 Spacer()
                 
-                Text("\(sats) Sats")
-                    .font(.title)
+                if let accountBalance = state.accountBalance {
+                    Text("\(accountBalance.balance) Sats")
+                        .font(.title)
+                } else {
+                    Text("NO INTERNET Sats")
+                        .font(.title)
+                        .redacted(reason: .placeholder)
+                }
                 
                 Spacer()
                 
@@ -75,6 +81,7 @@ struct WalletView: View {
                 Button("", systemImage: "bolt.fill", action: showTransactions)
             }
         }
+        .syncConfigData()
         .task { await state.reachability.startMonitoring() }
     }
     
@@ -114,5 +121,7 @@ fileprivate struct NetworkNotReachable: View {
 
 #Preview {
     WalletPresenter()
+        .environment(AppState())
         .environment(WalletState(parentState: .init()))
+        .environment(AlbyKit())
 }

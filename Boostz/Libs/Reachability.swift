@@ -8,6 +8,10 @@
 import Network
 import SwiftUI
 
+protocol ReachabilityDelegate: AnyObject {
+    func triggerDataSync()
+}
+
 @Observable
 class Reachability {
     enum ConnectionState {
@@ -16,6 +20,7 @@ class Reachability {
         case good
     }
     
+    weak var delegate: ReachabilityDelegate?
     var connectionState: ConnectionState = .good
     
     func startMonitoring() async {
@@ -29,6 +34,7 @@ class Reachability {
         withAnimation(.easeInOut(duration: 1.0)) {
             if path.status == .satisfied {
                 connectionState = .good
+                delegate?.triggerDataSync()
             } else {
                 connectionState = .notReachable
             }
