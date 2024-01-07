@@ -32,7 +32,13 @@ struct ThemeSettingsView: View {
                 ColorPicker("light mode tint", selection: $lightModeColor)
                 ColorPicker("dark mode tint", selection: $darkModeColor)
             }
+            
+            Section {
+                Button("reset theme", action: resetTheme)
+            }
         }
+        .scrollContentBackground(.hidden)
+        .setForegroundStyle()
         .commonView()
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: setSelectedColorScheme)
@@ -40,6 +46,18 @@ struct ThemeSettingsView: View {
         .onChange(of: selectedColorScheme, updateColorScheme)
         .onChange(of: lightModeColor, saveLightThemeColor)
         .onChange(of: darkModeColor, saveDarkThemeColor)
+    }
+    
+    private func resetTheme() {
+        setTintColors()
+        lightThemeColor = nil
+        darkThemeColor = nil
+        colorSchemeString = nil
+        lightModeColor = .accent
+        darkModeColor = .accent
+        selectedColorScheme = 0
+        setSelectedColorScheme()
+        setTintColors()
     }
     
     private func saveLightThemeColor() {
