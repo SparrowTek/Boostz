@@ -91,10 +91,6 @@ public class AppState {
     func setMe(_ me: PersonalInformation) {
         walletState.me = me
     }
-    
-    func goToConfig() {
-        route = .config
-    }
 }
 
 extension AppState: AlbyKitDelegate {
