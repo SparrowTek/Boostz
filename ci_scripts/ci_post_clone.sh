@@ -11,13 +11,15 @@ bundle_id_prefix_value=$BUNDLE_ID_PREFIX
 alby_client_id_value=$ALBY_CLIENT_ID
 alby_client_secret_vaule=$ALBY_CLIENT_SECRET
 
+config_file_path="../User.xcconfig"
+
 # Check for the presence of 'user.xcconfig'
-if [ -f "User.xcconfig" ]; then
-echo "user.xcconfig exists."
+if [ -f "$config_file_path" ]; then
+echo "User.xcconfig exists."
 else
-echo "Creating user.xcconfig and populating it with environment variables"
-echo "DEVELOPMENT_TEAM = $development_team_value" > User.xcconfig
-echo "BUNDLE_ID_PREFIX = $bundle_id_prefix_value" >> User.xcconfig
-echo "ALBY_CLIENT_ID = $alby_client_id_value" >> User.xcconfig
-echo "ALBY_CLIENT_SECRET = $alby_client_secret_vaule" >> User.xcconfig
+echo "Creating User.xcconfig and populating it with environment variables"
+echo "DEVELOPMENT_TEAM = $development_team_value" > "$config_file_path"
+echo "BUNDLE_ID_PREFIX = $bundle_id_prefix_value" >> "$config_file_path"
+echo "ALBY_CLIENT_ID = $alby_client_id_value" >> "$config_file_path"
+echo "ALBY_CLIENT_SECRET = $alby_client_secret_vaule" >> "$config_file_path"
 fi
