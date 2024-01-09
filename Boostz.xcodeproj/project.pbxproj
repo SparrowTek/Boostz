@@ -46,6 +46,7 @@
 		6C119A2B2B40981D008368BE /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		6C119A2D2B40984E008368BE /* WalletState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletState.swift; sourceTree = "<group>"; };
 		6C119A2F2B40BF48008368BE /* TaskTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTrigger.swift; sourceTree = "<group>"; };
+		6C1D1CD72B4D681400F841CC /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		6C387F352B4B435400825603 /* SyncConfigData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncConfigData.swift; sourceTree = "<group>"; };
 		6C5AE8F12B26505D00C566C0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		6C5AE8F42B265BB800C566C0 /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
@@ -90,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C1D1CD62B4C6D6B00F841CC /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				6C1D1CD72B4D681400F841CC /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		6C5AE8F32B265BA900C566C0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +158,7 @@
 		6CDD4BDF2B25210E00C6C324 = {
 			isa = PBXGroup;
 			children = (
+				6C1D1CD62B4C6D6B00F841CC /* ci_scripts */,
 				6CC430E92B25DDC900ED3B6A /* Configurations */,
 				6CDD4BEA2B25210E00C6C324 /* Boostz */,
 				6CDD4BE92B25210E00C6C324 /* Products */,
