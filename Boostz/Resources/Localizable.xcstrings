@@ -4,6 +4,16 @@
     "" : {
 
     },
+    "%@%lld %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$lld %3$@"
+          }
+        }
+      }
+    },
     "%lld Sats" : {
 
     },
@@ -103,7 +113,10 @@
     "theme" : {
 
     },
-    "TRANSACTIONS" : {
+    "transactions" : {
+
+    },
+    "wallet" : {
 
     }
   },

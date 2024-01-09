@@ -22,8 +22,8 @@ struct WalletPresenter: View {
                         SettingsPresenter()
                             .environment(state.settingsState)
                     case .transactions:
-                        Text("TRANSACTIONS")
-                            .presentationDragIndicator(.visible)
+                        TransactionsPresenter()
+                            .interactiveDismissDisabled()
                     case .send:
                         Text("SEND")
                             .presentationDragIndicator(.visible)

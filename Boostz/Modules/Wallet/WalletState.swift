@@ -25,6 +25,7 @@ class WalletState {
     var me: PersonalInformation?
     var keysend: Keysend?
     var reachability = Reachability()
+    var invoiceHistory: [Invoice] = []
     
     private unowned let parentState: AppState
     
