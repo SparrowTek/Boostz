@@ -22,12 +22,21 @@ struct TransactionsView: View {
     @Environment(WalletState.self) private var state
     @Environment(AlbyKit.self) private var alby
     @State private var page = 1
+    @State private var requestInProgress = false
     
-    // TODO: implement empty state (no history) and empty state (request in progress)
+    // TODO: implement pagination
     var body: some View {
-        List {
-            ForEach(state.invoiceHistory) {
-                TransactionCell(invoice: $0)
+        Group {
+            if state.invoiceHistory.isEmpty && requestInProgress {
+                ProgressView()
+            } else if state.invoiceHistory.isEmpty {
+                ContentUnavailableView("There is no transaction history available", systemImage: "bolt.slash.fill")
+            } else {
+                List {
+                    ForEach(state.invoiceHistory) {
+                        TransactionCell(invoice: $0)
+                    }
+                }
             }
         }
         .commonView()
@@ -42,6 +51,9 @@ struct TransactionsView: View {
     }
     
     private func getInvoices() async {
+        defer { requestInProgress = false }
+        requestInProgress = true
+        
         do {
             let invoiceHistory = try await alby.invoicesService.getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: page, items: 50))
             state.invoiceHistory = invoiceHistory
