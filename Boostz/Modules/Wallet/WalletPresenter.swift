@@ -23,7 +23,6 @@ struct WalletPresenter: View {
                             .environment(state.settingsState)
                     case .transactions:
                         TransactionsPresenter()
-                            .interactiveDismissDisabled()
                     case .send:
                         SendPresenter()
                             .environment(state.sendState)
