@@ -56,6 +56,15 @@
     "Done" : {
 
     },
+    "go" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Invoice, lightning address, or LNURL" : {
+
+    },
     "light" : {
 
     },
@@ -74,6 +83,9 @@
     "NO INTERNET Sats" : {
 
     },
+    "OR:" : {
+
+    },
     "poor network connection" : {
 
     },
@@ -89,10 +101,10 @@
     "Receive" : {
 
     },
-    "RECEIVE" : {
+    "reset theme" : {
 
     },
-    "reset theme" : {
+    "Scan QR" : {
 
     },
     "Selected Color Scheme" : {
@@ -101,7 +113,10 @@
     "Send" : {
 
     },
-    "SEND" : {
+    "send BTC" : {
+
+    },
+    "SEND LNURL" : {
 
     },
     "settings" : {
@@ -111,6 +126,9 @@
 
     },
     "theme" : {
+
+    },
+    "There is no transaction history available" : {
 
     },
     "transactions" : {

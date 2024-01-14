@@ -25,11 +25,13 @@ struct WalletPresenter: View {
                         TransactionsPresenter()
                             .interactiveDismissDisabled()
                     case .send:
-                        Text("SEND")
-                            .presentationDragIndicator(.visible)
+                        SendPresenter()
+                            .environment(state.sendState)
+                            .interactiveDismissDisabled()
                     case .receive:
-                        Text("RECEIVE")
-                            .presentationDragIndicator(.visible)
+                        ReceiveView()
+                            .interactiveDismissDisabled()
+//                            .presentationDragIndicator(.visible)
                     }
                 }
         }
