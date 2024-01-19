@@ -39,8 +39,7 @@ fileprivate struct SyncConfigData: ViewModifier {
             state.setMe(try await me)
             state.route = .wallet
         } catch {
-            print("### ERROR: \(error)")
-            if case .statusCode(let code, _) = error as? NetworkError, code == .unauthorized {
+            if case .network(let networkError) = error as? AlbyError, case .statusCode(let code, _) = networkError, code == StatusCode.unauthorized {
                 state.logout()
             } else {
                 state.route = .wallet
