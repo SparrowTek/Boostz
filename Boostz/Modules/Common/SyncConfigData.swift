@@ -24,6 +24,8 @@ fileprivate struct SyncConfigData: ViewModifier {
         state.triggerDataSync = false
 //        dataSyncTrigger.trigger()
         
+        // FIXME: the task modifier that takes an id parameter has a bug. Investigate more why it occurs here
+        // this Task should not be here. we should be triggering the dataSyncTrigger instead
         Task {
             await getAccountInfo()
         }
