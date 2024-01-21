@@ -27,6 +27,7 @@
 		6C5B31502B5417420018EF44 /* SendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5B314F2B5417420018EF44 /* SendState.swift */; };
 		6C5FCA182B4F1965004B9B83 /* SendPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5FCA172B4F1965004B9B83 /* SendPresenter.swift */; };
 		6C5FCA1A2B4F197D004B9B83 /* ReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5FCA192B4F197D004B9B83 /* ReceiveView.swift */; };
+		6C6D90A72B5D518E006F1456 /* SendDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D90A62B5D518E006F1456 /* SendDetailsView.swift */; };
 		6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5F72B3F0F3B0073C816 /* Vault */; };
 		6C73E5FB2B3F0F8E0073C816 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5FA2B3F0F8E0073C816 /* AlbyKit */; };
 		6C73E5FF2B3F2BEA0073C816 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73E5FE2B3F2BEA0073C816 /* WalletPresenter.swift */; };
@@ -68,6 +69,7 @@
 		6C5B314F2B5417420018EF44 /* SendState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendState.swift; sourceTree = "<group>"; };
 		6C5FCA172B4F1965004B9B83 /* SendPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPresenter.swift; sourceTree = "<group>"; };
 		6C5FCA192B4F197D004B9B83 /* ReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveView.swift; sourceTree = "<group>"; };
+		6C6D90A62B5D518E006F1456 /* SendDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDetailsView.swift; sourceTree = "<group>"; };
 		6C73E5FE2B3F2BEA0073C816 /* WalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
 		6C755BAB2B4DFCF5001AB4B8 /* TransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsPresenter.swift; sourceTree = "<group>"; };
 		6C755BAD2B4E107F001AB4B8 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				6C5FCA172B4F1965004B9B83 /* SendPresenter.swift */,
 				6C5B314F2B5417420018EF44 /* SendState.swift */,
+				6C6D90A62B5D518E006F1456 /* SendDetailsView.swift */,
 			);
 			path = Send;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				6C387F362B4B435400825603 /* SyncConfigData.swift in Sources */,
 				6C5AE9012B26627C00C566C0 /* BoostzButtonStyle.swift in Sources */,
 				6C5AE8FB2B26612C00C566C0 /* Build+Constants.swift in Sources */,
+				6C6D90A72B5D518E006F1456 /* SendDetailsView.swift in Sources */,
 				6C5B31502B5417420018EF44 /* SendState.swift in Sources */,
 				6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */,
 				6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */,

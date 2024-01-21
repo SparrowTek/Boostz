@@ -17,8 +17,10 @@ struct SendPresenter: View {
             SendView()
                 .navigationDestination(for: SendState.NavigationLink.self) {
                     switch $0 {
-                    case .sendLNURL:
-                        Text("SEND LNURL")
+                    case .sendLNURL(let address):
+                        SendDetailsView(lightningAddress: address)
+                    case .scanQR:
+                        Text("SCAN QR")
                     }
                 }
         }
@@ -57,7 +59,9 @@ fileprivate struct SendView: View {
     }
     
     private func continueWithInput() {
-        state.path.append(.sendLNURL)
+        // TODO: we need a guard here
+        // AlbyKit needs to check that the string is a valid invoice, lightning address, or LNURL
+        state.path.append(.sendLNURL(lightningInput))
     }
     
     private func scanQR() {

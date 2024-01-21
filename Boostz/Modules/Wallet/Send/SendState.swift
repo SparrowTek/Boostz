@@ -11,7 +11,8 @@ import AlbyKit
 @Observable
 class SendState {
     enum NavigationLink: Hashable {
-        case sendLNURL
+        case sendLNURL(String)
+        case scanQR
     }
     
     private unowned let parentState: WalletState
