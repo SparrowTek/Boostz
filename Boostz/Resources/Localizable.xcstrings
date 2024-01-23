@@ -29,6 +29,15 @@
     "ALBY INFO" : {
 
     },
+    "Amount:" : {
+
+    },
+    "balance: 1,504 sats" : {
+
+    },
+    "between 1 and 500,000 sats" : {
+
+    },
     "Boostz" : {
 
     },
@@ -42,6 +51,9 @@
 
     },
     "Common view" : {
+
+    },
+    "Confirm" : {
 
     },
     "Connect Via:" : {
@@ -116,7 +128,7 @@
     "send BTC" : {
 
     },
-    "SEND LNURL" : {
+    "Sending to:" : {
 
     },
     "settings" : {
