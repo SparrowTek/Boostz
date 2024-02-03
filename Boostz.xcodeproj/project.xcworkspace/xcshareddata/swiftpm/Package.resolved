@@ -1,15 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "albykit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SparrowTek/AlbyKit",
-      "state" : {
-        "branch" : "main",
-        "revision" : "4759536d5c06b10c57fc3a575eff7c3cd660a76b"
-      }
-    },
-    {
       "identity" : "vault",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SparrowTek/Vault",

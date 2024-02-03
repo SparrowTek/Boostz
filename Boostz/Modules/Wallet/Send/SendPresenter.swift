@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlbyKit
 
 struct SendPresenter: View {
     @Environment(SendState.self) private var state
@@ -30,6 +31,7 @@ struct SendPresenter: View {
 fileprivate struct SendView: View {
     @Environment(SendState.self) private var state
     @Environment(\.dismiss) private var dismiss
+    @Environment(AlbyKit.self) private var albyKit
     @State private var lightningInput = ""
     
     var body: some View {
@@ -61,6 +63,8 @@ fileprivate struct SendView: View {
     private func continueWithInput() {
         // TODO: we need a guard here
         // AlbyKit needs to check that the string is a valid invoice, lightning address, or LNURL
+        // TODO: alert user if guard fails
+//        guard let lightningAddress = try? albyKit.helpers.findLightningAddressInText(lightningInput) else { return }
         state.path.append(.sendLNURL(lightningInput))
     }
     
@@ -74,5 +78,6 @@ fileprivate struct SendView: View {
         .sheet(isPresented: .constant(true)) {
             SendPresenter()
                 .environment(SendState(parentState: .init(parentState: .init())))
+                .environment(AlbyKit())
         }
 }
