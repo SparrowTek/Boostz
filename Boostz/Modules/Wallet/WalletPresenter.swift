@@ -41,49 +41,51 @@ struct WalletView: View {
     @Environment(WalletState.self) private var state
     
     var body: some View {
-        ZStack {
-            if state.reachability.connectionState != .good {
-                VStack {
-                    NetworkNotReachable()
-                    Spacer()
+        background
+            .overlay(
+                ZStack {
+                    if state.reachability.connectionState != .good {
+                        VStack {
+                            NetworkNotReachable()
+                            Spacer()
+                        }
+                        .transition(.move(edge: .top))
+                    }
+                    
+                    VStack {
+                        Spacer()
+                        
+                        if let accountBalance = state.accountBalance {
+                            Text("\(accountBalance.balance) Sats")
+                                .font(.title)
+                        } else {
+                            Text("NO INTERNET Sats")
+                                .font(.title)
+                                .redacted(reason: .placeholder)
+                        }
+                        
+                        Spacer()
+                        
+                        HStack {
+                            Button("Send", action: sendSats)
+                            Button("Receive", action: receiveSats)
+                        }
+                        .buttonStyle(.boostz)
+                        .padding()
+                    }
                 }
-                .transition(.move(edge: .top))
-            }
-            
-            VStack {
-                Spacer()
-                
-                if let accountBalance = state.accountBalance {
-                    Text("\(accountBalance.balance) Sats")
-                        .font(.title)
-                } else {
-                    Text("NO INTERNET Sats")
-                        .font(.title)
-                        .redacted(reason: .placeholder)
+            )
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("", systemImage: "slider.horizontal.3", action: openSettings)
                 }
                 
-                Spacer()
-                
-                HStack {
-                    Button("Send", action: sendSats)
-                    Button("Receive", action: receiveSats)
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("", systemImage: "bolt.fill", action: showTransactions)
                 }
-                .buttonStyle(.boostz)
-                .padding()
             }
-        }
-        .commonView()
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button("", systemImage: "slider.horizontal.3", action: openSettings)
-            }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("", systemImage: "bolt.fill", action: showTransactions)
-            }
-        }
-        .syncConfigData()
-        .task { await state.reachability.startMonitoring() }
+            .syncConfigData()
+            .task { await state.reachability.startMonitoring() }
     }
     
     private func sendSats() {
@@ -100,6 +102,33 @@ struct WalletView: View {
     
     private func openSettings() {
         state.sheet = .settings
+    }
+    
+    private var background: some View {
+        ZStack {
+            Color.primaryBackground
+                .ignoresSafeArea()
+            
+            Circle()
+                .fill(.accent.opacity(0.1))
+                .frame(width: 200, height: 200)
+                .offset(x: -100, y: -300)
+            
+            Circle()
+                .fill(.accent.opacity(0.1))
+                .frame(width: 300, height: 300)
+                .offset(x: -150, y: 50)
+            
+            Circle()
+                .fill(.accent.opacity(0.1))
+                .frame(width: 300, height: 300)
+                .offset(x: 150, y: -200)
+            
+            Circle()
+                .fill(.accent.opacity(0.1))
+                .frame(width: 200, height: 200)
+                .offset(x: 100, y: 200)
+        }
     }
 }
 
