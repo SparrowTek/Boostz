@@ -33,6 +33,9 @@ class WalletState {
     lazy var settingsState = SettingsState(parentState: self)
     @ObservationIgnored
     lazy var sendState = SendState(parentState: self)
+    @ObservationIgnored
+    lazy var receiveState = ReceiveState(parentState: self)
+    
     
     init(parentState: AppState) {
         self.parentState = parentState

@@ -27,7 +27,6 @@
 		6C5AE9082B26694D00C566C0 /* ThemeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE9072B26694D00C566C0 /* ThemeSettingsView.swift */; };
 		6C5B31502B5417420018EF44 /* SendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5B314F2B5417420018EF44 /* SendState.swift */; };
 		6C5FCA182B4F1965004B9B83 /* SendPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5FCA172B4F1965004B9B83 /* SendPresenter.swift */; };
-		6C5FCA1A2B4F197D004B9B83 /* ReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5FCA192B4F197D004B9B83 /* ReceiveView.swift */; };
 		6C6D90A72B5D518E006F1456 /* SendDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D90A62B5D518E006F1456 /* SendDetailsView.swift */; };
 		6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5F72B3F0F3B0073C816 /* Vault */; };
 		6C73E5FB2B3F0F8E0073C816 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5FA2B3F0F8E0073C816 /* AlbyKit */; };
@@ -38,6 +37,8 @@
 		6C8A87672B41A42100080639 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87662B41A42100080639 /* ConfigView.swift */; };
 		6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87682B41B7EC00080639 /* Reachability.swift */; };
 		6C8A876B2B41B7FB00080639 /* NWPathMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */; };
+		6CB059FD2B797ED4008FC24E /* ReceiveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB059FC2B797ED4008FC24E /* ReceiveState.swift */; };
+		6CB059FF2B797EDE008FC24E /* ReceivePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */; };
 		6CBA920F2B46EAC8002FCA12 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */; };
 		6CCC36152B604C4400EB5467 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CCC36142B604C4400EB5467 /* AlbyKit */; };
 		6CCEEC612B4987EE003BB066 /* OnOpenURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */; };
@@ -69,7 +70,6 @@
 		6C5AE9072B26694D00C566C0 /* ThemeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettingsView.swift; sourceTree = "<group>"; };
 		6C5B314F2B5417420018EF44 /* SendState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendState.swift; sourceTree = "<group>"; };
 		6C5FCA172B4F1965004B9B83 /* SendPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPresenter.swift; sourceTree = "<group>"; };
-		6C5FCA192B4F197D004B9B83 /* ReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveView.swift; sourceTree = "<group>"; };
 		6C6D90A62B5D518E006F1456 /* SendDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDetailsView.swift; sourceTree = "<group>"; };
 		6C73E5FE2B3F2BEA0073C816 /* WalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
 		6C755BAB2B4DFCF5001AB4B8 /* TransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsPresenter.swift; sourceTree = "<group>"; };
@@ -77,6 +77,8 @@
 		6C8A87662B41A42100080639 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		6C8A87682B41B7EC00080639 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWPathMonitor.swift; sourceTree = "<group>"; };
+		6CB059FC2B797ED4008FC24E /* ReceiveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveState.swift; sourceTree = "<group>"; };
+		6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivePresenter.swift; sourceTree = "<group>"; };
 		6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
 		6CC430EA2B25DDE900ED3B6A /* Boostz.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Boostz.xcconfig; sourceTree = "<group>"; };
 		6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnOpenURL.swift; sourceTree = "<group>"; };
@@ -150,11 +152,11 @@
 		6C73E5FC2B3F2BCA0073C816 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				6CB059FB2B797EB8008FC24E /* Receive */,
 				6C5B314E2B5417270018EF44 /* Send */,
 				6C73E5FE2B3F2BEA0073C816 /* WalletPresenter.swift */,
 				6C119A2D2B40984E008368BE /* WalletState.swift */,
 				6C755BAB2B4DFCF5001AB4B8 /* TransactionsPresenter.swift */,
-				6C5FCA192B4F197D004B9B83 /* ReceiveView.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -174,6 +176,15 @@
 				6C8A87662B41A42100080639 /* ConfigView.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		6CB059FB2B797EB8008FC24E /* Receive */ = {
+			isa = PBXGroup;
+			children = (
+				6CB059FC2B797ED4008FC24E /* ReceiveState.swift */,
+				6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */,
+			);
+			path = Receive;
 			sourceTree = "<group>";
 		};
 		6CC430E92B25DDC900ED3B6A /* Configurations */ = {
@@ -373,6 +384,7 @@
 			files = (
 				6C5AE9042B2668EC00C566C0 /* SettingsState.swift in Sources */,
 				6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */,
+				6CB059FD2B797ED4008FC24E /* ReceiveState.swift in Sources */,
 				6C5AE9082B26694D00C566C0 /* ThemeSettingsView.swift in Sources */,
 				6C5AE8FD2B26617D00C566C0 /* Theme.swift in Sources */,
 				6C387F362B4B435400825603 /* SyncConfigData.swift in Sources */,
@@ -382,6 +394,7 @@
 				6C5B31502B5417420018EF44 /* SendState.swift in Sources */,
 				6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */,
 				6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */,
+				6CB059FF2B797EDE008FC24E /* ReceivePresenter.swift in Sources */,
 				6C5AE8F92B265E3700C566C0 /* Build.swift in Sources */,
 				6CCEEC612B4987EE003BB066 /* OnOpenURL.swift in Sources */,
 				6C5FCA182B4F1965004B9B83 /* SendPresenter.swift in Sources */,
@@ -395,7 +408,6 @@
 				6C73E5FF2B3F2BEA0073C816 /* WalletPresenter.swift in Sources */,
 				6C5AE8F52B265BB800C566C0 /* CommonView.swift in Sources */,
 				6C119A2C2B40981D008368BE /* AuthState.swift in Sources */,
-				6C5FCA1A2B4F197D004B9B83 /* ReceiveView.swift in Sources */,
 				6C5AE9062B26692600C566C0 /* SettingsPresenter.swift in Sources */,
 				6C119A2A2B409714008368BE /* AuthPresenter.swift in Sources */,
 				6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */,

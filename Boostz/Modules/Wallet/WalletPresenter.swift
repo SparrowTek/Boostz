@@ -28,7 +28,8 @@ struct WalletPresenter: View {
                             .environment(state.sendState)
                             .interactiveDismissDisabled()
                     case .receive:
-                        ReceiveView()
+                        ReceivePresenter()
+                            .environment(state.receiveState)
                             .interactiveDismissDisabled()
 //                            .presentationDragIndicator(.visible)
                     }

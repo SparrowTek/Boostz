@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SendDetailsView: View {
+    @Environment(SendState.self) private var state
     var lightningAddress: String
     @State private var amount = ""
     
@@ -34,23 +35,38 @@ struct SendDetailsView: View {
             .padding(.horizontal)
             
             HStack {
-                PresetSatVauleButton(value: "1K", action: {})
-                PresetSatVauleButton(value: "5K", action: {})
-                PresetSatVauleButton(value: "10K", action: {})
-                PresetSatVauleButton(value: "25K", action: {})
+                PresetSatVauleButton(value: "1K", action: { setAmount(1_000) } )
+                PresetSatVauleButton(value: "5K", action: { setAmount(5_000) } )
+                PresetSatVauleButton(value: "10K", action: { setAmount(10_000) } )
+                PresetSatVauleButton(value: "25K", action: { setAmount(25_000) } )
             }
             .padding([.horizontal, .top])
             
+            Spacer()
             
             HStack {
-                Button("Cancel", action: {})
+                Button("Cancel", action: cancel)
                     .frame(maxWidth: .infinity)
-                Button("Confirm", action: {})
+                    .buttonStyle(.boostz)
+                Button("Confirm", action: confirm)
                     .frame(maxWidth: .infinity)
+                    .buttonStyle(.boostz)
             }
             .padding()
         }
         .navigationTitle("Send")
+    }
+    
+    private func setAmount(_ amount: Int) {
+        self.amount = "\(amount)"
+    }
+    
+    private func cancel() {
+        state.cancel()
+    }
+    
+    private func confirm() {
+        
     }
 }
 
@@ -59,13 +75,21 @@ fileprivate struct PresetSatVauleButton: View {
     var action: () -> Void
     
     var body: some View {
-        Button(value, systemImage: "line.3.horizontal", action: action)
+        Button(action: action) {
+            HStack {
+                Text(value)
+                Image(systemName: "bolt.fill")
+                    .foregroundStyle(Color.yellow)
+            }
             .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.boostz)
     }
 }
 
 #Preview {
     NavigationStack {
         SendDetailsView(lightningAddress: "SparrowTek@getalby.com")
+            .environment(SendState(parentState: .init(parentState: .init())))
     }
 }

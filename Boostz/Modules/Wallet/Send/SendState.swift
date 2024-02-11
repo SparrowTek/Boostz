@@ -21,4 +21,9 @@ class SendState {
     init(parentState: WalletState) {
         self.parentState = parentState
     }
+    
+    func cancel() {
+        path = []
+        parentState.sheet = nil
+    }
 }
