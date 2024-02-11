@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SendDetailsView: View {
+    @Environment(SendState.self) private var state
     var lightningAddress: String
     @State private var amount = ""
     
@@ -41,16 +42,27 @@ struct SendDetailsView: View {
             }
             .padding([.horizontal, .top])
             
+            Spacer()
             
             HStack {
-                Button("Cancel", action: {})
+                Button("Cancel", action: cancel)
                     .frame(maxWidth: .infinity)
-                Button("Confirm", action: {})
+                    .buttonStyle(.boostz)
+                Button("Confirm", action: confirm)
                     .frame(maxWidth: .infinity)
+                    .buttonStyle(.boostz)
             }
             .padding()
         }
         .navigationTitle("Send")
+    }
+    
+    private func cancel() {
+        state.cancel()
+    }
+    
+    private func confirm() {
+        
     }
 }
 
@@ -61,11 +73,13 @@ fileprivate struct PresetSatVauleButton: View {
     var body: some View {
         Button(value, systemImage: "line.3.horizontal", action: action)
             .frame(maxWidth: .infinity)
+            .buttonStyle(.boostz)
     }
 }
 
 #Preview {
     NavigationStack {
         SendDetailsView(lightningAddress: "SparrowTek@getalby.com")
+            .environment(SendState(parentState: .init(parentState: .init())))
     }
 }
