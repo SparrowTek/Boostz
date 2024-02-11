@@ -59,6 +59,9 @@
     "Connect Via:" : {
 
     },
+    "Copied!" : {
+
+    },
     "dark" : {
 
     },
@@ -78,6 +81,9 @@
 
     },
     "light mode tint" : {
+
+    },
+    "lightning invoice" : {
 
     },
     "Logout" : {
@@ -108,6 +114,9 @@
 
     },
     "Receive" : {
+
+    },
+    "request instant and specific amount payment" : {
 
     },
     "reset theme" : {
