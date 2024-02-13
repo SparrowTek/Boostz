@@ -4,8 +4,16 @@
 #  Boostz
 #
 #  Created by Thomas Rademaker on 1/9/24.
-#  
+#
 
+# setup Tuist
+curl https://mise.jdx.dev/install.sh | sh
+mise install # Installs the version from .mise.toml
+
+# Runs the version of Tuist indicated in the .mise.toml file
+mise x tuist generate
+
+# setup xcconfig file
 development_team_value=$DEVELOPMENT_TEAM
 bundle_id_prefix_value=$BUNDLE_ID_PREFIX
 alby_client_id_value=$ALBY_CLIENT_ID
