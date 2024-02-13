@@ -29,6 +29,14 @@ fileprivate struct ReceiveView: View {
         #endif
     }
     
+    private var lightningAddressMinusPrefix: String {
+        #if DEBUG
+        "sparrowtek@getalby.com"
+        #else
+        state.lightningAddressMinusPrefix
+        #endif
+    }
+    
     var body: some View {
         VStack {
             Image(uiImage: generateQRCode(from: lightningAddress))
@@ -40,7 +48,7 @@ fileprivate struct ReceiveView: View {
             
             ZStack {
                 Button(action: copyLightningAddress) {
-                    Text(lightningAddress)
+                    Text(lightningAddressMinusPrefix)
                     Image(systemName: "doc.on.doc")
                 }
                 .opacity(lightningAddressCopied ? 0 : 1)
