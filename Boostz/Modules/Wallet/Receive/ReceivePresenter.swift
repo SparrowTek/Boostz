@@ -36,6 +36,7 @@ fileprivate struct ReceiveView: View {
                 .interpolation(.none)
                 .scaledToFit()
                 .frame(width: 200, height: 200)
+                .padding()
             
             ZStack {
                 Button(action: copyLightningAddress) {
@@ -48,6 +49,7 @@ fileprivate struct ReceiveView: View {
                     .foregroundStyle(Color.green)
                     .opacity(lightningAddressCopied ? 1 : 0)
             }
+            .padding()
             
             Button(action: createLightningInvoice) {
                 HStack {
