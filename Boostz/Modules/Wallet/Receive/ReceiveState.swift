@@ -9,8 +9,13 @@ import Foundation
 
 @Observable
 class ReceiveState {
+    enum NavigationLink: Hashable {
+        case createInvoice
+    }
+    
     private unowned let parentState: WalletState
     
+    var path: [ReceiveState.NavigationLink] = []
     var lightningAddress: String {
         guard let address = parentState.me?.lightningAddress else { return "" }
         return "lightning:\(address)"

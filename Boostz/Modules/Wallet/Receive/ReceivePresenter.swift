@@ -9,9 +9,20 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 
 struct ReceivePresenter: View {
+    @Environment(ReceiveState.self) private var state
+    
     var body: some View {
-        NavigationStack {
+        @Bindable var state = state
+        
+        NavigationStack(path: $state.path) {
             ReceiveView()
+                .navigationDestination(for: ReceiveState.NavigationLink.self) {
+                    switch $0 {
+                    case .createInvoice:
+                        Text("create invoice")
+                            .interactiveDismissDisabled()
+                    }
+                }
         }
     }
 }
@@ -92,7 +103,7 @@ fileprivate struct ReceiveView: View {
     }
     
     private func createLightningInvoice() {
-        
+        state.path.append(.createInvoice)
     }
     
     private func copyLightningAddress() {
