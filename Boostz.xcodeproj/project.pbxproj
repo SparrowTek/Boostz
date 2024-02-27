@@ -38,6 +38,7 @@
 		6C8A87672B41A42100080639 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87662B41A42100080639 /* ConfigView.swift */; };
 		6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87682B41B7EC00080639 /* Reachability.swift */; };
 		6C8A876B2B41B7FB00080639 /* NWPathMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */; };
+		6C97202D2B88DBD900CD83AE /* CreateInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C97202C2B88DBD900CD83AE /* CreateInvoiceView.swift */; };
 		6CB059FD2B797ED4008FC24E /* ReceiveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB059FC2B797ED4008FC24E /* ReceiveState.swift */; };
 		6CB059FF2B797EDE008FC24E /* ReceivePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */; };
 		6CBA920F2B46EAC8002FCA12 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */; };
@@ -78,6 +79,7 @@
 		6C8A87662B41A42100080639 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		6C8A87682B41B7EC00080639 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWPathMonitor.swift; sourceTree = "<group>"; };
+		6C97202C2B88DBD900CD83AE /* CreateInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInvoiceView.swift; sourceTree = "<group>"; };
 		6CB059FC2B797ED4008FC24E /* ReceiveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveState.swift; sourceTree = "<group>"; };
 		6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivePresenter.swift; sourceTree = "<group>"; };
 		6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				6CB059FC2B797ED4008FC24E /* ReceiveState.swift */,
 				6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */,
+				6C97202C2B88DBD900CD83AE /* CreateInvoiceView.swift */,
 			);
 			path = Receive;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */,
 				6CB059FF2B797EDE008FC24E /* ReceivePresenter.swift in Sources */,
 				6C5AE8F92B265E3700C566C0 /* Build.swift in Sources */,
+				6C97202D2B88DBD900CD83AE /* CreateInvoiceView.swift in Sources */,
 				6CCEEC612B4987EE003BB066 /* OnOpenURL.swift in Sources */,
 				6C5FCA182B4F1965004B9B83 /* SendPresenter.swift in Sources */,
 				6C755BAE2B4E107F001AB4B8 /* Date.swift in Sources */,
