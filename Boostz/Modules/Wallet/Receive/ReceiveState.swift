@@ -11,6 +11,7 @@ import Foundation
 class ReceiveState {
     enum NavigationLink: Hashable {
         case createInvoice
+        case displayInvoice
     }
     
     private unowned let parentState: WalletState

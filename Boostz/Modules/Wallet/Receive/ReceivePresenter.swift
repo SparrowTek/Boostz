@@ -19,8 +19,10 @@ struct ReceivePresenter: View {
                 .navigationDestination(for: ReceiveState.NavigationLink.self) {
                     switch $0 {
                     case .createInvoice:
-                        Text("create invoice")
+                        CreateInvoiceView()
                             .interactiveDismissDisabled()
+                    case .displayInvoice:
+                        Text("DISPLAY")
                     }
                 }
         }
