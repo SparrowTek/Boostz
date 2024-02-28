@@ -17,6 +17,9 @@
     "%lld Sats" : {
 
     },
+    "%lld SATS" : {
+
+    },
     "about" : {
 
     },
@@ -27,6 +30,12 @@
 
     },
     "ALBY INFO" : {
+
+    },
+    "amount" : {
+
+    },
+    "Amount in Satoshi" : {
 
     },
     "Amount:" : {
@@ -47,6 +56,9 @@
     "Cancel" : {
 
     },
+    "check status" : {
+
+    },
     "color scheme" : {
 
     },
@@ -62,13 +74,25 @@
     "Copied!" : {
 
     },
+    "copy invoice" : {
+
+    },
+    "create invoice" : {
+
+    },
     "dark" : {
 
     },
     "dark mode tint" : {
 
     },
+    "description" : {
+
+    },
     "Done" : {
+
+    },
+    "For e.g. who is sending this payment?" : {
 
     },
     "go" : {
@@ -153,6 +177,9 @@
 
     },
     "transactions" : {
+
+    },
+    "waiting for payment..." : {
 
     },
     "wallet" : {

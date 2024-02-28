@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import AlbyKit
 
 @Observable
 class ReceiveState {
     enum NavigationLink: Hashable {
         case createInvoice
-        case displayInvoice
+        case displayInvoice(CreatedInvoice)
     }
     
     private unowned let parentState: WalletState

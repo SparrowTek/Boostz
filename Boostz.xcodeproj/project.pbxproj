@@ -11,6 +11,8 @@
 		6C119A2C2B40981D008368BE /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C119A2B2B40981D008368BE /* AuthState.swift */; };
 		6C119A2E2B40984E008368BE /* WalletState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C119A2D2B40984E008368BE /* WalletState.swift */; };
 		6C119A302B40BF48008368BE /* TaskTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C119A2F2B40BF48008368BE /* TaskTrigger.swift */; };
+		6C1452782B8FD653005B5EEB /* DisplayInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1452772B8FD653005B5EEB /* DisplayInvoiceView.swift */; };
+		6C14527A2B8FD7B3005B5EEB /* QRCodeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1452792B8FD7B3005B5EEB /* QRCodeImage.swift */; };
 		6C1D587E2B40DF380016DFF7 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1D587D2B40DF380016DFF7 /* AlbyKit */; };
 		6C387F362B4B435400825603 /* SyncConfigData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C387F352B4B435400825603 /* SyncConfigData.swift */; };
 		6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F12B26505D00C566C0 /* AppState.swift */; };
@@ -57,6 +59,8 @@
 		6C119A2B2B40981D008368BE /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		6C119A2D2B40984E008368BE /* WalletState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletState.swift; sourceTree = "<group>"; };
 		6C119A2F2B40BF48008368BE /* TaskTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTrigger.swift; sourceTree = "<group>"; };
+		6C1452772B8FD653005B5EEB /* DisplayInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayInvoiceView.swift; sourceTree = "<group>"; };
+		6C1452792B8FD7B3005B5EEB /* QRCodeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeImage.swift; sourceTree = "<group>"; };
 		6C1D1CD72B4D681400F841CC /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		6C387F352B4B435400825603 /* SyncConfigData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncConfigData.swift; sourceTree = "<group>"; };
 		6C5AE8F12B26505D00C566C0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				6C5AE9002B26627C00C566C0 /* BoostzButtonStyle.swift */,
 				6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */,
 				6C387F352B4B435400825603 /* SyncConfigData.swift */,
+				6C1452792B8FD7B3005B5EEB /* QRCodeImage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				6CB059FC2B797ED4008FC24E /* ReceiveState.swift */,
 				6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */,
 				6C97202C2B88DBD900CD83AE /* CreateInvoiceView.swift */,
+				6C1452772B8FD653005B5EEB /* DisplayInvoiceView.swift */,
 			);
 			path = Receive;
 			sourceTree = "<group>";
@@ -393,11 +399,13 @@
 				6CB059FD2B797ED4008FC24E /* ReceiveState.swift in Sources */,
 				6C5AE9082B26694D00C566C0 /* ThemeSettingsView.swift in Sources */,
 				6C5AE8FD2B26617D00C566C0 /* Theme.swift in Sources */,
+				6C1452782B8FD653005B5EEB /* DisplayInvoiceView.swift in Sources */,
 				6C387F362B4B435400825603 /* SyncConfigData.swift in Sources */,
 				6C5AE9012B26627C00C566C0 /* BoostzButtonStyle.swift in Sources */,
 				6C5AE8FB2B26612C00C566C0 /* Build+Constants.swift in Sources */,
 				6C6D90A72B5D518E006F1456 /* SendDetailsView.swift in Sources */,
 				6C5B31502B5417420018EF44 /* SendState.swift in Sources */,
+				6C14527A2B8FD7B3005B5EEB /* QRCodeImage.swift in Sources */,
 				6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */,
 				6C5AE8FF2B2661A000C566C0 /* OptionalString.swift in Sources */,
 				6CB059FF2B797EDE008FC24E /* ReceivePresenter.swift in Sources */,

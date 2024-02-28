@@ -21,8 +21,8 @@ struct ReceivePresenter: View {
                     case .createInvoice:
                         CreateInvoiceView()
                             .interactiveDismissDisabled()
-                    case .displayInvoice:
-                        Text("DISPLAY")
+                    case .displayInvoice(let invoice):
+                        DisplayInvoiceView(invoice: invoice)
                     }
                 }
         }
@@ -52,17 +52,16 @@ fileprivate struct ReceiveView: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: generateQRCode(from: lightningAddress))
-                .resizable()
-                .interpolation(.none)
-                .scaledToFit()
+            QRCodeImage(code: lightningAddress)
                 .frame(width: 200, height: 200)
                 .padding()
             
             ZStack {
                 Button(action: copyLightningAddress) {
-                    Text(lightningAddressMinusPrefix)
-                    Image(systemName: "doc.on.doc")
+                    HStack {
+                        Text(lightningAddressMinusPrefix)
+                        Image(systemName: "doc.on.doc")
+                    }
                 }
                 .opacity(lightningAddressCopied ? 0 : 1)
                 
@@ -116,21 +115,6 @@ fileprivate struct ReceiveView: View {
             try? await Task.sleep(nanoseconds: 1_000_000_000)
             lightningAddressCopied = false
         }
-    }
-    
-    private func generateQRCode(from string: String) -> UIImage {
-        let context = CIContext()
-        let filter = CIFilter.qrCodeGenerator()
-        
-        filter.message = Data(string.utf8)
-        
-        if let outputImage = filter.outputImage {
-            if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
-                return UIImage(cgImage: cgImage)
-            }
-        }
-        
-        return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
 }
 
