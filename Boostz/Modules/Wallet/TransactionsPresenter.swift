@@ -76,10 +76,10 @@ fileprivate struct TransactionCell: View {
             "sent"
         } else if let memo = invoice.memo {
             memo
-        } else if let comment = invoice.comment {
+        } else if let comment = invoice.comment, !comment.isEmpty {
             comment
         } else {
-            "identifier: \(invoice.identifier)"
+            "received"
         }
     }
     
