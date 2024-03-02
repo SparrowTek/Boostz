@@ -28,7 +28,7 @@ struct DisplayInvoiceView: View {
                 .bold()
                 .padding()
             
-            Text(isSettled ? "Paid" : "waiting for payment...")
+            Text(isSettled ? "paid" : "waiting for payment...")
             Button(action: triggerCheckInvoiceStatus) {
                 ZStack {
                     Text("check status")
@@ -51,7 +51,7 @@ struct DisplayInvoiceView: View {
                 .buttonStyle(.boostz)
                 .opacity(invoiceCopied ? 0 : 1)
                 
-                Text("Copied!")
+                Text("copied!")
                     .foregroundStyle(Color.green)
                     .opacity(invoiceCopied ? 1 : 0)
             }

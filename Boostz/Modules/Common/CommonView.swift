@@ -24,7 +24,7 @@ extension View {
 }
 
 #Preview {
-    Text("Common view")
+    Text("common view")
         .commonView()
         .foregroundStyle(.black)
 }

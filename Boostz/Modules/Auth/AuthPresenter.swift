@@ -43,7 +43,7 @@ fileprivate struct AuthView: View {
             Spacer()
             
             HStack {
-                Text("Connect Via:")
+                Text("connect via:")
                     .font(.title)
                     .setForegroundStyle()
                 Spacer()

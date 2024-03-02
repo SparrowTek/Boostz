@@ -15,17 +15,17 @@ struct SettingsPresenter: View {
         
         NavigationStack(path: $state.path) {
             SettingsView()
-                .confirmationDialog("Logout?", isPresented: $state.presentLogoutDialog) {
-                    Button("Logout", role: .destructive, action: logout)
-                    Button("Cancel", role: .cancel, action: {})
+                .confirmationDialog("logout?", isPresented: $state.presentLogoutDialog) {
+                    Button("logout", role: .destructive, action: logout)
+                    Button("cancel", role: .cancel, action: {})
                 }
                 .navigationDestination(for: SettingsState.NavigationLink.self) {
                     switch $0 {
                     case .privacy:
-                        Text("Privacy policy")
+                        Text("privacy policy")
                             .interactiveDismissDisabled()
                     case .about:
-                        Text("About")
+                        Text("about")
                             .interactiveDismissDisabled()
                     case .albyInfo:
                         Text("ALBY INFO")
@@ -77,7 +77,7 @@ struct SettingsView: View {
 //            }
             
             Section("color scheme") {
-                Picker("Selected Color Scheme", selection: $selectedColorScheme) {
+                Picker("selected color scheme", selection: $selectedColorScheme) {
                     Text("system").tag(0)
                     Text("light").tag(1)
                     Text("dark").tag(2)
@@ -85,7 +85,7 @@ struct SettingsView: View {
                 .pickerStyle(.segmented)
             }
             
-            Button("Logout and clear all data", systemImage: "bolt.trianglebadge.exclamationmark.fill", role: .destructive, action: logoutAlert)
+            Button("logout and clear all data", systemImage: "bolt.trianglebadge.exclamationmark.fill", role: .destructive, action: logoutAlert)
                 .foregroundStyle(.red)
         }
         .commonView()

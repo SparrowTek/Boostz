@@ -68,8 +68,8 @@ struct WalletView: View {
                         Spacer()
                         
                         HStack {
-                            Button("Send", action: sendSats)
-                            Button("Receive", action: receiveSats)
+                            Button("send", action: sendSats)
+                            Button("receive", action: receiveSats)
                         }
                         .buttonStyle(.boostz)
                         .padding()

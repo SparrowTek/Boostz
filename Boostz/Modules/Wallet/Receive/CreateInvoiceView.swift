@@ -19,12 +19,12 @@ struct CreateInvoiceView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("amount")
-            TextField("Amount in Satoshi", text: $amount)
+            TextField("amount in satoshi", text: $amount)
                 .textFieldStyle(.roundedBorder)
             
             Text("description")
                 .padding(.top)
-            TextField("For e.g. who is sending this payment?", text: $description)
+            TextField("for e.g. who is sending this payment?", text: $description)
                 .textFieldStyle(.roundedBorder)
             
             Button(action: triggerCreateInvoice) {

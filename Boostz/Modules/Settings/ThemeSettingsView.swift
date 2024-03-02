@@ -20,7 +20,7 @@ struct ThemeSettingsView: View {
     var body: some View {
         Form {
             Section("color scheme") {
-                Picker("Selected Color Scheme", selection: $selectedColorScheme) {
+                Picker("selected color scheme", selection: $selectedColorScheme) {
                     Text("system").tag(0)
                     Text("light").tag(1)
                     Text("dark").tag(2)

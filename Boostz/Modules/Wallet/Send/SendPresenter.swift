@@ -37,7 +37,7 @@ fileprivate struct SendView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField("Invoice, lightning address, or LNURL", text: $lightningInput)
+                TextField("invoice, lightning address, or LNURL", text: $lightningInput)
                     .textFieldStyle(.roundedBorder)
                 
                 Button("go", action: continueWithInput)
@@ -48,7 +48,7 @@ fileprivate struct SendView: View {
             Text("OR:")
                 .font(.headline)
             
-            Button("Scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
+            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
                 .font(.title)
         }
         .commonView()

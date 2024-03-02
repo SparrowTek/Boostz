@@ -65,7 +65,7 @@ fileprivate struct ReceiveView: View {
                 }
                 .opacity(lightningAddressCopied ? 0 : 1)
                 
-                Text("Copied!")
+                Text("copied!")
                     .foregroundStyle(Color.green)
                     .opacity(lightningAddressCopied ? 1 : 0)
             }

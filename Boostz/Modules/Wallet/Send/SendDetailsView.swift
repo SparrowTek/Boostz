@@ -16,7 +16,7 @@ struct SendDetailsView: View {
         VStack(alignment: .leading) {
             
             VStack(alignment: .leading) {
-                Text("Sending to:")
+                Text("sending to:")
                     .font(.headline)
                 Text(lightningAddress)
                     .font(.subheadline)
@@ -24,7 +24,7 @@ struct SendDetailsView: View {
             .padding()
             
             VStack(alignment: .leading) {
-                Text("Amount:")
+                Text("amount:")
                     .font(.headline)
                 TextField("between 1 and 500,000 sats", text: $amount)
                     .font(.subheadline)
@@ -45,16 +45,16 @@ struct SendDetailsView: View {
             Spacer()
             
             HStack {
-                Button("Cancel", action: cancel)
+                Button("cancel", action: cancel)
                     .frame(maxWidth: .infinity)
                     .buttonStyle(.boostz)
-                Button("Confirm", action: confirm)
+                Button("confirm", action: confirm)
                     .frame(maxWidth: .infinity)
                     .buttonStyle(.boostz)
             }
             .padding()
         }
-        .navigationTitle("Send")
+        .navigationTitle("send")
     }
     
     private func setAmount(_ amount: Int) {

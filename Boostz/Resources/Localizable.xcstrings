@@ -23,9 +23,6 @@
     "about" : {
 
     },
-    "About" : {
-
-    },
     "Alby" : {
 
     },
@@ -35,10 +32,10 @@
     "amount" : {
 
     },
-    "Amount in Satoshi" : {
+    "amount in satoshi" : {
 
     },
-    "Amount:" : {
+    "amount:" : {
 
     },
     "balance: 1,504 sats" : {
@@ -53,7 +50,7 @@
     "BOOSTZ" : {
 
     },
-    "Cancel" : {
+    "cancel" : {
 
     },
     "check status" : {
@@ -62,16 +59,16 @@
     "color scheme" : {
 
     },
-    "Common view" : {
+    "common view" : {
 
     },
-    "Confirm" : {
+    "confirm" : {
 
     },
-    "Connect Via:" : {
+    "connect via:" : {
 
     },
-    "Copied!" : {
+    "copied!" : {
 
     },
     "copy invoice" : {
@@ -92,13 +89,13 @@
     "Done" : {
 
     },
-    "For e.g. who is sending this payment?" : {
+    "for e.g. who is sending this payment?" : {
 
     },
     "go" : {
 
     },
-    "Invoice, lightning address, or LNURL" : {
+    "invoice, lightning address, or LNURL" : {
 
     },
     "light" : {
@@ -110,13 +107,13 @@
     "lightning invoice" : {
 
     },
-    "Logout" : {
+    "logout" : {
 
     },
-    "Logout and clear all data" : {
+    "logout and clear all data" : {
 
     },
-    "Logout?" : {
+    "logout?" : {
 
     },
     "NO INTERNET Sats" : {
@@ -125,7 +122,7 @@
     "OR:" : {
 
     },
-    "Paid" : {
+    "paid" : {
 
     },
     "poor network connection" : {
@@ -137,10 +134,10 @@
     "privacy" : {
 
     },
-    "Privacy policy" : {
+    "privacy policy" : {
 
     },
-    "Receive" : {
+    "receive" : {
 
     },
     "request instant and specific amount payment" : {
@@ -149,22 +146,22 @@
     "reset theme" : {
 
     },
-    "Scan QR" : {
+    "scan QR" : {
 
     },
     "SCAN QR" : {
 
     },
-    "Selected Color Scheme" : {
+    "selected color scheme" : {
 
     },
-    "Send" : {
+    "send" : {
 
     },
     "send BTC" : {
 
     },
-    "Sending to:" : {
+    "sending to:" : {
 
     },
     "settings" : {
@@ -173,7 +170,7 @@
     "system" : {
 
     },
-    "There is no transaction history available" : {
+    "there is no transaction history available" : {
 
     },
     "transactions" : {
