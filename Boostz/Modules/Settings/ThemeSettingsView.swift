@@ -12,7 +12,6 @@ struct ThemeSettingsView: View {
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.colorScheme) private var colorSchemeString: String?
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.self) var environment
     @State private var selectedColorScheme = 0
     @State private var lightModeColor: Color = .accent
