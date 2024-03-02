@@ -64,6 +64,7 @@ fileprivate struct SetThemeViewModifier: ViewModifier {
             .tint(colorScheme == .light ? lightThemeColor.color : darkThemeColor.color)
 //            .preferredColorScheme(setColorScheme)
             .onChange(of: setColorScheme, hackThatColorScheme)
+            .onAppear(perform: hackThatColorScheme)
     }
     
     private func hackThatColorScheme() {
