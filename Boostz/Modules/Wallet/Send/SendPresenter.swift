@@ -45,11 +45,12 @@ fileprivate struct SendView: View {
             }
             .padding()
             
-            Text("OR:")
-                .font(.headline)
-            
-            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
-                .font(.title)
+            // TODO: uncomment this code once we support scanning QR Codes with the camera
+//            Text("OR:")
+//                .font(.headline)
+//            
+//            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
+//                .font(.title)
         }
         .commonView()
         .navigationTitle("send BTC")
