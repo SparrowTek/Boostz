@@ -31,6 +31,8 @@ class ReceiveState {
         self.parentState = parentState
     }
     
-    
-    
+    func doneTapped() {
+        parentState.closeSheet()
+        path = []
+    }
 }

@@ -45,6 +45,10 @@ class WalletState {
         sheet = nil
         parentState.logout()
     }
+    
+    func closeSheet() {
+        sheet = nil
+    }
 }
 
 extension WalletState: ReachabilityDelegate {
