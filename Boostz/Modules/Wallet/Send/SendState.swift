@@ -23,6 +23,14 @@ class SendState {
     }
     
     func cancel() {
+        clearPathAndCloseSheet()
+    }
+    
+    func paymentSent() {
+        clearPathAndCloseSheet()
+    }
+    
+    private func clearPathAndCloseSheet() {
         path = []
         parentState.sheet = nil
     }
