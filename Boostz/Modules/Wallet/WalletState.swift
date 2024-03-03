@@ -12,7 +12,6 @@ import AlbyKit
 class WalletState {
     enum Sheet: Int, Identifiable {
         case settings
-        case transactions
         case send
         case receive
         

@@ -8,14 +8,14 @@
 import SwiftUI
 import AlbyKit
 
-struct TransactionsPresenter: View {
-    var body: some View {
-        NavigationStack {
-            TransactionsView()
-        }
-            
-    }
-}
+//struct TransactionsPresenter: View {
+//    var body: some View {
+//        NavigationStack {
+//            TransactionsView()
+//        }
+//            
+//    }
+//}
 
 struct TransactionsView: View {
     @Environment(\.dismiss) private var dismiss
@@ -26,7 +26,7 @@ struct TransactionsView: View {
     
     // TODO: implement pagination
     var body: some View {
-        Group {
+        VStack {
             if state.invoiceHistory.isEmpty && requestInProgress {
                 ProgressView()
             } else if state.invoiceHistory.isEmpty {
@@ -37,14 +37,11 @@ struct TransactionsView: View {
                         TransactionCell(invoice: $0)
                     }
                 }
+                .listStyle(.plain)
+                .background(Color.clear)
             }
-        }
-        .commonView()
-        .navigationTitle("transactions")
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("Done", action: { dismiss() })
-            }
+            
+            Spacer()
         }
         .task { await getInvoices() }
         .refreshable { await getInvoices() }
@@ -118,6 +115,7 @@ fileprivate struct TransactionCell: View {
                     .foregroundStyle(color)
             }
         }
+        .listRowBackground(Color.clear)
     }
     
     private func openInvoice() {
@@ -142,7 +140,7 @@ extension Invoice: Identifiable {
 #Preview {
     Text("wallet")
         .sheet(isPresented: .constant(true)) {
-            TransactionsPresenter()
+            TransactionsView()
                 .interactiveDismissDisabled()
                 .environment(WalletState(parentState: .init()))
                 .environment(AlbyKit())
