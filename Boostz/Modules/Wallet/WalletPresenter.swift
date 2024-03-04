@@ -71,6 +71,7 @@ struct WalletView: View {
                 TransactionsView()
             }
         }
+        .commonView()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("", systemImage: "slider.horizontal.3", action: openSettings)
