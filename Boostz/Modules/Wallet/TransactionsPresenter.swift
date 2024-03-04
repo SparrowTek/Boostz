@@ -50,17 +50,8 @@ struct TransactionsView: View {
     private func getInvoices() async {
         defer { requestInProgress = false }
         requestInProgress = true
-        
-        do {
-            let invoiceHistory = try await alby.invoicesService.getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: page, items: 50))
-            state.invoiceHistory = invoiceHistory
-            
-            for invoice in invoiceHistory {
-                print(invoice)
-            }
-        } catch {
-            print(error)
-        }
+        guard let invoiceHistory = try? await alby.invoicesService.getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: page, items: 50)) else { return }
+        state.invoiceHistory = invoiceHistory
     }
 }
 
