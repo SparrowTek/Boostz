@@ -9,6 +9,7 @@ import SwiftUI
 import AlbyKit
 
 @main
+@MainActor
 struct BoostzApp: App {
     @State private var state = AppState()
     @State private var albyKit = AlbyKit()
