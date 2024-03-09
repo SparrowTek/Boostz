@@ -10,6 +10,7 @@ import Vault
 import AlbyKit
 
 @Observable
+@MainActor
 public class AppState {
     enum Route: Int, Identifiable {
         case wallet

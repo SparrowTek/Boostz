@@ -8,6 +8,7 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct SendPresenter: View {
     @Environment(SendState.self) private var state
     
@@ -28,6 +29,7 @@ struct SendPresenter: View {
     }
 }
 
+@MainActor
 fileprivate struct SendView: View {
     @Environment(SendState.self) private var state
     @Environment(\.dismiss) private var dismiss

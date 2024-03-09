@@ -9,6 +9,7 @@ import Foundation
 import AlbyKit
 
 @Observable
+@MainActor
 class WalletState {
     enum Sheet: Int, Identifiable {
         case settings

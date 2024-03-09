@@ -8,6 +8,7 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 fileprivate struct SyncConfigData: ViewModifier {
     @Environment(AppState.self) private var state
     @Environment(AlbyKit.self) private var alby

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 fileprivate struct OnOpenURL: ViewModifier {
     @Environment(AppState.self) private var state
     @State private var url: URL?

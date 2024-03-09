@@ -9,6 +9,7 @@ import Foundation
 import AlbyKit
 
 @Observable
+@MainActor
 class SendState {
     enum NavigationLink: Hashable {
         case sendLNURL(String)

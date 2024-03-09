@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct QRCodeImage: View {
     var code: String
     

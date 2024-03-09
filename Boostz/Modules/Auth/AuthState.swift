@@ -9,6 +9,7 @@ import Foundation
 import AlbyKit
 
 @Observable
+@MainActor
 class AuthState {
     enum Sheet: Identifiable {
         case auth(SafariView)

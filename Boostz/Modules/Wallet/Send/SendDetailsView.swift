@@ -8,6 +8,7 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct SendDetailsView: View {
     @Environment(SendState.self) private var state
     @Environment(AlbyKit.self) private var alby
@@ -114,6 +115,7 @@ struct SendDetailsView: View {
     }
 }
 
+@MainActor
 fileprivate struct PresetSatVauleButton: View {
     var value: String
     var action: () -> Void

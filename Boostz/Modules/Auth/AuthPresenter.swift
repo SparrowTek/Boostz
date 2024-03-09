@@ -8,6 +8,7 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct AuthPresenter: View {
     @Environment(AuthState.self) private var state
     
@@ -25,6 +26,7 @@ struct AuthPresenter: View {
     }
 }
 
+@MainActor
 fileprivate struct AuthView: View {
     @Environment(AuthState.self) private var state
     @Environment(AlbyKit.self) private var alby

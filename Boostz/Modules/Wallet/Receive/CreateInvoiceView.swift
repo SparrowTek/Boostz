@@ -8,6 +8,7 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct CreateInvoiceView: View {
     @Environment(ReceiveState.self) private var state
     @Environment(AlbyKit.self) private var alby

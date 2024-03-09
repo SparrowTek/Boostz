@@ -17,6 +17,7 @@ import AlbyKit
 //    }
 //}
 
+@MainActor
 struct TransactionsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(WalletState.self) private var state
@@ -55,6 +56,7 @@ struct TransactionsView: View {
     }
 }
 
+@MainActor
 fileprivate struct TransactionCell: View {
     @Environment(WalletState.self) private var state
     var invoice: Invoice

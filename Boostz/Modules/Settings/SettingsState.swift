@@ -8,6 +8,7 @@
 import Foundation
 
 @Observable
+@MainActor
 class SettingsState {
     enum NavigationLink: Hashable {
         case about
