@@ -29,8 +29,11 @@ public class AppState {
     lazy var authState = AuthState(parentState: self)
     
     init() {
-        AlbyKit.setDelegate(self)
         checkAlbyTokenStatus()
+    }
+    
+    func setAlbyDelegate() async {
+        await AlbyKit.setDelegate(self)
     }
     
     private func checkAlbyTokenStatus() {

@@ -11,7 +11,6 @@ import AlbyKit
 @MainActor
 struct SendDetailsView: View {
     @Environment(SendState.self) private var state
-    @Environment(AlbyKit.self) private var alby
     var lightningAddress: String
     @State private var amount = ""
     @State private var requestInProgress = false
@@ -111,7 +110,7 @@ struct SendDetailsView: View {
         
 //        keysendPayment = try? await alby.paymentsService.keysendPayment(uploadModel: KeysendPaymentUploadModel(amount: amount, destination: lightningAddress))
         
-        bolt11Payment = try? await alby.paymentsService.bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: lightningAddress, amount: amount))
+        bolt11Payment = try? await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: lightningAddress, amount: amount))
     }
 }
 
@@ -137,6 +136,6 @@ fileprivate struct PresetSatVauleButton: View {
     NavigationStack {
         SendDetailsView(lightningAddress: "SparrowTek@getalby.com")
             .environment(SendState(parentState: .init(parentState: .init())))
-            .environment(AlbyKit())
+        
     }
 }
