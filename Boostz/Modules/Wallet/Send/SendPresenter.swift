@@ -46,6 +46,7 @@ fileprivate struct SendView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AlbyKit.self) private var albyKit
     @State private var lightningInput = ""
+    @State private var errorMessage: LocalizedStringResource?
     
     var body: some View {
         VStack {
@@ -67,6 +68,7 @@ fileprivate struct SendView: View {
         }
         .commonView()
         .navigationTitle("send BTC")
+        .alert($errorMessage)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Done", action: { dismiss() })
@@ -78,11 +80,17 @@ fileprivate struct SendView: View {
         switch try? findLightningAddressInText(lightningInput) {
         case .bolt11Invoice(let invoice): state.path.append(.sendInvoice(invoice))
         case .bolt11LookupRequired(let lightningAddress): state.path.append(.getLightningAddressDetails(lightningAddress))
-        case .none: break // TODO: show error to user
+        case .none: badLightningAddress()
         }
     }
     
+    private func badLightningAddress() {
+        errorMessage = "The address you entered is not valid. Please try again."
+    }
+    
     private func findLightningAddressInText(_ text: String) throws -> LightningAddressType {
+        var text = text.lowercased()
+        
         if text.hasPrefix("lnurl") ||
             text.hasPrefix("lightning") ||
             text.hasPrefix("⚡") {
@@ -100,6 +108,8 @@ fileprivate struct SendView: View {
                     lookup = "\(lookup):\(component)"
                 }
             }
+            
+            guard !lookup.isEmpty else { throw LightningAddressError.badLightningAddress }
             
             return .bolt11LookupRequired(lookup)
         } else {
