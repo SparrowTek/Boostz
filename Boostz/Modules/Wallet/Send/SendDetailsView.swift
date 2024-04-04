@@ -8,15 +8,14 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct SendDetailsView: View {
     @Environment(SendState.self) private var state
-    @Environment(AlbyKit.self) private var alby
     var lightningAddress: String
     @State private var amount = ""
     @State private var requestInProgress = false
     @State private var confirmationTrigger = PlainTaskTrigger()
     @State private var bolt11Payment: Bolt11Payment?
-    @State private var keysendPayment: KeysendPayment?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -69,21 +68,11 @@ struct SendDetailsView: View {
         }
         .navigationTitle("send")
         .onChange(of: bolt11Payment, bolt11PaymentChanged)
-        .onChange(of: keysendPayment, keysendPaymentChanged)
         .task($confirmationTrigger) { await confirm() }
     }
     
     private func bolt11PaymentChanged() {
         guard bolt11Payment != nil else { return }
-        paymentSent()
-    }
-    
-    private func keysendPaymentChanged() {
-        guard keysendPayment != nil else { return }
-        paymentSent()
-    }
-    
-    private func paymentSent() {
         // TODO: route to trasaction history and briefly highlight the new transaction
         state.paymentSent()
     }
@@ -110,10 +99,11 @@ struct SendDetailsView: View {
         
 //        keysendPayment = try? await alby.paymentsService.keysendPayment(uploadModel: KeysendPaymentUploadModel(amount: amount, destination: lightningAddress))
         
-        bolt11Payment = try? await alby.paymentsService.bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: lightningAddress, amount: amount))
+        bolt11Payment = try? await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: lightningAddress))
     }
 }
 
+@MainActor
 fileprivate struct PresetSatVauleButton: View {
     var value: String
     var action: () -> Void
@@ -135,6 +125,6 @@ fileprivate struct PresetSatVauleButton: View {
     NavigationStack {
         SendDetailsView(lightningAddress: "SparrowTek@getalby.com")
             .environment(SendState(parentState: .init(parentState: .init())))
-            .environment(AlbyKit())
+        
     }
 }

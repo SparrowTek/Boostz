@@ -9,6 +9,7 @@ import Foundation
 import AlbyKit
 
 @Observable
+@MainActor
 class ReceiveState {
     enum NavigationLink: Hashable {
         case createInvoice

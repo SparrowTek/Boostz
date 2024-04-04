@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 fileprivate struct CommonView: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {

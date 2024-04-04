@@ -8,6 +8,7 @@
 import SwiftUI
 
 // TODO: add ab alby theme
+@MainActor
 struct ThemeSettingsView: View {
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?

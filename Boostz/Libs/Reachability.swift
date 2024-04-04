@@ -8,11 +8,13 @@
 import Network
 import SwiftUI
 
+@MainActor
 protocol ReachabilityDelegate: AnyObject {
     func triggerDataSync()
 }
 
 @Observable
+@MainActor
 class Reachability {
     enum ConnectionState {
         case notReachable

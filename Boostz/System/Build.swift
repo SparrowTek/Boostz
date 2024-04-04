@@ -8,7 +8,7 @@
 import Foundation
 import AlbyKit
 
-final class Build {
+final class Build: Sendable {
     /// Build environemnt
     enum Environment: String {
         case development = "DEVELOPMENT"

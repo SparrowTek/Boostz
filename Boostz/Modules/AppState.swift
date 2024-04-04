@@ -10,6 +10,7 @@ import Vault
 import AlbyKit
 
 @Observable
+@MainActor
 public class AppState {
     enum Route: Int, Identifiable {
         case wallet
@@ -28,8 +29,11 @@ public class AppState {
     lazy var authState = AuthState(parentState: self)
     
     init() {
-        AlbyKit.setDelegate(self)
         checkAlbyTokenStatus()
+    }
+    
+    func setAlbyDelegate() async {
+        await AlbyKit.setDelegate(self)
     }
     
     private func checkAlbyTokenStatus() {

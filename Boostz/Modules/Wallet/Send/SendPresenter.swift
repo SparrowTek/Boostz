@@ -8,6 +8,7 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct SendPresenter: View {
     @Environment(SendState.self) private var state
     
@@ -18,8 +19,10 @@ struct SendPresenter: View {
             SendView()
                 .navigationDestination(for: SendState.NavigationLink.self) {
                     switch $0 {
-                    case .sendLNURL(let address):
+                    case .getLightningAddressDetails(let address):
                         SendDetailsView(lightningAddress: address)
+                    case .sendInvoice(let invoice):
+                        SendConfirmationView(invoice: invoice)
                     case .scanQR:
                         Text("SCAN QR")
                     }
@@ -28,7 +31,17 @@ struct SendPresenter: View {
     }
 }
 
+@MainActor
 fileprivate struct SendView: View {
+    enum LightningAddressError: Error {
+        case badLightningAddress
+    }
+    
+    enum LightningAddressType: Sendable {
+        case bolt11Invoice(String)
+        case bolt11LookupRequired(String)
+    }
+    
     @Environment(SendState.self) private var state
     @Environment(\.dismiss) private var dismiss
     @Environment(AlbyKit.self) private var albyKit
@@ -46,11 +59,11 @@ fileprivate struct SendView: View {
             .padding()
             
             // TODO: uncomment this code once we support scanning QR Codes with the camera
-//            Text("OR:")
-//                .font(.headline)
-//            
-//            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
-//                .font(.title)
+            //            Text("OR:")
+            //                .font(.headline)
+            //
+            //            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
+            //                .font(.title)
         }
         .commonView()
         .navigationTitle("send BTC")
@@ -62,11 +75,36 @@ fileprivate struct SendView: View {
     }
     
     private func continueWithInput() {
-        // TODO: we need a guard here
-        // AlbyKit needs to check that the string is a valid invoice, lightning address, or LNURL
-        // TODO: alert user if guard fails
-//        guard let lightningAddress = try? albyKit.helpers.findLightningAddressInText(lightningInput) else { return }
-        state.path.append(.sendLNURL(lightningInput))
+        switch try? findLightningAddressInText(lightningInput) {
+        case .bolt11Invoice(let invoice): state.path.append(.sendInvoice(invoice))
+        case .bolt11LookupRequired(let lightningAddress): state.path.append(.getLightningAddressDetails(lightningAddress))
+        case .none: break // TODO: show error to user
+        }
+    }
+    
+    private func findLightningAddressInText(_ text: String) throws -> LightningAddressType {
+        if text.hasPrefix("lnurl") ||
+            text.hasPrefix("lightning") ||
+            text.hasPrefix("⚡") {
+            let components = text.components(separatedBy: ":")
+            guard components.count > 1 else { throw LightningAddressError.badLightningAddress }
+            
+            var lookup = ""
+            
+            for component in components {
+                guard component != components[0] else { continue }
+                
+                if component == components[1] {
+                    lookup = component
+                } else {
+                    lookup = "\(lookup):\(component)"
+                }
+            }
+            
+            return .bolt11LookupRequired(lookup)
+        } else {
+            return .bolt11Invoice(text)
+        }
     }
     
     private func scanQR() {

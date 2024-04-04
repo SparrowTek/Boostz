@@ -8,6 +8,7 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct AuthPresenter: View {
     @Environment(AuthState.self) private var state
     
@@ -25,13 +26,14 @@ struct AuthPresenter: View {
     }
 }
 
+@MainActor
 fileprivate struct AuthView: View {
     @Environment(AuthState.self) private var state
-    @Environment(AlbyKit.self) private var alby
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
     @Environment(\.colorScheme) private var colorScheme
     @State private var getAlbyTokenTrigger = PlainTaskTrigger()
+    @State private var loginWithAlbyTrigger = PlainTaskTrigger()
     
     var body: some View {
         VStack {
@@ -50,7 +52,7 @@ fileprivate struct AuthView: View {
             }
             .padding(.horizontal)
             
-            Button(action: loginWithAlby) {
+            Button(action: triggerLoginWithAlby) {
                 ZStack {
                     Color.albyBackground
                     Image(.alby)
@@ -69,6 +71,7 @@ fileprivate struct AuthView: View {
         .commonView()
         .onChange(of: state.albyCode, triggerGetAlbyToken)
         .task($getAlbyTokenTrigger) { await getAlbyToken() }
+        .task($loginWithAlbyTrigger) { await loginWithAlby() }
     }
     
     private func triggerGetAlbyToken() {
@@ -79,7 +82,7 @@ fileprivate struct AuthView: View {
         guard let code = state.albyCode, !code.isEmpty else { return } // TODO: handle the guard or return??
         
         do {
-            let token = try await alby.oauthService.requestAccessToken(code: code)
+            let token = try await OAuthService().requestAccessToken(code: code)
             state.saveAlbyToken(token)
         } catch {
             // TODO: alert user of error
@@ -87,14 +90,18 @@ fileprivate struct AuthView: View {
         }
     }
     
-    private func loginWithAlby() {
+    private func triggerLoginWithAlby() {
+        loginWithAlbyTrigger.trigger()
+    }
+    
+    private func loginWithAlby() async {
         // TODO: handle the failed try
         
         let primaryBackground = UIColor(Color.primaryBackground)
         let color = colorScheme == .light ? lightThemeColor.color : darkThemeColor.color
         let tintColor = UIColor(color)
         
-        guard let safariVC = try? alby.oauthService.getAuthCodeWithSwiftUI(
+        guard let safariVC = try? await OAuthService().getAuthCodeWithSwiftUI(
             preferredControlerTintColor: tintColor,
             preferredBarTintColor: primaryBackground,
             withScopes: [.accountRead,
@@ -111,5 +118,4 @@ fileprivate struct AuthView: View {
 #Preview {
     AuthPresenter()
         .environment(AuthState(parentState: .init()))
-        .environment(AlbyKit())
 }

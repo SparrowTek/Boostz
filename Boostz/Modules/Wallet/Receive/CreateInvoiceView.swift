@@ -8,9 +8,9 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 struct CreateInvoiceView: View {
     @Environment(ReceiveState.self) private var state
-    @Environment(AlbyKit.self) private var alby
     @State private var amount = ""
     @State private var description = ""
     @State private var createInvoiceTrigger = PlainTaskTrigger()
@@ -59,7 +59,7 @@ struct CreateInvoiceView: View {
         defer { requestInProgress = false }
         requestInProgress = true
         guard let amount = Int64(amount) else { return } // TODO: alert user if this fails
-        guard let invoice = try? await alby.invoicesService.create(invoice: InvoiceUploadModel(amount: amount, description: description)) else { return } // TODO: alert user of failed invoice creation
+        guard let invoice = try? await InvoicesService().create(invoice: InvoiceUploadModel(amount: amount, description: description)) else { return } // TODO: alert user of failed invoice creation
         state.path.append(.displayInvoice(invoice))
     }
 }
@@ -67,5 +67,4 @@ struct CreateInvoiceView: View {
 #Preview {
     CreateInvoiceView()
         .environment(ReceiveState(parentState: .init(parentState: .init())))
-        .environment(AlbyKit())
 }

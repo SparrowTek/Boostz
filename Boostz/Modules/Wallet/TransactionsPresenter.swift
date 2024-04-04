@@ -17,10 +17,10 @@ import AlbyKit
 //    }
 //}
 
+@MainActor
 struct TransactionsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(WalletState.self) private var state
-    @Environment(AlbyKit.self) private var alby
     @State private var page = 1
     @State private var requestInProgress = false
     
@@ -50,20 +50,12 @@ struct TransactionsView: View {
     private func getInvoices() async {
         defer { requestInProgress = false }
         requestInProgress = true
-        
-        do {
-            let invoiceHistory = try await alby.invoicesService.getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: page, items: 50))
-            state.invoiceHistory = invoiceHistory
-            
-            for invoice in invoiceHistory {
-                print(invoice)
-            }
-        } catch {
-            print(error)
-        }
+        guard let invoiceHistory = try? await InvoicesService().getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: page, items: 50)) else { return }
+        state.invoiceHistory = invoiceHistory
     }
 }
 
+@MainActor
 fileprivate struct TransactionCell: View {
     @Environment(WalletState.self) private var state
     var invoice: Invoice
@@ -143,6 +135,5 @@ extension Invoice: Identifiable {
             TransactionsView()
                 .interactiveDismissDisabled()
                 .environment(WalletState(parentState: .init()))
-                .environment(AlbyKit())
         }
 }

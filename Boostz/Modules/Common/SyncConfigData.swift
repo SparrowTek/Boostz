@@ -8,9 +8,9 @@
 import SwiftUI
 import AlbyKit
 
+@MainActor
 fileprivate struct SyncConfigData: ViewModifier {
     @Environment(AppState.self) private var state
-    @Environment(AlbyKit.self) private var alby
     @State private var dataSyncTrigger = PlainTaskTrigger()
     
     func body(content: Content) -> some View {
@@ -33,9 +33,10 @@ fileprivate struct SyncConfigData: ViewModifier {
     
     private func getAccountInfo() async {
         do {
-            async let accountSummary = try alby.accountService.getAccountSummary()
-            async let accountBalance = try alby.accountService.getAccountBalance()
-            async let me = try alby.accountService.getPersonalInformation()
+            let accountsService = await AccountsService()
+            async let accountSummary = try accountsService.getAccountSummary()
+            async let accountBalance = try accountsService.getAccountBalance()
+            async let me = try accountsService.getPersonalInformation()
             state.setAccountSummary(try await accountSummary)
             state.setAccountBalance(try await accountBalance)
             state.setMe(try await me)
