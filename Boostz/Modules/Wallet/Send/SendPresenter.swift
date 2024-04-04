@@ -53,6 +53,7 @@ fileprivate struct SendView: View {
             HStack {
                 TextField("invoice, lightning address, or LNURL", text: $lightningInput)
                     .textFieldStyle(.roundedBorder)
+                    .autocorrectionDisabled()
                 
                 Button("go", action: continueWithInput)
                     .buttonStyle(.bordered)

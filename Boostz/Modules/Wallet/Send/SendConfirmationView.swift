@@ -57,7 +57,6 @@ struct SendConfirmationView: View {
     
     private func bolt11PaymentChanged() {
         guard bolt11Payment != nil else { return }
-        // TODO: route to trasaction history and briefly highlight the new transaction
         state.paymentSent()
     }
 }

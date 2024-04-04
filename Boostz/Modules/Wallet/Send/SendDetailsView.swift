@@ -16,6 +16,7 @@ struct SendDetailsView: View {
     @State private var requestInProgress = false
     @State private var confirmationTrigger = PlainTaskTrigger()
     @State private var bolt11Payment: Bolt11Payment?
+    @State private var errorMessage: LocalizedStringResource?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,7 +35,7 @@ struct SendDetailsView: View {
                 TextField("between 1 and 500,000 sats", text: $amount)
                     .font(.subheadline)
                     .textFieldStyle(.roundedBorder)
-                Text("balance: 1,504 sats")
+                Text(state.accountBalance)
                     .font(.subheadline)
             }
             .padding(.horizontal)
@@ -53,6 +54,7 @@ struct SendDetailsView: View {
                 Button("cancel", action: cancel)
                     .frame(maxWidth: .infinity)
                     .buttonStyle(.boostz)
+                
                 Button(action: triggerConfirmation) {
                     ZStack {
                         Text("confirm")
@@ -67,13 +69,13 @@ struct SendDetailsView: View {
             .padding()
         }
         .navigationTitle("send")
+        .alert($errorMessage)
         .onChange(of: bolt11Payment, bolt11PaymentChanged)
         .task($confirmationTrigger) { await confirm() }
     }
     
     private func bolt11PaymentChanged() {
         guard bolt11Payment != nil else { return }
-        // TODO: route to trasaction history and briefly highlight the new transaction
         state.paymentSent()
     }
     
@@ -93,13 +95,27 @@ struct SendDetailsView: View {
         defer { requestInProgress = false }
         requestInProgress = true
         
-        // TODO: determine if bolt11 or keysend
+        guard !amount.isEmpty else {
+            errorMessage = "Sat amount can not be empty"
+            return
+        }
         
-        guard let amount = Int64(amount) else { return } // TODO: alert user to use number
+        guard let amountAsInt = Int(amount), amountAsInt >= 1, amountAsInt <= 5_000_000 else {
+            errorMessage = "Sat amount must be a number between 1 and 5,000,000"
+            return
+        }
         
-//        keysendPayment = try? await alby.paymentsService.keysendPayment(uploadModel: KeysendPaymentUploadModel(amount: amount, destination: lightningAddress))
+        guard let balance = Int(state.accountBalance), amountAsInt <= balance else {
+            errorMessage = "Please select an amount less than or equal to your current Sat balance"
+            return
+        }
         
-        bolt11Payment = try? await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: lightningAddress))
+        do {
+            let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: amount, comment: nil)
+            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.body.pr))
+        } catch {
+            errorMessage = "There was a problem sending your sats. Please try again later."
+        }
     }
 }
 
@@ -125,6 +141,5 @@ fileprivate struct PresetSatVauleButton: View {
     NavigationStack {
         SendDetailsView(lightningAddress: "SparrowTek@getalby.com")
             .environment(SendState(parentState: .init(parentState: .init())))
-        
     }
 }

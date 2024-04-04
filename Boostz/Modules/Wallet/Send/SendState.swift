@@ -19,9 +19,11 @@ class SendState {
     
     private unowned let parentState: WalletState
     var path: [SendState.NavigationLink] = []
+    var accountBalance = ""
     
     init(parentState: WalletState) {
         self.parentState = parentState
+        self.accountBalance = setAccountBalance()
     }
     
     func cancel() {
@@ -29,7 +31,13 @@ class SendState {
     }
     
     func paymentSent() {
+        // TODO: route to trasaction history and briefly highlight the new transaction
         clearPathAndCloseSheet()
+    }
+    
+    private func setAccountBalance() -> String {
+        let balance = parentState.accountBalance?.balance ?? 0
+        return "balance: \(balance) sats"
     }
     
     private func clearPathAndCloseSheet() {

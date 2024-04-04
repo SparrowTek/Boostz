@@ -43,6 +43,7 @@ struct TransactionsView: View {
             
             Spacer()
         }
+        .ignoresSafeArea()
         .task { await getInvoices() }
         .refreshable { await refresh() }
     }

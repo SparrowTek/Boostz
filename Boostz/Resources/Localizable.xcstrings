@@ -38,9 +38,6 @@
     "amount:" : {
 
     },
-    "balance: 1,504 sats" : {
-
-    },
     "between 1 and 500,000 sats" : {
 
     },
@@ -128,6 +125,9 @@
     "paid" : {
 
     },
+    "Please select an amount less than or equal to your current Sat balance" : {
+
+    },
     "poor network connection" : {
 
     },
@@ -147,6 +147,12 @@
 
     },
     "reset theme" : {
+
+    },
+    "Sat amount can not be empty" : {
+
+    },
+    "Sat amount must be a number between 1 and 5,000,000" : {
 
     },
     "SCAN QR" : {
@@ -170,10 +176,16 @@
     "system" : {
 
     },
+    "The address you entered is not valid. Please try again." : {
+
+    },
     "there is no transaction history available" : {
 
     },
     "There was a problem confirming your payment. Please try again later" : {
+
+    },
+    "There was a problem sending your sats. Please try again later." : {
 
     },
     "waiting for payment..." : {
