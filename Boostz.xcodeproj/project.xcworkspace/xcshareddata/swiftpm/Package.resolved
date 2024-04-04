@@ -1,5 +1,5 @@
 {
-  "originHash" : "1dc330d188091bef527d24a8b3332239d4a221e2d28a9aa802093bab6d5d0ccc",
+  "originHash" : "c0684923fac2c421413370afb58067cbbea07198da46e0ac7538303baf20b1d6",
   "pins" : [
     {
       "identity" : "albykit",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/SparrowTek/AlbyKit",
       "state" : {
         "branch" : "main",
-        "revision" : "7b3ead6cd2094138cafc3e1666e5b46e06861cae"
+        "revision" : "1aa0cb304cf4c8bf68199c5be622b1cecbb67be0"
       }
     },
     {
