@@ -16,19 +16,14 @@ fileprivate struct SyncConfigData: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onChange(of: state.triggerDataSync, triggerDataSync)
+            .task { await getAccountInfo() }
             .task($dataSyncTrigger) { await getAccountInfo() }
     }
     
     private func triggerDataSync() {
         guard state.triggerDataSync else { return }
         state.triggerDataSync = false
-//        dataSyncTrigger.trigger()
-        
-        // FIXME: the task modifier that takes an id parameter has a bug. Investigate more why it occurs here
-        // this Task should not be here. we should be triggering the dataSyncTrigger instead
-        Task {
-            await getAccountInfo()
-        }
+        dataSyncTrigger.trigger()
     }
     
     private func getAccountInfo() async {

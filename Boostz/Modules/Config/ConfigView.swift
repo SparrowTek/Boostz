@@ -34,7 +34,6 @@ struct ConfigView: View {
         .padding()
         .commonView()
         .syncConfigData()
-        .onAppear { state.triggerDataSync = true }
     }
 }
 

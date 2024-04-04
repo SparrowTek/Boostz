@@ -44,7 +44,12 @@ struct TransactionsView: View {
             Spacer()
         }
         .task { await getInvoices() }
-        .refreshable { await getInvoices() }
+        .refreshable { await refresh() }
+    }
+    
+    private func refresh() async {
+        await getInvoices()
+        state.triggerDataSync()
     }
     
     private func getInvoices() async {
