@@ -89,7 +89,25 @@ fileprivate struct SendView: View {
         errorMessage = "The address you entered is not valid. Please try again."
     }
     
-    private func findLightningAddressInText(_ text: String) throws -> LightningAddressType {
+    public func findLightningAddressInText(_ text: String) throws -> LightningAddressType {
+        var text = text.lowercased()
+        
+        // Define the regex patterns
+        let lightningPattern = #"(?i)((⚡|⚡️):?|lightning:|lnurl:)\s?(\S+)"#
+        let albyUserPattern = #"^(https?:\/\/)?(www\.)?(\w+)@getalby\.com$"#
+        
+        if let match = try? text.firstMatch(of: Regex(lightningPattern)) {
+            return try getBolt11Lookup(for: text)
+        }
+        
+        if let matchAlbyUser = try? text.firstMatch(of: Regex(albyUserPattern)) {
+            return try getBolt11Lookup(for: text)
+        }
+        
+        return .bolt11Invoice(text)
+    }
+    
+    private func getBolt11Lookup(for text: String) throws -> LightningAddressType {
         var text = text.lowercased()
         
         if text.hasPrefix("lnurl") ||
@@ -113,9 +131,9 @@ fileprivate struct SendView: View {
             guard !lookup.isEmpty else { throw LightningAddressError.badLightningAddress }
             
             return .bolt11LookupRequired(lookup)
-        } else {
-            return .bolt11Invoice(text)
         }
+        
+        return .bolt11LookupRequired(text)
     }
     
     private func scanQR() {
