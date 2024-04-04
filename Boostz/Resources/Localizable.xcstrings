@@ -65,6 +65,9 @@
     "confirm" : {
 
     },
+    "Confirm invoice:" : {
+
+    },
     "connect via:" : {
 
     },
@@ -119,6 +122,9 @@
     "NO INTERNET Sats" : {
 
     },
+    "OK" : {
+
+    },
     "paid" : {
 
     },
@@ -165,6 +171,9 @@
 
     },
     "there is no transaction history available" : {
+
+    },
+    "There was a problem confirming your payment. Please try again later" : {
 
     },
     "waiting for payment..." : {

@@ -12,7 +12,8 @@ import AlbyKit
 @MainActor
 class SendState {
     enum NavigationLink: Hashable {
-        case sendLNURL(String)
+        case sendInvoice(String)
+        case getLightningAddressDetails(String)
         case scanQR
     }
     
