@@ -125,9 +125,6 @@
     "paid" : {
 
     },
-    "Please select an amount less than or equal to your current Sat balance" : {
-
-    },
     "poor network connection" : {
 
     },
@@ -186,6 +183,9 @@
 
     },
     "There was a problem sending your sats. Please try again later." : {
+
+    },
+    "This address format is currently unsupported" : {
 
     },
     "waiting for payment..." : {

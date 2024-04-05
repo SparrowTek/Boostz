@@ -105,14 +105,15 @@ struct SendDetailsView: View {
             return
         }
         
-        guard let balance = Int(state.accountBalance), amountAsInt <= balance else {
-            errorMessage = "Please select an amount less than or equal to your current Sat balance"
-            return
-        }
+        // TODO: check if the balance supports the send amount
+//        guard let balance = Int(state.accountBalance), amountAsInt <= balance else {
+//            errorMessage = "Please select an amount less than or equal to your current Sat balance"
+//            return
+//        }
         
         do {
             let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: amount, comment: nil)
-            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.body.pr))
+            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.invoice.pr))
         } catch {
             errorMessage = "There was a problem sending your sats. Please try again later."
         }
