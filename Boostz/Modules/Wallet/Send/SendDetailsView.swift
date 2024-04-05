@@ -111,12 +111,19 @@ struct SendDetailsView: View {
 //            return
 //        }
         
+        let millisats = satsToMillisats(sats: amount)
+        
         do {
-            let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: amount, comment: nil)
+            let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil)
             bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.invoice.pr))
         } catch {
             errorMessage = "There was a problem sending your sats. Please try again later."
         }
+    }
+    
+    private func satsToMillisats(sats: String) -> String {
+        guard let sats = Int(sats) else { return sats }
+        return "\(sats * 1000)"
     }
 }
 
