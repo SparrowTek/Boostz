@@ -44,27 +44,28 @@ struct TransactionsView: View {
             Spacer()
         }
         .ignoresSafeArea()
-        .task { await getInvoices() }
+        .syncTransactionData(requestInProgress: $requestInProgress)
         .refreshable { await refresh() }
     }
     
     private func refresh() async {
-        await getInvoices()
+        state.triggerTransactionSync = true
         state.triggerDataSync()
-    }
-    
-    private func getInvoices() async {
-        defer { requestInProgress = false }
-        requestInProgress = true
-        guard let invoiceHistory = try? await InvoicesService().getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: page, items: 50)) else { return }
-        state.invoiceHistory = invoiceHistory
     }
 }
 
 @MainActor
 fileprivate struct TransactionCell: View {
     @Environment(WalletState.self) private var state
+    private let timer = Timer.publish(every: 0.75, on: .main, in: .common).autoconnect()
+    @State var startDate = Date.now
+    @State var timeElapsed: Int = 0
+    @State private var blink = false
     var invoice: Invoice
+    
+    private var isTopCell: Bool {
+        state.invoiceHistory.first == invoice
+    }
     
     private var title: String {
         if !invoice.isInoming {
@@ -113,7 +114,20 @@ fileprivate struct TransactionCell: View {
                     .foregroundStyle(color)
             }
         }
-        .listRowBackground(Color.clear)
+        .onReceive(timer) { firedDate in
+            withAnimation(.linear(duration: 0.75)) {
+                timeElapsed = Int(firedDate.timeIntervalSince(startDate))
+                guard state.highlightTopTransaction, isTopCell, timeElapsed < 5 else {
+                    timer.upstream.connect().cancel()
+                    blink = false
+                    state.highlightTopTransaction = false
+                    return
+                }
+                
+                blink.toggle()
+            }
+        }
+        .listRowBackground(blink ? Color.yellow : Color.clear)
     }
     
     private func openInvoice() {

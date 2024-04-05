@@ -26,6 +26,8 @@ class WalletState {
     var keysend: Keysend?
     var reachability = Reachability()
     var invoiceHistory: [Invoice] = []
+    var triggerTransactionSync = false
+    var highlightTopTransaction = false
     
     private unowned let parentState: AppState
     
@@ -48,6 +50,12 @@ class WalletState {
     
     func closeSheet() {
         sheet = nil
+    }
+    
+    func paymentSent() {
+        triggerTransactionSync = true
+        triggerDataSync()
+        highlightTopTransaction = true
     }
 }
 

@@ -31,7 +31,7 @@ class SendState {
     }
     
     func paymentSent() {
-        // TODO: route to trasaction history and briefly highlight the new transaction
+        parentState.paymentSent()
         clearPathAndCloseSheet()
     }
     
