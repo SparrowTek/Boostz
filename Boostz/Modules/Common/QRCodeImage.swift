@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 struct QRCodeImage: View {
-    var code: String
+    var code: String?
     
     var body: some View {
         Image(uiImage: generateQRCode(from: code))
@@ -18,7 +18,8 @@ struct QRCodeImage: View {
             .scaledToFit()
     }
     
-    func generateQRCode(from string: String) -> UIImage {
+    func generateQRCode(from string: String?) -> UIImage {
+        guard let string else { return UIImage() }
         let context = CIContext()
         let filter = CIFilter.qrCodeGenerator()
         

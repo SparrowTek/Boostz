@@ -24,7 +24,7 @@ struct DisplayInvoiceView: View {
     var body: some View {
         VStack {
             QRCodeImage(code: invoice.paymentRequest)
-            Text("\(invoice.amount) SATS")
+            Text("\(invoice.amount ?? 0) SATS")
                 .bold()
                 .padding()
             
@@ -77,7 +77,7 @@ struct DisplayInvoiceView: View {
     private func checkInvoiceStatus() async {
         defer { requestInProgress = false }
         requestInProgress = true
-        guard let invoice = try? await InvoicesService().getInvoice(withHash: invoice.paymentHash) else { return }
+        guard let invoice = try? await InvoicesService().getInvoice(withHash: invoice.paymentHash ?? "") else { return }
         invoiceResponse = invoice
     }
     

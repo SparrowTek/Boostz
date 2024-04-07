@@ -115,7 +115,7 @@ struct SendDetailsView: View {
         
         do {
             let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil)
-            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.invoice.pr))
+            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.invoice?.pr ?? ""))
         } catch {
             errorMessage = "There was a problem sending your sats. Please try again later."
         }

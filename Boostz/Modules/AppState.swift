@@ -61,8 +61,9 @@ public class AppState {
     
     func saveAlbyToken(_ token: Token) {
         do {
-            try Vault.savePrivateKey(token.accessToken, keychainConfiguration: .albyToken)
-            try Vault.savePrivateKey(token.refreshToken, keychainConfiguration: .albyRefreshToken)
+            guard let accessToken = token.accessToken, let refreshToken = token.refreshToken else { return } // TODO: handle this error state
+            try Vault.savePrivateKey(accessToken, keychainConfiguration: .albyToken)
+            try Vault.savePrivateKey(refreshToken, keychainConfiguration: .albyRefreshToken)
             route = .config
         } catch {
             // TODO: handle failed save
@@ -99,8 +100,9 @@ public class AppState {
 
 extension AppState: AlbyKitDelegate {
     public func tokenUpdated(_ token: Token) {
-        try? Vault.savePrivateKey(token.accessToken, keychainConfiguration: .albyToken)
-        try? Vault.savePrivateKey(token.refreshToken, keychainConfiguration: .albyRefreshToken)
+        guard let accessToken = token.accessToken, let refreshToken = token.refreshToken else { return } // TODO: handle this error state
+        try? Vault.savePrivateKey(accessToken, keychainConfiguration: .albyToken)
+        try? Vault.savePrivateKey(refreshToken, keychainConfiguration: .albyRefreshToken)
     }
     
     public func unautherizedUser() {

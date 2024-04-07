@@ -53,7 +53,7 @@ struct WalletView: View {
             
             VStack {
                 if let accountBalance = state.accountBalance {
-                    Text("\(accountBalance.balance) Sats")
+                    Text("\(accountBalance.balance ?? 0) Sats")
                         .font(.title)
                         .padding()
                 } else {

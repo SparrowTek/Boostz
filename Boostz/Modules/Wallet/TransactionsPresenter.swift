@@ -102,14 +102,14 @@ fileprivate struct TransactionCell: View {
                     Text(title)
                         .font(.headline)
                     
-                    Text(invoice.createdAt.invoiceFormat)
+                    Text(invoice.createdAt?.invoiceFormat ?? "")
                         .font(.footnote)
                         .foregroundStyle(.gray)
                 }
                 
                 Spacer()
                 
-                Text("\(invoice.isInoming ? "+" : "-")\(invoice.amount) \(currency)")
+                Text("\(invoice.isInoming ? "+" : "-")\(invoice.amount ?? 0) \(currency)")
                     .font(.title3)
                     .foregroundStyle(color)
             }
@@ -137,13 +137,13 @@ fileprivate struct TransactionCell: View {
 
 extension Invoice {
     var isInoming: Bool {
-        type.lowercased() == "incoming"
+        type?.lowercased() == "incoming"
     }
 }
 
 extension Invoice: Identifiable {
     public var id: String {
-        identifier
+        identifier ?? ""
     }
     
     
