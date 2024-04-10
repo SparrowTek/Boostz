@@ -53,7 +53,7 @@ fileprivate struct ScannerView: View {
     }
     
     private func onFoundQrCode(_ code: String) {
-        self.lastQrCode = code
+        lastQrCode = code
     }
     
     private func foundCode() {

@@ -86,8 +86,7 @@ class SendState {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
         if let _ = try? text.firstMatch(of: Regex(lightningPattern)) {
-//            return try getBolt11Lookup(for: text)
-            throw LightningAddressError.unsupported
+            return try getBolt11Lookup(for: text)
         }
         
         if let _ = try? text.firstMatch(of: Regex(emailRegEx)) {
@@ -103,7 +102,7 @@ class SendState {
     }
     
     private func getBolt11Lookup(for text: String) throws -> LightningAddressType {
-        let text = text.lowercased()
+        var text = text.lowercased()
         
         if text.hasPrefix("lnurl") ||
             text.hasPrefix("lightning") ||
@@ -127,9 +126,9 @@ class SendState {
                 
                 return .bolt11LookupRequired(lookup)
             } else {
-//                text.removePrefix("lnurl")
-//                text.removePrefix("lightning")
-//                text.removePrefix("⚡")
+                text.removePrefix("lnurl")
+                text.removePrefix("lightning")
+                text.removePrefix("⚡")
                 return .bolt11LookupRequired(text)
             }
         }
