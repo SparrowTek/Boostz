@@ -122,6 +122,9 @@
     "OK" : {
 
     },
+    "OR:" : {
+
+    },
     "paid" : {
 
     },
@@ -152,7 +155,7 @@
     "Sat amount must be a number between 1 and 5,000,000" : {
 
     },
-    "SCAN QR" : {
+    "scan QR" : {
 
     },
     "selected color scheme" : {

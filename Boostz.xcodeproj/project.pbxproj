@@ -57,6 +57,7 @@
 		6CDD4BF32B25210F00C6C324 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BF22B25210F00C6C324 /* Preview Assets.xcassets */; };
 		6CDD4C022B25253300C6C324 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4C012B25253300C6C324 /* Colors.xcassets */; };
 		6CDD4C042B25254000C6C324 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4C032B25254000C6C324 /* Localizable.xcstrings */; };
+		6CEDF7812BC2BBF600720E82 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEDF7802BC2BBF600720E82 /* ScanQRCodeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		6CDD4BFF2B2524F600C6C324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CDD4C012B25253300C6C324 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		6CDD4C032B25254000C6C324 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		6CEDF7802BC2BBF600720E82 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				6C5B314F2B5417420018EF44 /* SendState.swift */,
 				6C6D90A62B5D518E006F1456 /* SendDetailsView.swift */,
 				6C5309DD2BAF6421002A7339 /* SendConfirmationView.swift */,
+				6CEDF7802BC2BBF600720E82 /* ScanQRCodeView.swift */,
 			);
 			path = Send;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				6C755BAC2B4DFCF5001AB4B8 /* TransactionsPresenter.swift in Sources */,
 				6C119A302B40BF48008368BE /* TaskTrigger.swift in Sources */,
 				6C4F66F82BBFAB620094A700 /* SyncTransactionData.swift in Sources */,
+				6CEDF7812BC2BBF600720E82 /* ScanQRCodeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

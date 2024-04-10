@@ -36,6 +36,7 @@ struct SendConfirmationView: View {
             .buttonStyle(.boostz)
             .padding()
         }
+        .onChange(of: bolt11Payment, bolt11PaymentChanged)
         .task($confirmationTrigger) { await confirm() }
         .alert($errorMessage)
     }
