@@ -90,7 +90,8 @@ extension String {
     Text("wallet")
         .sheet(isPresented: .constant(true)) {
             SendPresenter()
+                .setupAlbyKit()
+                .environment(AppState())
                 .environment(SendState(parentState: .init(parentState: .init())))
-                .environment(AlbyKit())
         }
 }

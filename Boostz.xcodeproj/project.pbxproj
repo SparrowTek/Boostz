@@ -49,6 +49,7 @@
 		6CB059FF2B797EDE008FC24E /* ReceivePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */; };
 		6CB149132BBE3D5A00B3684B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB149122BBE3D5A00B3684B /* Alert.swift */; };
 		6CBA920F2B46EAC8002FCA12 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */; };
+		6CBCD3C92BEA5FB40053C6EF /* setupAlby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCD3C82BEA5FB40053C6EF /* setupAlby.swift */; };
 		6CCC36152B604C4400EB5467 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CCC36142B604C4400EB5467 /* AlbyKit */; };
 		6CCEEC612B4987EE003BB066 /* OnOpenURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
@@ -96,6 +97,7 @@
 		6CB059FE2B797EDE008FC24E /* ReceivePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivePresenter.swift; sourceTree = "<group>"; };
 		6CB149122BBE3D5A00B3684B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
+		6CBCD3C82BEA5FB40053C6EF /* setupAlby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setupAlby.swift; sourceTree = "<group>"; };
 		6CC430EA2B25DDE900ED3B6A /* Boostz.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Boostz.xcconfig; sourceTree = "<group>"; };
 		6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnOpenURL.swift; sourceTree = "<group>"; };
 		6CDD4BE82B25210E00C6C324 /* Boostz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boostz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				6CDD4BF22B25210F00C6C324 /* Preview Assets.xcassets */,
+				6CBCD3C82BEA5FB40053C6EF /* setupAlby.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				6C119A2E2B40984E008368BE /* WalletState.swift in Sources */,
 				6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */,
 				6CBA920F2B46EAC8002FCA12 /* KeychainConfiguration.swift in Sources */,
+				6CBCD3C92BEA5FB40053C6EF /* setupAlby.swift in Sources */,
 				6C8A87672B41A42100080639 /* ConfigView.swift in Sources */,
 				6C5AE8F72B265D2300C566C0 /* Color.swift in Sources */,
 				6C73E5FF2B3F2BEA0073C816 /* WalletPresenter.swift in Sources */,

@@ -154,6 +154,8 @@ extension Invoice: Identifiable {
         .sheet(isPresented: .constant(true)) {
             TransactionsView()
                 .interactiveDismissDisabled()
+                .setupAlbyKit()
+                .environment(AppState())
                 .environment(WalletState(parentState: .init()))
         }
 }

@@ -34,6 +34,5 @@ struct AppPresenter: View {
 #Preview {
     AppPresenter()
         .environment(AppState())
-        .environment(AlbyKit())
         .environment(AuthState(parentState: .init()))
 }

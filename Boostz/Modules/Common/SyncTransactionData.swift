@@ -42,3 +42,11 @@ extension View {
         modifier(SyncTransactionData(requestInProgress: requestInProgress))
     }
 }
+
+#Preview {
+    Text("Sync Transaction Data")
+        .setupAlbyKit()
+        .syncTransactionData(requestInProgress: .constant(true))
+        .environment(AppState())
+        .environment(WalletState(parentState: .init()))
+}

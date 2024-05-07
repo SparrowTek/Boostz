@@ -116,7 +116,7 @@ fileprivate struct NetworkNotReachable: View {
 
 #Preview {
     WalletPresenter()
+        .setupAlbyKit()
         .environment(AppState())
         .environment(WalletState(parentState: .init()))
-        .environment(AlbyKit())
 }

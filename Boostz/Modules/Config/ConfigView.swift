@@ -40,5 +40,4 @@ struct ConfigView: View {
 #Preview {
     ConfigView()
         .environment(AppState())
-        .environment(AlbyKit())
 }

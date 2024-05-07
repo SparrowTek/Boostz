@@ -51,3 +51,10 @@ extension View {
         modifier(SyncConfigData())
     }
 }
+
+#Preview {
+    Text("Sync Config Data")
+        .setupAlbyKit()
+        .syncConfigData()
+        .environment(AppState())
+}
