@@ -70,7 +70,7 @@ fileprivate struct TransactionCell: View {
     private var title: String {
         if !invoice.isInoming {
             "sent"
-        } else if let memo = invoice.memo {
+        } else if let memo = invoice.memo, !memo.isEmpty {
             memo
         } else if let comment = invoice.comment, !comment.isEmpty {
             comment
