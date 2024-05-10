@@ -24,7 +24,6 @@ struct TransactionsView: View {
     @State private var page = 1
     @State private var requestInProgress = false
     
-    // TODO: implement pagination
     var body: some View {
         VStack {
             if state.invoiceHistory.isEmpty && requestInProgress {
@@ -33,8 +32,24 @@ struct TransactionsView: View {
                 ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
             } else {
                 List {
-                    ForEach(state.invoiceHistory) {
-                        TransactionCell(invoice: $0)
+                    ForEach(state.invoiceHistory) { invoice in
+                        TransactionCell(invoice: invoice)
+                            .onAppear {
+                                if invoice == state.invoiceHistory.last {
+                                    state.transactionDataSyncPage += 1
+                                    state.triggerTransactionSync = true
+                                }
+                            }
+                    }
+                    
+                    if requestInProgress {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                     }
                 }
                 .listStyle(.plain)

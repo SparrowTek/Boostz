@@ -28,6 +28,7 @@ class WalletState {
     var invoiceHistory: [Invoice] = []
     var triggerTransactionSync = false
     var highlightTopTransaction = false
+    var transactionDataSyncPage = 1
     
     private unowned let parentState: AppState
     

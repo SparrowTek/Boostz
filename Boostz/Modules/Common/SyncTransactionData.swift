@@ -31,9 +31,13 @@ fileprivate struct SyncTransactionData: ViewModifier {
         defer { requestInProgress = false }
         requestInProgress = true
         
-        // TODO: need to support pagination
-        guard let invoiceHistory = try? await InvoicesService().getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: 1, items: 50)) else { return }
-        state.invoiceHistory = invoiceHistory
+        guard let invoiceHistory = try? await InvoicesService().getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: state.transactionDataSyncPage, items: 50)) else { return }
+        
+        if state.invoiceHistory.isEmpty {
+            state.invoiceHistory = invoiceHistory
+        } else {
+            state.invoiceHistory.append(contentsOf: invoiceHistory)
+        }
     }
 }
 
