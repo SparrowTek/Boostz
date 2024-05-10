@@ -142,6 +142,7 @@
 		6C5AE8F32B265BA900C566C0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6CBCD3C82BEA5FB40053C6EF /* setupAlby.swift */,
 				6C5AE8F42B265BB800C566C0 /* CommonView.swift */,
 				6C5AE8FC2B26617D00C566C0 /* Theme.swift */,
 				6C5AE9002B26627C00C566C0 /* BoostzButtonStyle.swift */,
@@ -260,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				6CDD4BF22B25210F00C6C324 /* Preview Assets.xcassets */,
-				6CBCD3C82BEA5FB40053C6EF /* setupAlby.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
