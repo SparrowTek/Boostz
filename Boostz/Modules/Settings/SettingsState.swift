@@ -13,7 +13,6 @@ class SettingsState {
     enum NavigationLink: Hashable {
         case about
         case privacy
-        case albyInfo
         case theme
     }
     

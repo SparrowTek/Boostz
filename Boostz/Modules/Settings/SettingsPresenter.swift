@@ -28,9 +28,6 @@ struct SettingsPresenter: View {
                     case .about:
                         Text("about")
                             .interactiveDismissDisabled()
-                    case .albyInfo:
-                        Text("ALBY INFO")
-                            .interactiveDismissDisabled()
                     case .theme:
                         ThemeSettingsView()
                             .interactiveDismissDisabled()
@@ -59,8 +56,17 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
-                NavigationLink(value: SettingsState.NavigationLink.albyInfo) {
-                    Label("Alby", systemImage: "bolt.fill")
+                
+                if let url = URL(string: "https://getalby.com/about-us") {
+                    Link(destination: url) {
+                        Label("Alby", systemImage: "bolt.fill")
+                    }
+                }
+                
+                if let url = URL(string: "https://github.com/sparrowtek/boostz") {
+                    Link(destination: url) {
+                        Label("Source (Github)", systemImage: "link")
+                    }
                 }
                 
                 NavigationLink(value: SettingsState.NavigationLink.privacy) {

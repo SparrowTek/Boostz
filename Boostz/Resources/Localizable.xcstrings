@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "# Privacy Policy\n\nThis policy applies to all information collected or submitted on Little Man Computer’s website and our apps for iPhone and any other devices and platforms.\n\n## Information we collect\n\nLittle Man Computer does not create any accounts.\n\nEmail addresses are only used for responding to emails that you initiate and sending notifications that you request. We don’t send promotional emails.\n\n## Technical basics\n\nOur server software may store basic technical information, such as your IP address, in temporary memory or logs.\n\n## Analytics\n\nLittle Man Computer’s app may collect aggregate, anonymous statistics, such as the percentage of users who use particular features, to improve the app.\n\n## Information usage\n\nWe use the information we collect to operate and improve our website, apps, and customer support.\n\nWe do not share personal information with outside parties except to the extent necessary to accomplish Little Man Computer’s functionality. We may disclose your information in response to subpoenas, court orders, or other legal requirements; to exercise our legal rights or defend against legal claims; to investigate, prevent, or take action regarding illegal activities, suspected fraud or abuse, violations of our policies; or to protect our rights and property.\n\nIn the future, we may sell to, buy, merge with, or partner with other businesses. In such transactions, user information may be among the transferred assets.\n\n## Third-party links and content\n\nLittle Man Computer displays links and content from third-party sites. These have their own independent privacy policies, and we have no responsibility or liability for their content or activities.\n\n## California Online Privacy Protection Act Compliance\n\nWe comply with the California Online Privacy Protection Act. We therefore will not distribute your personal information to outside parties without your consent.\n\n## Children’s Online Privacy Protection Act Compliance\n\nWe never collect or maintain information at our website from those we actually know are under 13, and no part of our website is structured to attract anyone under 13.\n\n## Information for European Union Customers\n\nBy using Little Man Computer and providing your information, you authorize us to collect, use, and store your information outside of the European Union.\n\n## International Transfers of Information\n\nInformation may be processed, stored, and used outside of the country in which you are located. Data privacy laws vary across jurisdictions, and different laws may be applicable to your data depending on where it is processed, stored, or used.\n\n## Your Consent\n\nBy using our site or apps, you consent to our privacy policy.\n\n## Contacting Us\n\nIf you have questions regarding this privacy policy, you may email contact@sparrowTek.com.\n\n## Changes to this policy\n\nIf we decide to change our privacy policy, we will post those changes on this page. Summary of changes so far:\n\n- September 18, 2020: First published." : {
-
-    },
     "%@%lld %@" : {
       "localizations" : {
         "en" : {
@@ -27,9 +24,6 @@
 
     },
     "Alby" : {
-
-    },
-    "ALBY INFO" : {
 
     },
     "amount" : {
@@ -140,6 +134,9 @@
     "privacy" : {
 
     },
+    "Privacy Policy" : {
+
+    },
     "receive" : {
 
     },
@@ -176,6 +173,9 @@
     "Setup Alby Kit" : {
 
     },
+    "Source (Github)" : {
+
+    },
     "Sync Config Data" : {
 
     },
@@ -198,6 +198,9 @@
 
     },
     "This address format is currently unsupported" : {
+
+    },
+    "This policy applies to all information collected or submitted on Boostz’s website and our apps for iPhone and any other devices and platforms." : {
 
     },
     "waiting for payment..." : {
