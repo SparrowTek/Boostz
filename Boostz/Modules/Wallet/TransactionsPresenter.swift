@@ -29,7 +29,13 @@ struct TransactionsView: View {
             if state.invoiceHistory.isEmpty && requestInProgress {
                 ProgressView()
             } else if state.invoiceHistory.isEmpty {
-                ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
+                List {
+                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                }
+                .listStyle(.plain)
+                .background(Color.clear)
             } else {
                 List {
                     ForEach(state.invoiceHistory) { invoice in

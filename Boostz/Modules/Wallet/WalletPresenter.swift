@@ -42,36 +42,30 @@ struct WalletView: View {
     @Environment(WalletState.self) private var state
     
     var body: some View {
-        ZStack {
+        VStack {
             if state.reachability.connectionState != .good {
-                VStack {
-                    NetworkNotReachable()
-                    Spacer()
-                }
-                .transition(.move(edge: .top))
+                NetworkNotReachable()
+                    .transition(.move(edge: .top))
+            }
+            if let accountBalance = state.accountBalance {
+                Text("\(accountBalance.balance ?? 0) Sats")
+                    .font(.title)
+                    .padding()
+            } else {
+                Text("NO INTERNET Sats")
+                    .font(.title)
+                    .redacted(reason: .placeholder)
+                    .padding()
             }
             
-            VStack {
-                if let accountBalance = state.accountBalance {
-                    Text("\(accountBalance.balance ?? 0) Sats")
-                        .font(.title)
-                        .padding()
-                } else {
-                    Text("NO INTERNET Sats")
-                        .font(.title)
-                        .redacted(reason: .placeholder)
-                        .padding()
-                }
-                
-                HStack {
-                    Button("send", systemImage: "arrow.up.circle", action: sendSats)
-                    Button("receive", systemImage: "arrow.down.circle", action: receiveSats)
-                }
-                .buttonStyle(.boostz)
-                .padding()
-                
-                TransactionsView()
+            HStack {
+                Button("send", systemImage: "arrow.up.circle", action: sendSats)
+                Button("receive", systemImage: "arrow.down.circle", action: receiveSats)
             }
+            .buttonStyle(.boostz)
+            .padding()
+            
+            TransactionsView()
         }
         .commonView()
         .toolbar {
