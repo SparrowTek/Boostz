@@ -72,7 +72,24 @@ struct WalletView: View {
             ToolbarItem(placement: .topBarLeading) {
                 Button("", systemImage: "slider.horizontal.3", action: openSettings)
             }
+            
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text("Boostz")
+                        .font(.largeTitle)
+                        .bold()
+                    
+                    Image(systemName: "bolt.fill")
+                        .imageScale(.large)
+                        .foregroundStyle(Color.yellow)
+                    Image(systemName: "bolt.fill")
+                        .imageScale(.large)
+                        .foregroundStyle(Color.yellow)
+                }
+                .setForegroundStyle()
+            }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .syncConfigData()
         .task { await state.reachability.startMonitoring() }
     }

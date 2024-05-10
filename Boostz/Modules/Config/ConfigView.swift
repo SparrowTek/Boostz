@@ -13,14 +13,7 @@ struct ConfigView: View {
     @Environment(AppState.self) private var state
     
     var body: some View {
-        VStack {
-            Text("Boostz")
-                .font(.largeTitle)
-                .bold()
-                .setForegroundStyle()
-            
-            Spacer()
-            
+        NavigationStack {
             HStack {
                 Text("preparing your wallet")
                 ProgressView()
@@ -28,16 +21,31 @@ struct ConfigView: View {
             }
             .font(.title3)
             .setForegroundStyle()
-            
-            Spacer()
+            .commonView()
+            .syncConfigData()
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Text("Boostz")
+                            .font(.largeTitle)
+                            .bold()
+                        
+                        Image(systemName: "bolt.fill")
+                            .imageScale(.large)
+                            .foregroundStyle(Color.yellow)
+                        Image(systemName: "bolt.fill")
+                            .imageScale(.large)
+                            .foregroundStyle(Color.yellow)
+                    }
+                    .setForegroundStyle()
+                }
+            }
         }
-        .padding()
-        .commonView()
-        .syncConfigData()
     }
 }
 
 #Preview {
     ConfigView()
+        .setupAlbyKit()
         .environment(AppState())
 }
