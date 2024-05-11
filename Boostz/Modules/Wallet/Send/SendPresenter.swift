@@ -35,7 +35,6 @@ struct SendPresenter: View {
 fileprivate struct SendView: View {
     @Environment(SendState.self) private var state
     @Environment(\.dismiss) private var dismiss
-    @Environment(AlbyKit.self) private var albyKit
     @State private var lightningInput = ""
     
     var body: some View {
