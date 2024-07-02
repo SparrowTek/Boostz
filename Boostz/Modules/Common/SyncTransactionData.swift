@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 fileprivate struct SyncTransactionData: ViewModifier {
     @Environment(WalletState.self) private var state
     @State private var transactionSyncTrigger = PlainTaskTrigger()

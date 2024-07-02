@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 struct DisplayInvoiceView: View {
     var invoice: CreatedInvoice
     @State private var invoiceCopied = false

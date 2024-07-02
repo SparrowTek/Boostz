@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 struct ConfigView: View {
     @Environment(AppState.self) private var state
     

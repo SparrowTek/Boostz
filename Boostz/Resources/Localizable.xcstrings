@@ -41,9 +41,6 @@
     "Boostz" : {
 
     },
-    "BOOSTZ" : {
-
-    },
     "cancel" : {
 
     },
@@ -51,9 +48,6 @@
 
     },
     "color scheme" : {
-
-    },
-    "common view" : {
 
     },
     "confirm" : {
@@ -170,16 +164,7 @@
     "settings" : {
 
     },
-    "Setup Alby Kit" : {
-
-    },
     "Source (Github)" : {
-
-    },
-    "Sync Config Data" : {
-
-    },
-    "Sync Transaction Data" : {
 
     },
     "system" : {
@@ -204,9 +189,6 @@
 
     },
     "waiting for payment..." : {
-
-    },
-    "wallet" : {
 
     }
   },

@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 struct WalletPresenter: View {
     @Environment(WalletState.self) private var state
     
@@ -37,7 +36,6 @@ struct WalletPresenter: View {
     }
 }
 
-@MainActor
 struct WalletView: View {
     @Environment(WalletState.self) private var state
     
@@ -107,7 +105,6 @@ struct WalletView: View {
     }
 }
 
-@MainActor
 fileprivate struct NetworkNotReachable: View {
     var body: some View {
         ZStack {

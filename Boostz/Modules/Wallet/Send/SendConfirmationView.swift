@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 struct SendConfirmationView: View {
     @Environment(SendState.self) private var state
     var invoice: String
