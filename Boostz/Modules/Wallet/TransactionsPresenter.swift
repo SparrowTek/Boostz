@@ -17,7 +17,6 @@ import AlbyKit
 //    }
 //}
 
-@MainActor
 struct TransactionsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(WalletState.self) private var state
@@ -79,7 +78,6 @@ struct TransactionsView: View {
     }
 }
 
-@MainActor
 fileprivate struct TransactionCell: View {
     @Environment(WalletState.self) private var state
     private let timer = Timer.publish(every: 0.75, on: .main, in: .common).autoconnect()
@@ -170,8 +168,6 @@ extension Invoice: Identifiable {
     public var id: String {
         identifier ?? ""
     }
-    
-    
 }
 
 #Preview {

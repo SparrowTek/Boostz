@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 fileprivate struct SyncConfigData: ViewModifier {
     @Environment(AppState.self) private var state
     @State private var dataSyncTrigger = PlainTaskTrigger()

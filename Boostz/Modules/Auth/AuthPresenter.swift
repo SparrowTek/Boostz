@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 struct AuthPresenter: View {
     @Environment(AuthState.self) private var state
     
@@ -26,7 +25,6 @@ struct AuthPresenter: View {
     }
 }
 
-@MainActor
 fileprivate struct AuthView: View {
     @Environment(AuthState.self) private var state
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?

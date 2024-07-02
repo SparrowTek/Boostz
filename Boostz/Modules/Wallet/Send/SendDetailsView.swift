@@ -8,7 +8,6 @@
 import SwiftUI
 import AlbyKit
 
-@MainActor
 struct SendDetailsView: View {
     @Environment(SendState.self) private var state
     var lightningAddress: String
@@ -127,7 +126,6 @@ struct SendDetailsView: View {
     }
 }
 
-@MainActor
 fileprivate struct PresetSatVauleButton: View {
     var value: String
     var action: () -> Void
