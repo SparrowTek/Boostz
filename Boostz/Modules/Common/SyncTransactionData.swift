@@ -36,7 +36,15 @@ fileprivate struct SyncTransactionData: ViewModifier {
         if state.invoiceHistory.isEmpty {
             state.invoiceHistory = invoiceHistory
         } else {
-            state.invoiceHistory.append(contentsOf: invoiceHistory)
+            state.invoiceHistory.append(contentsOf: newInvoices(from: invoiceHistory))
+        }
+    }
+    
+    private func newInvoices(from invoices: [Invoice]) -> [Invoice] {
+        invoices.filter { newInvoice in
+            !state.invoiceHistory.contains { existingInvoice in
+                existingInvoice == newInvoice
+            }
         }
     }
 }
