@@ -24,6 +24,10 @@ struct TransactionsView: View {
     @State private var page = 1
     @State private var requestInProgress = false
     
+    private var sortedInvoices: [Invoice] {
+        state.invoiceHistory.sorted(by: { ($0.createdAt ?? .now) > ($1.createdAt ?? .now) })
+    }
+    
     var body: some View {
         VStack {
             if state.invoiceHistory.isEmpty && requestInProgress {
@@ -38,10 +42,10 @@ struct TransactionsView: View {
                 .background(Color.clear)
             } else {
                 List {
-                    ForEach(state.invoiceHistory) { invoice in
+                    ForEach(sortedInvoices) { invoice in
                         TransactionCell(invoice: invoice)
                             .onAppear {
-                                if invoice == state.invoiceHistory.last {
+                                if invoice == sortedInvoices.last {
                                     state.transactionDataSyncPage += 1
                                     state.triggerTransactionSync = true
                                 }
