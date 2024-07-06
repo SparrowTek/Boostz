@@ -40,7 +40,7 @@ fileprivate struct ReceiveView: View {
         #if DEBUG
         "lightning:sparrowtek@getalby.com"
         #else
-        state.lightningAddress ?? ""
+        state.lightningAddress
         #endif
     }
     
