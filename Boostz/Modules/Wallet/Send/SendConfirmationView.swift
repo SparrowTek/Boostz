@@ -7,8 +7,7 @@
 
 import SwiftUI
 import AlbyKit
-//import BreezSDKLiquid
-//import LightningDevKit
+import BreezSDKLiquid
 
 @MainActor
 struct SendConfirmationView: View {
@@ -80,21 +79,20 @@ struct Bolt11Invoice {
     }
     
     func getSatsFromInvoice(bolt11: String) -> UInt64? {
-//        do {
-//            let parsedInvoice = try BreezSDKLiquid.parseInvoice(input: bolt11)
-//            
-//            // Extract the amount in satoshis
-//            if let amountMsat = parsedInvoice.amountMsat {
-//                let sats = amountMsat / 1000
-//                return sats
-//            } else {
-//                print("Invoice does not contain amount information")
-//                return nil
-//            }
-//        } catch {
-//            print("Failed to parse invoice: \(error)")
-//            return nil
-//        }
-        return nil
+        do {
+            let parsedInvoice = try BreezSDKLiquid.parseInvoice(input: bolt11)
+            
+            // Extract the amount in satoshis
+            if let amountMsat = parsedInvoice.amountMsat {
+                let sats = amountMsat / 1000
+                return sats
+            } else {
+                print("Invoice does not contain amount information")
+                return nil
+            }
+        } catch {
+            print("Failed to parse invoice: \(error)")
+            return nil
+        }
     }
 }

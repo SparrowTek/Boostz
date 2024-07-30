@@ -1,5 +1,5 @@
 {
-  "originHash" : "c0684923fac2c421413370afb58067cbbea07198da46e0ac7538303baf20b1d6",
+  "originHash" : "7e19b1bac055b52c3cb88a9e81afb53ea7567cfe008ffecdf8a7152e0824f459",
   "pins" : [
     {
       "identity" : "albykit",
@@ -8,6 +8,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "c26fb846dfe046520783e29eba92f5c325a42b96"
+      }
+    },
+    {
+      "identity" : "breez-sdk-liquid-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/breez/breez-sdk-liquid-swift.git",
+      "state" : {
+        "revision" : "f08fcc0764019d9d5874d641f2bd8ec4f22576ad",
+        "version" : "0.2.0"
       }
     },
     {
