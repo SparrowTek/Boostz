@@ -20,6 +20,9 @@
     "%lld SATS" : {
 
     },
+    "%llu sats" : {
+
+    },
     "about" : {
 
     },

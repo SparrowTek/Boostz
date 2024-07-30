@@ -248,7 +248,6 @@
 			children = (
 				6CDD4BFE2B25247F00C6C324 /* Extensions */,
 				6CDD4BFD2B25247A00C6C324 /* Libs */,
-				6CDD4BFC2B25247400C6C324 /* Models */,
 				6CDD4BFB2B25245500C6C324 /* Modules */,
 				6CDD4BF12B25210F00C6C324 /* Preview Content */,
 				6CDD4BFA2B25244100C6C324 /* Resources */,
@@ -298,13 +297,6 @@
 				6C73E5FC2B3F2BCA0073C816 /* Wallet */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		6CDD4BFC2B25247400C6C324 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		6CDD4BFD2B25247A00C6C324 /* Libs */ = {
