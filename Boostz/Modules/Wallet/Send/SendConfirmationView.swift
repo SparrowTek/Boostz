@@ -7,7 +7,7 @@
 
 import SwiftUI
 import AlbyKit
-import BreezSDKLiquid
+import LightningDevKit
 
 @MainActor
 struct SendConfirmationView: View {
@@ -22,11 +22,12 @@ struct SendConfirmationView: View {
         VStack(alignment: .leading) {
             Text("Confirm invoice:")
                 .bold()
-                .padding()
-            Text(invoice)
                 .padding(.horizontal)
             Text("\(Bolt11Invoice(invoice: invoice)?.amount ?? 0) sats")
                 .bold()
+                .padding([.horizontal, .bottom])
+            
+            Text(invoice)
                 .padding(.horizontal)
             
             Button(action: triggerConfirmation) {
@@ -67,7 +68,7 @@ struct SendConfirmationView: View {
 }
 
 #Preview {
-    SendConfirmationView(invoice: "lnbcdfdjfnr839ei13943ouhr432brn32onr31hniunf")
+    SendConfirmationView(invoice: "lnbc20u1pn2hnhmpp5hf964hhc77lf4vjpltdnuma0fdl2pp2afagzueg8h2gv8x2ju5tqdpzw3jhxarfdenjqnzyfvsxjm3qgfhk7um50gcqzzsxqyz5vqsp5a8ayrhgzyhgce6y49m9z5ypvngslkkajjfz8dx3qeg94gtl6dg9q9qxpqysgq53s3ddmvy0x2lq3jm06lh9eul0w8mtmgpct09g68uuketgw2xvsyfwmm6qjj9t7hrtu8ul859c93ggaz69quj9ltpszt4022cca6znsq9v2lmp")
         .environment(SendState(parentState: .init(parentState: .init())))
 }
 
@@ -79,20 +80,7 @@ struct Bolt11Invoice {
     }
     
     func getSatsFromInvoice(bolt11: String) -> UInt64? {
-        do {
-            let parsedInvoice = try BreezSDKLiquid.parseInvoice(input: bolt11)
-            
-            // Extract the amount in satoshis
-            if let amountMsat = parsedInvoice.amountMsat {
-                let sats = amountMsat / 1000
-                return sats
-            } else {
-                print("Invoice does not contain amount information")
-                return nil
-            }
-        } catch {
-            print("Failed to parse invoice: \(error)")
-            return nil
-        }
+        guard let milliSats = LightningDevKit.Bolt11Invoice.fromStr(s: bolt11).getValue()?.amountMilliSatoshis() else { return nil }
+        return milliSats / 1000
     }
 }

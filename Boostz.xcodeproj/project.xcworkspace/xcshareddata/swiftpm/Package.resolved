@@ -1,5 +1,5 @@
 {
-  "originHash" : "7e19b1bac055b52c3cb88a9e81afb53ea7567cfe008ffecdf8a7152e0824f459",
+  "originHash" : "34170359676ce51e559baaadd3fbca5e5a36fcc60acd04878102abb0b629ce4e",
   "pins" : [
     {
       "identity" : "albykit",
@@ -11,12 +11,12 @@
       }
     },
     {
-      "identity" : "breez-sdk-liquid-swift",
+      "identity" : "ldk-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/breez/breez-sdk-liquid-swift.git",
+      "location" : "https://github.com/lightningdevkit/ldk-swift",
       "state" : {
-        "revision" : "f08fcc0764019d9d5874d641f2bd8ec4f22576ad",
-        "version" : "0.2.0"
+        "revision" : "e3fa435166527b1089787fd4ab0ce398849fb916",
+        "version" : "0.0.123"
       }
     },
     {

@@ -16,9 +16,9 @@ struct BoostzApp: App {
     var body: some Scene {
         WindowGroup {
             AppPresenter()
-                .environment(state)
                 .setTheme()
                 .setupAlbyKit()
+                .environment(state)
         }
     }
 }

@@ -19,7 +19,6 @@
 		6C4F66F82BBFAB620094A700 /* SyncTransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4F66F72BBFAB620094A700 /* SyncTransactionData.swift */; };
 		6C4F66FB2BBFB5050094A700 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C4F66FA2BBFB5050094A700 /* AlbyKit */; };
 		6C5309DE2BAF6421002A7339 /* SendConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5309DD2BAF6421002A7339 /* SendConfirmationView.swift */; };
-		6C5643D22C59948F000D9AD8 /* BreezSDKLiquid in Frameworks */ = {isa = PBXBuildFile; productRef = 6C5643D12C59948F000D9AD8 /* BreezSDKLiquid */; };
 		6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F12B26505D00C566C0 /* AppState.swift */; };
 		6C5AE8F52B265BB800C566C0 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F42B265BB800C566C0 /* CommonView.swift */; };
 		6C5AE8F72B265D2300C566C0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F62B265D2300C566C0 /* Color.swift */; };
@@ -59,6 +58,7 @@
 		6CDD4BF32B25210F00C6C324 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4BF22B25210F00C6C324 /* Preview Assets.xcassets */; };
 		6CDD4C022B25253300C6C324 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4C012B25253300C6C324 /* Colors.xcassets */; };
 		6CDD4C042B25254000C6C324 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6CDD4C032B25254000C6C324 /* Localizable.xcstrings */; };
+		6CECC8AA2C5C03E7000F688B /* LightningDevKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CECC8A92C5C03E7000F688B /* LightningDevKit */; };
 		6CEDF7812BC2BBF600720E82 /* ScanQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEDF7802BC2BBF600720E82 /* ScanQRCodeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -117,12 +117,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C5643D22C59948F000D9AD8 /* BreezSDKLiquid in Frameworks */,
 				6C1D587E2B40DF380016DFF7 /* AlbyKit in Frameworks */,
 				6C79C2812B93AB9D00D4204A /* AlbyKit in Frameworks */,
 				6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */,
 				6CCC36152B604C4400EB5467 /* AlbyKit in Frameworks */,
 				6C5EB7F92B7B907E0061FA31 /* AlbyKit in Frameworks */,
+				6CECC8AA2C5C03E7000F688B /* LightningDevKit in Frameworks */,
 				6C73E5FB2B3F0F8E0073C816 /* AlbyKit in Frameworks */,
 				6C4F66FB2BBFB5050094A700 /* AlbyKit in Frameworks */,
 				6C78CBF32B4D82CD004F8A78 /* AlbyKit in Frameworks */,
@@ -348,7 +348,7 @@
 				6C79C2802B93AB9D00D4204A /* AlbyKit */,
 				6C1EA6B22BBF5907008D4CDE /* AlbyKit */,
 				6C4F66FA2BBFB5050094A700 /* AlbyKit */,
-				6C5643D12C59948F000D9AD8 /* BreezSDKLiquid */,
+				6CECC8A92C5C03E7000F688B /* LightningDevKit */,
 			);
 			productName = Boostz;
 			productReference = 6CDD4BE82B25210E00C6C324 /* Boostz.app */;
@@ -381,7 +381,7 @@
 			packageReferences = (
 				6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */,
 				6C4F66F92BBFB5050094A700 /* XCRemoteSwiftPackageReference "AlbyKit" */,
-				6C5643D02C59948F000D9AD8 /* XCRemoteSwiftPackageReference "breez-sdk-liquid-swift" */,
+				6CECC8A82C5C03E7000F688B /* XCRemoteSwiftPackageReference "ldk-swift" */,
 			);
 			productRefGroup = 6CDD4BE92B25210E00C6C324 /* Products */;
 			projectDirPath = "";
@@ -677,20 +677,20 @@
 				kind = branch;
 			};
 		};
-		6C5643D02C59948F000D9AD8 /* XCRemoteSwiftPackageReference "breez-sdk-liquid-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/breez/breez-sdk-liquid-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
 		6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SparrowTek/Vault";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.2.0;
+			};
+		};
+		6CECC8A82C5C03E7000F688B /* XCRemoteSwiftPackageReference "ldk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lightningdevkit/ldk-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.123;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -708,11 +708,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6C4F66F92BBFB5050094A700 /* XCRemoteSwiftPackageReference "AlbyKit" */;
 			productName = AlbyKit;
-		};
-		6C5643D12C59948F000D9AD8 /* BreezSDKLiquid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6C5643D02C59948F000D9AD8 /* XCRemoteSwiftPackageReference "breez-sdk-liquid-swift" */;
-			productName = BreezSDKLiquid;
 		};
 		6C5EB7F82B7B907E0061FA31 /* AlbyKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -738,6 +733,11 @@
 		6CCC36142B604C4400EB5467 /* AlbyKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AlbyKit;
+		};
+		6CECC8A92C5C03E7000F688B /* LightningDevKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CECC8A82C5C03E7000F688B /* XCRemoteSwiftPackageReference "ldk-swift" */;
+			productName = LightningDevKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
