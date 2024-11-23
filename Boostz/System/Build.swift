@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AlbyKit
 
 final class Build: Sendable {
     /// Build environemnt
@@ -56,19 +55,3 @@ final class Build: Sendable {
         build = buildString
     }
 }
-
-extension Build.Environment {
-
-    /// Convert build environment to AlbyKit API environment
-    var alby: API {
-//        switch self {
-//        case .development:
-//            return .dev
-//        case .production:
-//            return .prod
-//        }
-        // TODO: get dev environment working
-        .prod
-    }
-}
-

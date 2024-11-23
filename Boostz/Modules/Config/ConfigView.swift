@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @MainActor
 struct ConfigView: View {
@@ -29,7 +28,6 @@ struct ConfigView: View {
                         Text("Boostz")
                             .font(.largeTitle)
                             .bold()
-                        
                         Image(systemName: "bolt.fill")
                             .imageScale(.large)
                             .foregroundStyle(Color.yellow)
@@ -46,6 +44,5 @@ struct ConfigView: View {
 
 #Preview {
     ConfigView()
-        .setupAlbyKit()
         .environment(AppState())
 }

@@ -15,10 +15,6 @@
 	</array>
 	<key>BoostzEnv</key>
 	<string>$(BOOSTZ_ENV)</string>
-	<key>AlbyClientID</key>
-	<string>$(ALBY_CLIENT_ID)</string>
-	<key>AlbyClientSecret</key>
-	<string>$(ALBY_CLIENT_SECRET)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>

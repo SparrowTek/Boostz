@@ -22,8 +22,8 @@ struct ReceivePresenter: View {
                     case .createInvoice:
                         CreateInvoiceView()
                             .interactiveDismissDisabled()
-                    case .displayInvoice(let invoice):
-                        DisplayInvoiceView(invoice: invoice)
+//                    case .displayInvoice(let invoice):
+//                        DisplayInvoiceView(invoice: invoice)
                     }
                 }
         }

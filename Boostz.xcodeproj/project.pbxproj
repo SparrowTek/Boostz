@@ -3,21 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6C119A2A2B409714008368BE /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C119A292B409714008368BE /* AuthPresenter.swift */; };
-		6C119A2C2B40981D008368BE /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C119A2B2B40981D008368BE /* AuthState.swift */; };
 		6C119A2E2B40984E008368BE /* WalletState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C119A2D2B40984E008368BE /* WalletState.swift */; };
 		6C119A302B40BF48008368BE /* TaskTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C119A2F2B40BF48008368BE /* TaskTrigger.swift */; };
 		6C1452782B8FD653005B5EEB /* DisplayInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1452772B8FD653005B5EEB /* DisplayInvoiceView.swift */; };
 		6C14527A2B8FD7B3005B5EEB /* QRCodeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1452792B8FD7B3005B5EEB /* QRCodeImage.swift */; };
-		6C1D587E2B40DF380016DFF7 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1D587D2B40DF380016DFF7 /* AlbyKit */; };
-		6C1EA6B32BBF5907008D4CDE /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1EA6B22BBF5907008D4CDE /* AlbyKit */; };
 		6C387F362B4B435400825603 /* SyncConfigData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C387F352B4B435400825603 /* SyncConfigData.swift */; };
 		6C4F66F82BBFAB620094A700 /* SyncTransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4F66F72BBFAB620094A700 /* SyncTransactionData.swift */; };
-		6C4F66FB2BBFB5050094A700 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C4F66FA2BBFB5050094A700 /* AlbyKit */; };
 		6C5309DE2BAF6421002A7339 /* SendConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5309DD2BAF6421002A7339 /* SendConfirmationView.swift */; };
 		6C5AE8F22B26505D00C566C0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F12B26505D00C566C0 /* AppState.swift */; };
 		6C5AE8F52B265BB800C566C0 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE8F42B265BB800C566C0 /* CommonView.swift */; };
@@ -31,16 +26,12 @@
 		6C5AE9062B26692600C566C0 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE9052B26692600C566C0 /* SettingsPresenter.swift */; };
 		6C5AE9082B26694D00C566C0 /* ThemeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5AE9072B26694D00C566C0 /* ThemeSettingsView.swift */; };
 		6C5B31502B5417420018EF44 /* SendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5B314F2B5417420018EF44 /* SendState.swift */; };
-		6C5EB7F92B7B907E0061FA31 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C5EB7F82B7B907E0061FA31 /* AlbyKit */; };
 		6C5FCA182B4F1965004B9B83 /* SendPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5FCA172B4F1965004B9B83 /* SendPresenter.swift */; };
 		6C6D90A72B5D518E006F1456 /* SendDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D90A62B5D518E006F1456 /* SendDetailsView.swift */; };
 		6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5F72B3F0F3B0073C816 /* Vault */; };
-		6C73E5FB2B3F0F8E0073C816 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5FA2B3F0F8E0073C816 /* AlbyKit */; };
 		6C73E5FF2B3F2BEA0073C816 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73E5FE2B3F2BEA0073C816 /* WalletPresenter.swift */; };
 		6C755BAC2B4DFCF5001AB4B8 /* TransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C755BAB2B4DFCF5001AB4B8 /* TransactionsPresenter.swift */; };
 		6C755BAE2B4E107F001AB4B8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C755BAD2B4E107F001AB4B8 /* Date.swift */; };
-		6C78CBF32B4D82CD004F8A78 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C78CBF22B4D82CD004F8A78 /* AlbyKit */; };
-		6C79C2812B93AB9D00D4204A /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C79C2802B93AB9D00D4204A /* AlbyKit */; };
 		6C8A87672B41A42100080639 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87662B41A42100080639 /* ConfigView.swift */; };
 		6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A87682B41B7EC00080639 /* Reachability.swift */; };
 		6C8A876B2B41B7FB00080639 /* NWPathMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A876A2B41B7FB00080639 /* NWPathMonitor.swift */; };
@@ -50,7 +41,6 @@
 		6CB149132BBE3D5A00B3684B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB149122BBE3D5A00B3684B /* Alert.swift */; };
 		6CBA920F2B46EAC8002FCA12 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA920E2B46EAC8002FCA12 /* KeychainConfiguration.swift */; };
 		6CBCD3C92BEA5FB40053C6EF /* setupAlby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCD3C82BEA5FB40053C6EF /* setupAlby.swift */; };
-		6CCC36152B604C4400EB5467 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CCC36142B604C4400EB5467 /* AlbyKit */; };
 		6CCEEC612B4987EE003BB066 /* OnOpenURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCEEC602B4987EE003BB066 /* OnOpenURL.swift */; };
 		6CDD4BEC2B25210E00C6C324 /* BoostzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BEB2B25210E00C6C324 /* BoostzApp.swift */; };
 		6CDD4BEE2B25210E00C6C324 /* AppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */; };
@@ -63,8 +53,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6C119A292B409714008368BE /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
-		6C119A2B2B40981D008368BE /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		6C119A2D2B40984E008368BE /* WalletState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletState.swift; sourceTree = "<group>"; };
 		6C119A2F2B40BF48008368BE /* TaskTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTrigger.swift; sourceTree = "<group>"; };
 		6C1452772B8FD653005B5EEB /* DisplayInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayInvoiceView.swift; sourceTree = "<group>"; };
@@ -112,21 +100,17 @@
 		6CEDF7802BC2BBF600720E82 /* ScanQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6C66F2EF2CF18C68005929CC /* Setup */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Setup; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		6CDD4BE52B25210E00C6C324 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C1D587E2B40DF380016DFF7 /* AlbyKit in Frameworks */,
-				6C79C2812B93AB9D00D4204A /* AlbyKit in Frameworks */,
 				6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */,
-				6CCC36152B604C4400EB5467 /* AlbyKit in Frameworks */,
-				6C5EB7F92B7B907E0061FA31 /* AlbyKit in Frameworks */,
 				6CECC8AA2C5C03E7000F688B /* LightningDevKit in Frameworks */,
-				6C73E5FB2B3F0F8E0073C816 /* AlbyKit in Frameworks */,
-				6C4F66FB2BBFB5050094A700 /* AlbyKit in Frameworks */,
-				6C78CBF32B4D82CD004F8A78 /* AlbyKit in Frameworks */,
-				6C1EA6B32BBF5907008D4CDE /* AlbyKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,15 +173,6 @@
 				6C755BAB2B4DFCF5001AB4B8 /* TransactionsPresenter.swift */,
 			);
 			path = Wallet;
-			sourceTree = "<group>";
-		};
-		6C73E5FD2B3F2BCF0073C816 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				6C119A292B409714008368BE /* AuthPresenter.swift */,
-				6C119A2B2B40981D008368BE /* AuthState.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		6C8A87652B41A40400080639 /* Config */ = {
@@ -290,9 +265,9 @@
 		6CDD4BFB2B25245500C6C324 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6C66F2EF2CF18C68005929CC /* Setup */,
 				6CDD4BED2B25210E00C6C324 /* AppPresenter.swift */,
 				6C5AE8F12B26505D00C566C0 /* AppState.swift */,
-				6C73E5FD2B3F2BCF0073C816 /* Auth */,
 				6C5AE8F32B265BA900C566C0 /* Common */,
 				6C8A87652B41A40400080639 /* Config */,
 				6C5AE9022B2668DE00C566C0 /* Settings */,
@@ -337,17 +312,12 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				6C66F2EF2CF18C68005929CC /* Setup */,
+			);
 			name = Boostz;
 			packageProductDependencies = (
 				6C73E5F72B3F0F3B0073C816 /* Vault */,
-				6C73E5FA2B3F0F8E0073C816 /* AlbyKit */,
-				6C1D587D2B40DF380016DFF7 /* AlbyKit */,
-				6C78CBF22B4D82CD004F8A78 /* AlbyKit */,
-				6CCC36142B604C4400EB5467 /* AlbyKit */,
-				6C5EB7F82B7B907E0061FA31 /* AlbyKit */,
-				6C79C2802B93AB9D00D4204A /* AlbyKit */,
-				6C1EA6B22BBF5907008D4CDE /* AlbyKit */,
-				6C4F66FA2BBFB5050094A700 /* AlbyKit */,
 				6CECC8A92C5C03E7000F688B /* LightningDevKit */,
 			);
 			productName = Boostz;
@@ -380,7 +350,6 @@
 			mainGroup = 6CDD4BDF2B25210E00C6C324;
 			packageReferences = (
 				6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */,
-				6C4F66F92BBFB5050094A700 /* XCRemoteSwiftPackageReference "AlbyKit" */,
 				6CECC8A82C5C03E7000F688B /* XCRemoteSwiftPackageReference "ldk-swift" */,
 			);
 			productRefGroup = 6CDD4BE92B25210E00C6C324 /* Products */;
@@ -441,10 +410,8 @@
 				6C5AE8F72B265D2300C566C0 /* Color.swift in Sources */,
 				6C73E5FF2B3F2BEA0073C816 /* WalletPresenter.swift in Sources */,
 				6C5AE8F52B265BB800C566C0 /* CommonView.swift in Sources */,
-				6C119A2C2B40981D008368BE /* AuthState.swift in Sources */,
 				6C5309DE2BAF6421002A7339 /* SendConfirmationView.swift in Sources */,
 				6C5AE9062B26692600C566C0 /* SettingsPresenter.swift in Sources */,
-				6C119A2A2B409714008368BE /* AuthPresenter.swift in Sources */,
 				6C8A87692B41B7EC00080639 /* Reachability.swift in Sources */,
 				6C755BAC2B4DFCF5001AB4B8 /* TransactionsPresenter.swift in Sources */,
 				6C119A302B40BF48008368BE /* TaskTrigger.swift in Sources */,
@@ -669,14 +636,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6C4F66F92BBFB5050094A700 /* XCRemoteSwiftPackageReference "AlbyKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SparrowTek/AlbyKit";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SparrowTek/Vault";
@@ -696,43 +655,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6C1D587D2B40DF380016DFF7 /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlbyKit;
-		};
-		6C1EA6B22BBF5907008D4CDE /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlbyKit;
-		};
-		6C4F66FA2BBFB5050094A700 /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6C4F66F92BBFB5050094A700 /* XCRemoteSwiftPackageReference "AlbyKit" */;
-			productName = AlbyKit;
-		};
-		6C5EB7F82B7B907E0061FA31 /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlbyKit;
-		};
 		6C73E5F72B3F0F3B0073C816 /* Vault */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */;
 			productName = Vault;
-		};
-		6C73E5FA2B3F0F8E0073C816 /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlbyKit;
-		};
-		6C78CBF22B4D82CD004F8A78 /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlbyKit;
-		};
-		6C79C2802B93AB9D00D4204A /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlbyKit;
-		};
-		6CCC36142B604C4400EB5467 /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlbyKit;
 		};
 		6CECC8A92C5C03E7000F688B /* LightningDevKit */ = {
 			isa = XCSwiftPackageProductDependency;

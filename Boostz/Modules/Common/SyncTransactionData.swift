@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @MainActor
 fileprivate struct SyncTransactionData: ViewModifier {
@@ -31,22 +30,22 @@ fileprivate struct SyncTransactionData: ViewModifier {
         defer { requestInProgress = false }
         requestInProgress = true
         
-        guard let invoiceHistory = try? await InvoicesService().getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: state.transactionDataSyncPage, items: 50)) else { return }
-        
-        if state.invoiceHistory.isEmpty {
-            state.invoiceHistory = invoiceHistory
-        } else {
-            state.invoiceHistory.append(contentsOf: newInvoices(from: invoiceHistory))
-        }
+//        guard let invoiceHistory = try? await InvoicesService().getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: state.transactionDataSyncPage, items: 50)) else { return }
+//        
+//        if state.invoiceHistory.isEmpty {
+//            state.invoiceHistory = invoiceHistory
+//        } else {
+//            state.invoiceHistory.append(contentsOf: newInvoices(from: invoiceHistory))
+//        }
     }
     
-    private func newInvoices(from invoices: [Invoice]) -> [Invoice] {
-        invoices.filter { newInvoice in
-            !state.invoiceHistory.contains { existingInvoice in
-                existingInvoice == newInvoice
-            }
-        }
-    }
+//    private func newInvoices(from invoices: [Invoice]) -> [Invoice] {
+//        invoices.filter { newInvoice in
+//            !state.invoiceHistory.contains { existingInvoice in
+//                existingInvoice == newInvoice
+//            }
+//        }
+//    }
 }
 
 extension View {
@@ -57,7 +56,6 @@ extension View {
 
 #Preview {
     Text("Sync Transaction Data")
-        .setupAlbyKit()
         .syncTransactionData(requestInProgress: .constant(true))
         .environment(AppState())
         .environment(WalletState(parentState: .init()))

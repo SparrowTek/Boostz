@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-import AlbyKit
 import LightningDevKit
 
 @MainActor
 struct SendConfirmationView: View {
     @Environment(SendState.self) private var state
     var invoice: String
-    @State private var bolt11Payment: Bolt11Payment?
+//    @State private var bolt11Payment: Bolt11Payment?
     @State private var confirmationTrigger = PlainTaskTrigger()
     @State private var requestInProgress = false
     @State private var errorMessage: LocalizedStringResource?
@@ -41,7 +40,7 @@ struct SendConfirmationView: View {
             .buttonStyle(.boostz)
             .padding()
         }
-        .onChange(of: bolt11Payment, bolt11PaymentChanged)
+//        .onChange(of: bolt11Payment, bolt11PaymentChanged)
         .task($confirmationTrigger) { await confirm() }
         .alert($errorMessage)
     }
@@ -54,16 +53,16 @@ struct SendConfirmationView: View {
         defer { requestInProgress = false }
         requestInProgress = true
         
-        do {
-            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice))
-        } catch {
-            errorMessage = "There was a problem confirming your payment. Please try again later"
-        }
+//        do {
+//            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice))
+//        } catch {
+//            errorMessage = "There was a problem confirming your payment. Please try again later"
+//        }
     }
     
     private func bolt11PaymentChanged() {
-        guard bolt11Payment != nil else { return }
-        state.paymentSent()
+//        guard bolt11Payment != nil else { return }
+//        state.paymentSent()
     }
 }
 

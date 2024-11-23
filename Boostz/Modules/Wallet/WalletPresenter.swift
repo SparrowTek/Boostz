@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @MainActor
 struct WalletPresenter: View {
@@ -47,16 +46,16 @@ struct WalletView: View {
                 NetworkNotReachable()
                     .transition(.move(edge: .top))
             }
-            if let accountBalance = state.accountBalance {
-                Text("\(accountBalance.balance ?? 0) Sats")
-                    .font(.title)
-                    .padding()
-            } else {
+//            if let accountBalance = state.accountBalance {
+//                Text("\(accountBalance.balance ?? 0) Sats")
+//                    .font(.title)
+//                    .padding()
+//            } else {
                 Text("NO INTERNET Sats")
                     .font(.title)
                     .redacted(reason: .placeholder)
                     .padding()
-            }
+//            }
             
             HStack {
                 Button("send", systemImage: "arrow.up.circle", action: sendSats)
@@ -127,7 +126,6 @@ fileprivate struct NetworkNotReachable: View {
 
 #Preview {
     WalletPresenter()
-        .setupAlbyKit()
         .environment(AppState())
         .environment(WalletState(parentState: .init()))
 }

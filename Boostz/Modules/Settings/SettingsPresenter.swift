@@ -16,8 +16,8 @@ struct SettingsPresenter: View {
         
         NavigationStack(path: $state.path) {
             SettingsView()
-                .confirmationDialog("logout?", isPresented: $state.presentLogoutDialog) {
-                    Button("logout", role: .destructive, action: logout)
+                .confirmationDialog("logout?", isPresented: $state.presentNWCDisconnectDialog) {
+                    Button("logout", role: .destructive, action: disconnectNWC)
                     Button("cancel", role: .cancel, action: {})
                 }
                 .navigationDestination(for: SettingsState.NavigationLink.self) {
@@ -37,8 +37,8 @@ struct SettingsPresenter: View {
         
     }
     
-    private func logout() {
-        state.logout()
+    private func disconnectNWC() {
+        state.disconnectNWC()
     }
 }
 
@@ -51,17 +51,10 @@ struct SettingsView: View {
     @State private var selectedColorScheme = 0
     @AppStorage(Build.Constants.UserDefault.colorScheme) private var colorSchemeString: String?
     
-    // TODO: add links to source code for app and albyKit
     // add link for value 4 value to support development
     var body: some View {
         Form {
             Section {
-                
-                if let url = URL(string: "https://getalby.com/about-us") {
-                    Link(destination: url) {
-                        Label("Alby", systemImage: "bolt.fill")
-                    }
-                }
                 
                 if let url = URL(string: "https://github.com/sparrowtek/boostz") {
                     Link(destination: url) {
@@ -93,7 +86,7 @@ struct SettingsView: View {
                 .pickerStyle(.segmented)
             }
             
-            Button("logout and clear all data", systemImage: "bolt.trianglebadge.exclamationmark.fill", role: .destructive, action: logoutAlert)
+            Button("disconnect and clear all data", systemImage: "bolt.trianglebadge.exclamationmark.fill", role: .destructive, action: disconnectFromNWCAlert)
                 .foregroundStyle(.red)
         }
         .commonView()
@@ -109,8 +102,8 @@ struct SettingsView: View {
         .onChange(of: selectedColorScheme, updateColorScheme)
     }
     
-    private func logoutAlert() {
-        state.presentLogoutDialog = true
+    private func disconnectFromNWCAlert() {
+        state.presentNWCDisconnectDialog = true
     }
     
     // MARK: Color scheme methods

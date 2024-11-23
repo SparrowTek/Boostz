@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @MainActor
 struct SendPresenter: View {
@@ -89,7 +88,6 @@ extension String {
     Text("wallet")
         .sheet(isPresented: .constant(true)) {
             SendPresenter()
-                .setupAlbyKit()
                 .environment(AppState())
                 .environment(SendState(parentState: .init(parentState: .init())))
         }

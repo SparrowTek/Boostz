@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @MainActor
 struct SendDetailsView: View {
@@ -15,7 +14,7 @@ struct SendDetailsView: View {
     @State private var amount = ""
     @State private var requestInProgress = false
     @State private var confirmationTrigger = PlainTaskTrigger()
-    @State private var bolt11Payment: Bolt11Payment?
+//    @State private var bolt11Payment: Bolt11Payment?
     @State private var errorMessage: LocalizedStringResource?
     
     var body: some View {
@@ -70,14 +69,14 @@ struct SendDetailsView: View {
         }
         .navigationTitle("send")
         .alert($errorMessage)
-        .onChange(of: bolt11Payment, bolt11PaymentChanged)
+//        .onChange(of: bolt11Payment, bolt11PaymentChanged)
         .task($confirmationTrigger) { await confirm() }
     }
     
-    private func bolt11PaymentChanged() {
-        guard bolt11Payment != nil else { return }
-        state.paymentSent()
-    }
+//    private func bolt11PaymentChanged() {
+//        guard bolt11Payment != nil else { return }
+//        state.paymentSent()
+//    }
     
     private func setAmount(_ amount: Int) {
         self.amount = "\(amount)"
@@ -113,12 +112,12 @@ struct SendDetailsView: View {
         
         let millisats = satsToMillisats(sats: amount)
         
-        do {
-            let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil)
-            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.invoice?.pr ?? ""))
-        } catch {
-            errorMessage = "There was a problem sending your sats. Please try again later."
-        }
+//        do {
+//            let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil)
+//            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.invoice?.pr ?? ""))
+//        } catch {
+//            errorMessage = "There was a problem sending your sats. Please try again later."
+//        }
     }
     
     private func satsToMillisats(sats: String) -> String {

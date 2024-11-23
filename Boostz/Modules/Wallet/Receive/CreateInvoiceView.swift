@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @MainActor
 struct CreateInvoiceView: View {
@@ -56,11 +55,11 @@ struct CreateInvoiceView: View {
     }
     
     private func createInvoice() async {
-        defer { requestInProgress = false }
-        requestInProgress = true
-        guard let amount = Int64(amount) else { return } // TODO: alert user if this fails
-        guard let invoice = try? await InvoicesService().create(invoice: InvoiceUploadModel(amount: amount, description: description)) else { return } // TODO: alert user of failed invoice creation
-        state.path.append(.displayInvoice(invoice))
+//        defer { requestInProgress = false }
+//        requestInProgress = true
+//        guard let amount = Int64(amount) else { return } // TODO: alert user if this fails
+//        guard let invoice = try? await InvoicesService().create(invoice: InvoiceUploadModel(amount: amount, description: description)) else { return } // TODO: alert user of failed invoice creation
+//        state.path.append(.displayInvoice(invoice))
     }
 }
 

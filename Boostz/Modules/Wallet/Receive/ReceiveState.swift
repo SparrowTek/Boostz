@@ -6,26 +6,26 @@
 //
 
 import Foundation
-import AlbyKit
 
 @Observable
 @MainActor
 class ReceiveState {
     enum NavigationLink: Hashable {
         case createInvoice
-        case displayInvoice(CreatedInvoice)
+//        case displayInvoice(CreatedInvoice)
     }
     
     private unowned let parentState: WalletState
     
     var path: [ReceiveState.NavigationLink] = []
     var lightningAddress: String {
-        guard let address = parentState.me?.lightningAddress else { return "" }
-        return "lightning:\(address)"
+//        guard let address = parentState.me?.lightningAddress else { return "" }
+//        return "lightning:\(address)"
+        ""
     }
     
     var lightningAddressMinusPrefix: String {
-        parentState.me?.lightningAddress ?? ""
+        ""
     }
     
     init(parentState: WalletState) {

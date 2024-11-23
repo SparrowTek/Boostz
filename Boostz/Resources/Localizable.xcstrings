@@ -4,29 +4,10 @@
     "" : {
 
     },
-    "%@%lld %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@%2$lld %3$@"
-          }
-        }
-      }
-    },
-    "%lld Sats" : {
-
-    },
-    "%lld SATS" : {
-
-    },
     "%llu sats" : {
 
     },
     "about" : {
-
-    },
-    "Alby" : {
 
     },
     "amount" : {
@@ -44,19 +25,10 @@
     "Boostz" : {
 
     },
-    "BOOSTZ" : {
-
-    },
     "cancel" : {
 
     },
-    "check status" : {
-
-    },
     "color scheme" : {
-
-    },
-    "common view" : {
 
     },
     "confirm" : {
@@ -65,13 +37,7 @@
     "Confirm invoice:" : {
 
     },
-    "connect via:" : {
-
-    },
     "copied!" : {
-
-    },
-    "copy invoice" : {
 
     },
     "create invoice" : {
@@ -125,9 +91,6 @@
     "OR:" : {
 
     },
-    "paid" : {
-
-    },
     "poor network connection" : {
 
     },
@@ -173,16 +136,10 @@
     "settings" : {
 
     },
-    "Setup Alby Kit" : {
+    "Setup" : {
 
     },
     "Source (Github)" : {
-
-    },
-    "Sync Config Data" : {
-
-    },
-    "Sync Transaction Data" : {
 
     },
     "system" : {
@@ -191,25 +148,10 @@
     "The address you entered is not valid. Please try again." : {
 
     },
-    "there is no transaction history available" : {
-
-    },
-    "There was a problem confirming your payment. Please try again later" : {
-
-    },
-    "There was a problem sending your sats. Please try again later." : {
-
-    },
     "This address format is currently unsupported" : {
 
     },
     "This policy applies to all information collected or submitted on Boostz’s website and our apps for iPhone and any other devices and platforms." : {
-
-    },
-    "waiting for payment..." : {
-
-    },
-    "wallet" : {
 
     }
   },

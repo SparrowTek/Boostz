@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AlbyKit
 
 @Observable
 @MainActor
@@ -20,12 +19,12 @@ class WalletState {
     }
     
     var sheet: Sheet?
-    var accountSummary: AccountSummary?
-    var accountBalance: AccountBalance?
-    var me: PersonalInformation?
-    var keysend: Keysend?
+//    var accountSummary: AccountSummary?
+//    var accountBalance: AccountBalance?
+//    var me: PersonalInformation?
+//    var keysend: Keysend?
     var reachability = Reachability()
-    var invoiceHistory: [Invoice] = []
+//    var invoiceHistory: [Invoice] = []
     var triggerTransactionSync = false
     var highlightTopTransaction = false
     var transactionDataSyncPage = 1
@@ -42,11 +41,6 @@ class WalletState {
     
     init(parentState: AppState) {
         self.parentState = parentState
-    }
-    
-    func logout() {
-        sheet = nil
-        parentState.logout()
     }
     
     func closeSheet() {

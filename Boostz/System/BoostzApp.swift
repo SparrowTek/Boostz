@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @main
 @MainActor
@@ -17,7 +16,6 @@ struct BoostzApp: App {
         WindowGroup {
             AppPresenter()
                 .setTheme()
-                .setupAlbyKit()
                 .environment(state)
         }
     }

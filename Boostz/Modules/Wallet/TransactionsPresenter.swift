@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 //struct TransactionsPresenter: View {
 //    var body: some View {
@@ -24,53 +23,53 @@ struct TransactionsView: View {
     @State private var page = 1
     @State private var requestInProgress = false
     
-    private var sortedInvoices: [Invoice] {
-        state.invoiceHistory.sorted(by: { ($0.createdAt ?? .now) > ($1.createdAt ?? .now) })
-    }
+//    private var sortedInvoices: [Invoice] {
+//        state.invoiceHistory.sorted(by: { ($0.createdAt ?? .now) > ($1.createdAt ?? .now) })
+//    }
     
     var body: some View {
         VStack {
-            if state.invoiceHistory.isEmpty && requestInProgress {
-                ProgressView()
-            } else if state.invoiceHistory.isEmpty {
-                List {
-                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
-                }
-                .listStyle(.plain)
-                .background(Color.clear)
-            } else {
-                List {
-                    ForEach(sortedInvoices) { invoice in
-                        TransactionCell(invoice: invoice)
-                            .onAppear {
-                                if invoice == sortedInvoices.last {
-                                    state.transactionDataSyncPage += 1
-                                    state.triggerTransactionSync = true
-                                }
-                            }
-                    }
+//            if state.invoiceHistory.isEmpty && requestInProgress {
+//                ProgressView()
+//            } else if state.invoiceHistory.isEmpty {
+//                List {
+//                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
+//                        .listRowBackground(Color.clear)
+//                        .listRowSeparator(.hidden)
+//                }
+//                .listStyle(.plain)
+//                .background(Color.clear)
+//            } else {
+//                List {
+//                    ForEach(sortedInvoices) { invoice in
+//                        TransactionCell(invoice: invoice)
+//                            .onAppear {
+//                                if invoice == sortedInvoices.last {
+//                                    state.transactionDataSyncPage += 1
+//                                    state.triggerTransactionSync = true
+//                                }
+//                            }
+//                    }
                     
-                    if requestInProgress {
-                        HStack {
-                            Spacer()
-                            ProgressView()
-                            Spacer()
-                        }
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
-                    }
-                }
-                .listStyle(.plain)
-                .background(Color.clear)
-            }
-            
-            Spacer()
+//                    if requestInProgress {
+//                        HStack {
+//                            Spacer()
+//                            ProgressView()
+//                            Spacer()
+//                        }
+//                        .listRowBackground(Color.clear)
+//                        .listRowSeparator(.hidden)
+//                    }
+//                }
+//                .listStyle(.plain)
+//                .background(Color.clear)
+//            }
+//            
+//            Spacer()
         }
-        .ignoresSafeArea()
-        .syncTransactionData(requestInProgress: $requestInProgress)
-        .refreshable { await refresh() }
+//        .ignoresSafeArea()
+//        .syncTransactionData(requestInProgress: $requestInProgress)
+//        .refreshable { await refresh() }
     }
     
     private func refresh() async {
@@ -78,7 +77,7 @@ struct TransactionsView: View {
         state.triggerDataSync()
     }
 }
-
+/*
 @MainActor
 fileprivate struct TransactionCell: View {
     @Environment(WalletState.self) private var state
@@ -170,16 +169,14 @@ extension Invoice: Identifiable {
     public var id: String {
         identifier ?? ""
     }
-    
-    
 }
+ */
 
 #Preview {
     Text("wallet")
         .sheet(isPresented: .constant(true)) {
             TransactionsView()
                 .interactiveDismissDisabled()
-                .setupAlbyKit()
                 .environment(AppState())
                 .environment(WalletState(parentState: .init()))
         }

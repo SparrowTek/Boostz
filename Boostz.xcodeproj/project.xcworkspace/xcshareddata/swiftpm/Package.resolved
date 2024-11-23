@@ -1,15 +1,6 @@
 {
-  "originHash" : "34170359676ce51e559baaadd3fbca5e5a36fcc60acd04878102abb0b629ce4e",
+  "originHash" : "e3c67bbf4aa16b39fef158ba819c656bd7b0567f83096d474cb92fb34c8b7cc9",
   "pins" : [
-    {
-      "identity" : "albykit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SparrowTek/AlbyKit",
-      "state" : {
-        "branch" : "main",
-        "revision" : "c26fb846dfe046520783e29eba92f5c325a42b96"
-      }
-    },
     {
       "identity" : "ldk-swift",
       "kind" : "remoteSourceControl",

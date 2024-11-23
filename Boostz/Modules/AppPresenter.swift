@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlbyKit
 
 @MainActor
 struct AppPresenter: View {
@@ -17,9 +16,8 @@ struct AppPresenter: View {
         
         Group {
             switch state.route {
-            case .auth:
-                AuthPresenter()
-                    .environment(state.authState)
+            case .setup:
+                Text("Setup")
             case .config:
                 ConfigView()
             case .wallet:
@@ -34,5 +32,4 @@ struct AppPresenter: View {
 #Preview {
     AppPresenter()
         .environment(AppState())
-        .environment(AuthState(parentState: .init()))
 }

@@ -18,14 +18,13 @@ class SettingsState {
     
     private unowned let parentState: WalletState
     var path: [SettingsState.NavigationLink] = []
-    var presentLogoutDialog = false
+    var presentNWCDisconnectDialog = false
     
     init(parentState: WalletState) {
         self.parentState = parentState
     }
     
-    func logout() {
-        presentLogoutDialog = false
-        parentState.logout()
+    func disconnectNWC() {
+        presentNWCDisconnectDialog = true
     }
 }
