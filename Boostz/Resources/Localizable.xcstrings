@@ -52,6 +52,9 @@
     "description" : {
 
     },
+    "disconnect and clear all data" : {
+
+    },
     "Done" : {
 
     },
@@ -74,9 +77,6 @@
 
     },
     "logout" : {
-
-    },
-    "logout and clear all data" : {
 
     },
     "logout?" : {
