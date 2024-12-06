@@ -1,6 +1,15 @@
 {
-  "originHash" : "e3c67bbf4aa16b39fef158ba819c656bd7b0567f83096d474cb92fb34c8b7cc9",
+  "originHash" : "e0e0183f50ed57b17edbc2ef14e132210f38bfe1917b6e2308d9d9c2ccea64ba",
   "pins" : [
+    {
+      "identity" : "cryptoswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
+      "state" : {
+        "revision" : "678d442c6f7828def400a70ae15968aef67ef52d",
+        "version" : "1.8.3"
+      }
+    },
     {
       "identity" : "ldk-swift",
       "kind" : "remoteSourceControl",
@@ -8,6 +17,33 @@
       "state" : {
         "revision" : "e3fa435166527b1089787fd4ab0ce398849fb916",
         "version" : "0.0.123"
+      }
+    },
+    {
+      "identity" : "nostr-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:radmakr/nostr-sdk-ios.git",
+      "state" : {
+        "branch" : "rademaker/nip-47",
+        "revision" : "f870743ba3ccf2819f6c16975ae2de263f29848d"
+      }
+    },
+    {
+      "identity" : "secp256k1.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GigaBitcoin/secp256k1.swift",
+      "state" : {
+        "revision" : "57ce9af6db14e0114af631ace25231a9d0ccccbd",
+        "version" : "0.18.0"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
+        "version" : "1.1.4"
       }
     },
     {

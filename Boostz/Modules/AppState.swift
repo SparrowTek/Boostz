@@ -19,11 +19,13 @@ public class AppState {
         var id: Int { rawValue }
     }
     
-    var route: Route = .wallet //.setup
+    var route: Route = .setup
     var triggerDataSync = false
     
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
+    @ObservationIgnored
+    lazy var setupState = SetupState(parentState: self)
     
     init() {}
     

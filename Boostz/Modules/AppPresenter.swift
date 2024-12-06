@@ -17,7 +17,8 @@ struct AppPresenter: View {
         Group {
             switch state.route {
             case .setup:
-                Text("Setup")
+                SetupPresenter()
+                    .environment(state.setupState)
             case .config:
                 ConfigView()
             case .wallet:
