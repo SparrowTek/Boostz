@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor
 struct ScanQRCodeView: View {
-    @Environment(SendState.self) private var state
+    @Environment(ScanQRCodeState.self) private var state
     
     var body: some View {
         ScannerView()
@@ -21,7 +21,7 @@ struct ScanQRCodeView: View {
     }
     
     private func exitView() {
-        _ = state.path.popLast()
+        state.exitView()
     }
     
     private func onDisappear() {
@@ -31,7 +31,7 @@ struct ScanQRCodeView: View {
 
 @MainActor
 fileprivate struct ScannerView: View {
-    @Environment(SendState.self) private var state
+    @Environment(ScanQRCodeState.self) private var state
     private let scanInterval: Double = 1.0
     @State private var lastQrCode: String = ""
     
@@ -57,7 +57,7 @@ fileprivate struct ScannerView: View {
     }
     
     private func foundCode() {
-        state.continueWithInput(lastQrCode, replaceCurrentPath: true)
+//        state.continueWithInput(lastQrCode, replaceCurrentPath: true)
     }
 }
 
@@ -226,5 +226,5 @@ class QrCodeCameraDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 
 #Preview {
     ScanQRCodeView()
-        .environment(SendState(parentState: .init(parentState: .init())))
+        .environment(ScanQRCodeState(parentState: SendState(parentState: .init(parentState: .init()))))
 }

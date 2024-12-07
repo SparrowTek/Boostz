@@ -18,7 +18,7 @@ struct SetupPresenter: View {
                 .sheet(item: $state.sheet) {
                     switch $0 {
                     case .scanQR:
-                        Text("SCAN")
+                        ScanQRCodeView()
                     }
                 }
         }
@@ -61,4 +61,5 @@ fileprivate struct SetupView: View {
 #Preview {
     SetupPresenter()
         .environment(SetupState(parentState: AppState()))
+        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init())))
 }

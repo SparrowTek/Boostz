@@ -45,10 +45,6 @@ class SendState {
         clearPathAndCloseSheet()
     }
     
-    func postQRCodeScanComplete() {
-        path.removeAll { $0 == .scanQR }
-    }
-    
     func continueWithInput(_ lightningInput: String, replaceCurrentPath: Bool = false) {
         do {
             switch try findLightningAddressInText(lightningInput) {
@@ -144,5 +140,15 @@ class SendState {
     private func clearPathAndCloseSheet() {
         path = []
         parentState.sheet = nil
+    }
+}
+
+extension SendState: ScanQRCodeStateParent {
+    func exitScanQRCode() {
+        _ = path.popLast()
+    }
+    
+    func postQRCodeScanComplete() {
+        path.removeAll { $0 == .scanQR }
     }
 }

@@ -24,3 +24,8 @@ class SetupState {
         self.parentState = parentState
     }
 }
+
+extension SetupState: ScanQRCodeStateParent {
+    func exitScanQRCode() {}
+    func postQRCodeScanComplete() {}
+}

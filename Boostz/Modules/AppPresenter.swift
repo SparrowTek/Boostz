@@ -33,4 +33,5 @@ struct AppPresenter: View {
 #Preview {
     AppPresenter()
         .environment(AppState())
+        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init())))
 }
