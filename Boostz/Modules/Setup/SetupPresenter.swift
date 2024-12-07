@@ -8,16 +8,31 @@
 import SwiftUI
 
 struct SetupPresenter: View {
+    @Environment(SetupState.self) private var state
+    
     var body: some View {
+        @Bindable var state = state
+        
         NavigationStack {
             SetupView()
+                .sheet(item: $state.sheet) {
+                    switch $0 {
+                    case .scanQR:
+                        Text("SCAN")
+                    }
+                }
         }
     }
 }
 
 fileprivate struct SetupView: View {
+    @Environment(SetupState.self) private var state
+    
     var body: some View {
-        Text("SETUP")
+        VStack {
+            Button("Scan QR", systemImage: "camera.viewfinder", action: tappedScanQR)
+                .buttonStyle(.borderedProminent)
+        }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
@@ -36,6 +51,10 @@ fileprivate struct SetupView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private func tappedScanQR() {
+        state.sheet = .scanQR
     }
 }
 

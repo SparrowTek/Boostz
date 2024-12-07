@@ -12,6 +12,14 @@ import Foundation
 class SetupState {
     private unowned let parentState: AppState
     
+    enum Sheet: Int, Identifiable {
+        case scanQR
+        
+        var id: Int { rawValue }
+    }
+    
+    var sheet: Sheet?
+    
     init(parentState: AppState) {
         self.parentState = parentState
     }
