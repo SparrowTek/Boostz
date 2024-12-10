@@ -58,6 +58,7 @@ fileprivate struct ScannerView: View {
                 .foregroundStyle(Color.white)
                 .padding(32)
         }
+        .ignoresSafeArea(.all, edges: .bottom)
     }
     
     private func onFoundQrCode(_ code: String) {
