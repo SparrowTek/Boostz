@@ -11,13 +11,21 @@ import SwiftUI
 @MainActor
 struct ScanQRCodeView: View {
     @Environment(ScanQRCodeState.self) private var state
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        ScannerView()
-            .commonView()
-            .navigationBarTitleDisplayMode(.inline)
-            .onDisappear(perform: onDisappear)
-            .onChange(of: state.errorMessage, exitView)
+        NavigationStack {
+            ScannerView()
+                .commonView()
+                .navigationBarTitleDisplayMode(.inline)
+                .onDisappear(perform: onDisappear)
+                .onChange(of: state.errorMessage, exitView)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Done", action: { dismiss() })
+                    }
+                }
+        }
     }
     
     private func exitView() {

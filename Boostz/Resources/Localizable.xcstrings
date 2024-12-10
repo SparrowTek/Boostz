@@ -121,6 +121,9 @@
     "scan QR" : {
 
     },
+    "Scan QR" : {
+
+    },
     "selected color scheme" : {
 
     },
@@ -134,9 +137,6 @@
 
     },
     "settings" : {
-
-    },
-    "Setup" : {
 
     },
     "Source (Github)" : {
