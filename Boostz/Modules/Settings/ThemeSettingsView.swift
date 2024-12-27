@@ -39,7 +39,7 @@ struct ThemeSettingsView: View {
         }
         .scrollContentBackground(.hidden)
         .setForegroundStyle()
-        .commonView()
+        .fullScreenColorView()
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: setSelectedColorScheme)
         .onAppear(perform: setTintColors)

@@ -20,7 +20,7 @@ struct ConfigView: View {
             }
             .font(.title3)
             .setForegroundStyle()
-            .commonView()
+            .fullScreenColorView()
             .syncConfigData()
             .toolbar {
                 ToolbarItem(placement: .principal) {

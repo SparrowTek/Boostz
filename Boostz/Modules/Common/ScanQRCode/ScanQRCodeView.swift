@@ -16,7 +16,7 @@ struct ScanQRCodeView: View {
     var body: some View {
         NavigationStack {
             ScannerView()
-                .commonView()
+                .fullScreenColorView()
                 .navigationBarTitleDisplayMode(.inline)
                 .onDisappear(perform: onDisappear)
                 .onChange(of: state.errorMessage, exitView)

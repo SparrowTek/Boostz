@@ -89,7 +89,7 @@ struct SettingsView: View {
             Button("disconnect and clear all data", systemImage: "bolt.trianglebadge.exclamationmark.fill", role: .destructive, action: disconnectFromNWCAlert)
                 .foregroundStyle(.red)
         }
-        .commonView()
+        .fullScreenColorView()
         .navigationTitle("settings")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

@@ -56,7 +56,7 @@ fileprivate struct SendView: View {
             Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
                 .font(.title)
         }
-        .commonView()
+        .fullScreenColorView()
         .navigationTitle("send BTC")
         .alert($state.errorMessage)
         .toolbar {

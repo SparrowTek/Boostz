@@ -1,5 +1,5 @@
 //
-//  CommonView.swift
+//  FullScreenColorView.swift
 //  Boostz
 //
 //  Created by Thomas Rademaker on 12/10/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-fileprivate struct CommonView: ViewModifier {
+fileprivate struct FullScreenColorView: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             Color.primaryBackground
@@ -19,13 +19,13 @@ fileprivate struct CommonView: ViewModifier {
 }
 
 extension View {
-    func commonView() -> some View {
-        modifier(CommonView())
+    func fullScreenColorView() -> some View {
+        modifier(FullScreenColorView())
     }
 }
 
 #Preview {
     Text("common view")
-        .commonView()
+        .fullScreenColorView()
         .foregroundStyle(.black)
 }

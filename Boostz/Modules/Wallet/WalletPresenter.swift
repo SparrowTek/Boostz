@@ -66,7 +66,7 @@ struct WalletView: View {
             
             TransactionsView()
         }
-        .commonView()
+        .fullScreenColorView()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("", systemImage: "slider.horizontal.3", action: openSettings)
