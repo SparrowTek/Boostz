@@ -30,6 +30,8 @@ class SendState {
     var path: [SendState.NavigationLink] = []
     var accountBalance = ""
     var errorMessage: LocalizedStringResource?
+    @ObservationIgnored
+    lazy var scanQRCodeState = ScanQRCodeState(parentState: self)
     
     init(parentState: WalletState) {
         self.parentState = parentState
@@ -150,5 +152,9 @@ extension SendState: ScanQRCodeStateParent {
     
     func postQRCodeScanComplete() {
         path.removeAll { $0 == .scanQR }
+    }
+    
+    func foundQRCode(_ code: String) {
+        continueWithInput(code, replaceCurrentPath: true)
     }
 }

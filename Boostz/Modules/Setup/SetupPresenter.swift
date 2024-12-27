@@ -19,6 +19,7 @@ struct SetupPresenter: View {
                     switch $0 {
                     case .scanQR:
                         ScanQRCodeView()
+                            .environment(state.scanQRCodeState)
                     }
                 }
         }

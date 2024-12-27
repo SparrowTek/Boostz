@@ -11,6 +11,7 @@ import Foundation
 protocol ScanQRCodeStateParent: AnyObject {
     func exitScanQRCode()
     func postQRCodeScanComplete()
+    func foundQRCode(_ code: String)
 }
 
 @Observable
@@ -37,6 +38,10 @@ class ScanQRCodeState {
     
     func postQRCodeScanComplete() {
         parentState.postQRCodeScanComplete()
+    }
+    
+    func foundQRCode(_ code: String) {
+        parentState.foundQRCode(code)
     }
 }
 

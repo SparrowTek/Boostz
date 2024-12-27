@@ -66,7 +66,7 @@ fileprivate struct ScannerView: View {
     }
     
     private func foundCode() {
-//        state.continueWithInput(lastQrCode, replaceCurrentPath: true)
+        state.foundQRCode(lastQrCode)
     }
 }
 

@@ -19,6 +19,8 @@ class SetupState {
     }
     
     var sheet: Sheet?
+    @ObservationIgnored
+    lazy var scanQRCodeState = ScanQRCodeState(parentState: self)
     
     init(parentState: AppState) {
         self.parentState = parentState
@@ -26,6 +28,10 @@ class SetupState {
 }
 
 extension SetupState: ScanQRCodeStateParent {
+    // TODO: These all need to be implemented
     func exitScanQRCode() {}
     func postQRCodeScanComplete() {}
+    func foundQRCode(_ code: String) {
+        print("QR CODE: \(code)")
+    }
 }

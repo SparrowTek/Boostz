@@ -24,6 +24,7 @@ struct SendPresenter: View {
                         SendConfirmationView(invoice: invoice)
                     case .scanQR:
                         ScanQRCodeView()
+                            .environment(state.scanQRCodeState)
                     }
                 }
         }
