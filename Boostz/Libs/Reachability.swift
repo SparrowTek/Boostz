@@ -43,3 +43,16 @@ class Reachability {
         }
     }
 }
+
+#warning("Can this be done without adding @preconcurrency")
+@MainActor
+private struct ReachabilityKey: @preconcurrency EnvironmentKey {
+    static let defaultValue = Reachability()
+}
+
+extension EnvironmentValues {
+    var reachability: Reachability {
+        get { self[ReachabilityKey.self] }
+        set { self[ReachabilityKey.self] = newValue }
+    }
+}

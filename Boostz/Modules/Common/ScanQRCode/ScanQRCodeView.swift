@@ -234,6 +234,7 @@ class QrCodeCameraDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 }
 
 #Preview {
+    @Previewable @Environment(\.nwc) var nwc
     ScanQRCodeView()
-        .environment(ScanQRCodeState(parentState: SendState(parentState: .init(parentState: .init()))))
+        .environment(ScanQRCodeState(parentState: SendState(parentState: .init(parentState: .init(nwc: nwc)))))
 }

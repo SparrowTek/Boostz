@@ -39,5 +39,5 @@ extension View {
 #Preview {
     Text("Sync Config Data")
         .syncConfigData()
-        .environment(AppState())
+        .setupAppState()
 }

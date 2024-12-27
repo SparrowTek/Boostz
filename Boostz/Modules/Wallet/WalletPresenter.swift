@@ -38,11 +38,12 @@ struct WalletPresenter: View {
 
 @MainActor
 struct WalletView: View {
+    @Environment(\.reachability) private var reachability
     @Environment(WalletState.self) private var state
     
     var body: some View {
         VStack {
-            if state.reachability.connectionState != .good {
+            if reachability.connectionState != .good {
                 NetworkNotReachable()
                     .transition(.move(edge: .top))
             }
@@ -90,7 +91,7 @@ struct WalletView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .syncConfigData()
-        .task { await state.reachability.startMonitoring() }
+        .task { await reachability.startMonitoring() }
     }
     
     private func sendSats() {
@@ -125,7 +126,9 @@ fileprivate struct NetworkNotReachable: View {
 }
 
 #Preview {
+    @Previewable @Environment(\.nwc) var nwc
     WalletPresenter()
-        .environment(AppState())
-        .environment(WalletState(parentState: .init()))
+        .environment(AppState(nwc: nwc))
+        .environment(WalletState(parentState: .init(nwc: nwc)))
+        .environment(\.reachability, Reachability())
 }

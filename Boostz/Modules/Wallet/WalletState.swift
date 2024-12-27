@@ -23,7 +23,6 @@ class WalletState {
 //    var accountBalance: AccountBalance?
 //    var me: PersonalInformation?
 //    var keysend: Keysend?
-    var reachability = Reachability()
 //    var invoiceHistory: [Invoice] = []
     var triggerTransactionSync = false
     var highlightTopTransaction = false

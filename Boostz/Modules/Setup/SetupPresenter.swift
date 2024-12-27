@@ -60,7 +60,8 @@ fileprivate struct SetupView: View {
 }
 
 #Preview {
+    @Previewable @Environment(\.nwc) var nwc
     SetupPresenter()
-        .environment(SetupState(parentState: AppState()))
-        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init())))
+        .environment(SetupState(parentState: AppState(nwc: nwc), nwc: nwc))
+        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init(nwc: nwc), nwc: nwc)))
 }

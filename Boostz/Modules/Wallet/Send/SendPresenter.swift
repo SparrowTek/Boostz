@@ -86,10 +86,11 @@ extension String {
 }
 
 #Preview {
+    @Previewable @Environment(\.nwc) var nwc
     Text("wallet")
         .sheet(isPresented: .constant(true)) {
             SendPresenter()
-                .environment(AppState())
-                .environment(SendState(parentState: .init(parentState: .init())))
+                .setupAppState()
+                .environment(SendState(parentState: .init(parentState: .init(nwc: nwc))))
         }
 }

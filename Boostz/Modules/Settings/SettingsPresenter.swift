@@ -211,9 +211,10 @@ If we decide to change our privacy policy, we will post those changes on this pa
 }
 
 #Preview {
+    @Previewable @Environment(\.nwc) var nwc
     Text("BOOSTZ")
         .sheet(isPresented: .constant(true)) {
             SettingsPresenter()
-                .environment(SettingsState(parentState: .init(parentState: .init())))
+                .environment(SettingsState(parentState: .init(parentState: .init(nwc: nwc))))
         }
 }

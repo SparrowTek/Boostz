@@ -145,8 +145,9 @@ fileprivate struct PresetSatVauleButton: View {
 }
 
 #Preview {
+    @Previewable @Environment(\.nwc) var nwc
     NavigationStack {
         SendDetailsView(lightningAddress: "SparrowTek@getalby.com")
-            .environment(SendState(parentState: .init(parentState: .init())))
+            .environment(SendState(parentState: .init(parentState: .init(nwc: nwc))))
     }
 }
