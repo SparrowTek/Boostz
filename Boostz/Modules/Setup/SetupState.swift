@@ -35,6 +35,6 @@ extension SetupState: ScanQRCodeStateParent {
     func postQRCodeScanComplete() {}
     
     func foundQRCode(_ code: String) {
-        nwc.connect(code: code)
+        nwc.connectToWallet(code: code)
     }
 }
