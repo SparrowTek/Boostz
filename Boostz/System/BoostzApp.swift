@@ -18,6 +18,7 @@ struct BoostzApp: App {
             AppPresenter()
                 .setTheme()
                 .setupAppState()
+                .setupModel()
                 .environment(\.nwc, nwc)
                 .environment(\.reachability, reachability)
         }
