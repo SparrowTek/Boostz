@@ -116,7 +116,7 @@ fileprivate struct QrCodeScannerView: UIViewRepresentable {
         uiView.layer.addSublayer(previewLayer)
         uiView.previewLayer = previewLayer
         
-        DispatchQueue.global(qos: .background).async {
+        Task.detached { @MainActor in
             session.startRunning()
         }
     }
