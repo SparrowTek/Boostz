@@ -15,6 +15,7 @@ enum NWCError: Error {
     case noRelay
     case badKeypair
     case badWalletConnectEvent
+    case badRelayURL
 }
 
 @Observable
@@ -44,22 +45,10 @@ class NWC {
         guard let keypair = Keypair(hex: nwcCode.secret) else { throw .badKeypair }
         guard let walletConnectEvent = try? WalletConnectRequestEvent(walletPubkey: nwcCode.pubKey, method: WalletConnectType.getInfo.rawValue, params: [:], signedBy: keypair) else { throw .badWalletConnectEvent }
         relayPool?.publishEvent(walletConnectEvent)
-//
-//        print("QR CODE: \(code)")
-//        // TODO: take the code and connect to NWC
-//        //        nostr+walletconnect://bc7ad36e9fd3ea57d2723d6d79e76dcb3c6fd282f4521b2604dd0b58cc618a4b?relay=wss://relay.getalby.com/v1&secret=8d869177502a16583ff34bfd2b66388ff57e0df2a05ac37b9179c3a71d89131a&lud16=sparrowtek@getalby.com
-//        
-//        do {
-//            
-//            let walletConnectEvet = try WalletConnectRequestEvent(walletPubkey: "bc7ad36e9fd3ea57d2723d6d79e76dcb3c6fd282f4521b2604dd0b58cc618a4b", method: WalletConnectType.getInfo.rawValue, params: [ : ], signedBy: Keypair(hex: "8d869177502a16583ff34bfd2b66388ff57e0df2a05ac37b9179c3a71d89131a")!)
-//            relayPool?.publishEvent(walletConnectEvet)
-//        } catch {
-//            print("ERROR: \(error)")
-//        }
     }
     
     private func addRelay(for url: String) throws {
-        guard let url = URL(string: url) else { return } // TODO: throw error here
+        guard let url = URL(string: url) else { throw NWCError.badRelayURL }
         let relay = try Relay(url: url)
         relayPool?.add(relay: relay)
     }
@@ -69,12 +58,12 @@ class NWC {
     }
     
     private func parseCode(_ code: String) throws (NWCError) -> NWCCode {
-        guard let pubKeyRange = code.range(of: "://(.+?)\\?", options: .regularExpression), let pubKey = code[pubKeyRange].split(separator: "/").last else { throw .noPubKey }
-        guard let relayRange = code.range(of: "relay=(.+?)&", options: .regularExpression), let relay = code[relayRange].split(separator: "=").last else { throw .noRelay }
-        let relays = String(relay).split(separator: ",").map(String.init)
-        guard let secretRange = code.range(of: "secret=(.+?)&", options: .regularExpression), let secret = code[secretRange].split(separator: "=").last else { throw .noSecret }
+        guard let pubKeyRange = code.range(of: "://([^?]+)", options: .regularExpression), let pubKey = code[pubKeyRange].split(separator: "/").last else { throw NWCError.noPubKey }
+        guard let relayRange = code.range(of: "relay=([^&]+)", options: .regularExpression), let relay = code[relayRange].split(separator: "=").last else { throw NWCError.noRelay }
+        let relays = String(relay).split(separator: ",").map { String($0) }
+        guard let secretRange = code.range(of: "secret=([^&]+)", options: .regularExpression), let secret = code[secretRange].split(separator: "=").last else { throw NWCError.noSecret }
         var lud16: String?
-        if let lud16Range = code.range(of: "lud16=(.+?)$", options: .regularExpression), let lud16Value = code[lud16Range].split(separator: "=").last {
+        if let lud16Range = code.range(of: "lud16=([^&]+)", options: .regularExpression), let lud16Value = code[lud16Range].split(separator: "=").last {
             lud16 = String(lud16Value)
         }
         
