@@ -173,12 +173,11 @@ extension Invoice: Identifiable {
  */
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     Text("wallet")
         .sheet(isPresented: .constant(true)) {
             TransactionsView()
                 .interactiveDismissDisabled()
-                .setupAppState()
-                .environment(WalletState(parentState: .init(nwc: nwc)))
+                .environment(AppState())
+                .environment(WalletState(parentState: .init()))
         }
 }

@@ -55,9 +55,8 @@ extension View {
 }
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     Text("Sync Transaction Data")
         .syncTransactionData(requestInProgress: .constant(true))
-        .setupAppState()
-        .environment(WalletState(parentState: .init(nwc: nwc)))
+        .environment(AppState())
+        .environment(WalletState(parentState: .init()))
 }

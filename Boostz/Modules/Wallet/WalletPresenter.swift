@@ -126,9 +126,8 @@ fileprivate struct NetworkNotReachable: View {
 }
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     WalletPresenter()
-        .environment(AppState(nwc: nwc))
-        .environment(WalletState(parentState: .init(nwc: nwc)))
+        .environment(AppState())
+        .environment(WalletState(parentState: .init()))
         .environment(\.reachability, Reachability())
 }

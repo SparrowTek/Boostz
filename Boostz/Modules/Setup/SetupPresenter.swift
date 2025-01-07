@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import NostrSDK
 
 struct SetupPresenter: View {
     @Environment(SetupState.self) private var state
+    @Environment(\.nwc) private var nwc
     
     var body: some View {
         @Bindable var state = state
@@ -22,12 +24,28 @@ struct SetupPresenter: View {
                             .environment(state.scanQRCodeState)
                     }
                 }
+                .onChange(of: nwc.currentRelayResponse) { evaluateNWCResponse() }
+        }
+    }
+    
+    private func evaluateNWCResponse() {
+        guard nwc.currentPublishedEvent is WalletConnectInfoEvent else { return }
+        switch nwc.currentRelayResponse {
+        case .ok(let eventId, let success, let message):
+            // TODO: maybe log eventId and message?
+            if success {
+                state.walletSuccessfullyConnected()
+            } else {
+                // TODO: handle error
+            }
+        default: break
         }
     }
 }
 
 fileprivate struct SetupView: View {
     @Environment(SetupState.self) private var state
+    @Environment(\.nwc) private var nwc
     
     var body: some View {
         VStack {
@@ -52,16 +70,28 @@ fileprivate struct SetupView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .task(id: state.foundQRCode) { await connectToWallet() }
     }
     
     private func tappedScanQR() {
         state.sheet = .scanQR
     }
+    
+    private func connectToWallet() async {
+        guard let code = state.foundQRCode else { return }
+        
+        do {
+            try await nwc.connectToWallet(code: code)
+        } catch {
+            // TODO: handle error
+            print("ERROR: \(error)")
+        }
+    }
 }
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     SetupPresenter()
-        .environment(SetupState(parentState: AppState(nwc: nwc), nwc: nwc))
-        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init(nwc: nwc), nwc: nwc)))
+        .environment(SetupState(parentState: AppState()))
+        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init())))
+        .environment(\.nwc, NWC())
 }

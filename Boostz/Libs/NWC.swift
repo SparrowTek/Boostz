@@ -99,6 +99,19 @@ class NWC {
     private var receivedEvents: Set<RelayEvent> = [] {
         didSet { receivedEvents.subtracting(oldValue).forEach { evaluateEvent($0) }}
     }
+    var currentPublishedEvent: NostrEvent?
+    var currentRelayResponse: RelayResponse?
+    var currentRelayEvent: RelayEvent?
+//    private var walletRelays: [Relay] = []
+//    private var continuation: CheckedContinuation<Void, Never>?
+//    private var hasConnected = false {
+//        didSet {
+//            if hasConnected {
+//                continuation?.resume()
+//                continuation = nil
+//            }
+//        }
+//    }
     
     func connectToRelays(with urls: [String]) throws {
         var relays: Set<Relay> = []
@@ -118,12 +131,26 @@ class NWC {
         nwcCode.relays.forEach { try? addRelay(for: $0) } ; #warning("Should this try be ignored?")
         guard let keypair = Keypair(hex: nwcCode.secret) else { throw .badKeypair }
         guard let walletConnectEvent = try? WalletConnectRequestEvent(walletPubkey: nwcCode.pubKey, method: WalletConnectType.getInfo.rawValue, params: [:], signedBy: keypair) else { throw .badWalletConnectEvent }
-        relayPool?.publishEvent(walletConnectEvent)
+//        await waitForConnection()
+        publishEvent(walletConnectEvent)
+    }
+    
+//    private func waitForConnection() async {
+//        guard !hasConnected else { return }
+//        await withCheckedContinuation { continuation in
+//            self.continuation = continuation
+//        }
+//    }
+    
+    private func publishEvent(_ event: NostrEvent) {
+        currentPublishedEvent = event
+        relayPool?.publishEvent(event)
     }
     
     private func addRelay(for url: String) throws {
         guard let url = URL(string: url) else { throw NWCError.badRelayURL }
         let relay = try Relay(url: url)
+//        walletRelays.append(relay)
         relayPool?.add(relay: relay)
     }
     
@@ -152,28 +179,11 @@ class NWC {
     }
     
     private func evaluateResponse(_ response: RelayResponse) {
-        print("### EvaluateResponse: \(response)")
-        
-        switch response {
-        case .event(let subscriptionId, let event):
-            break
-        case .ok(let eventId, let success, let message):
-            break
-        case .eose(let subscriptionId):
-            break
-        case .closed(let subscriptionId, let message):
-            break
-        case .notice(let message):
-            break
-        case .auth(let challenge):
-            break
-        case .count(let subscriptionId, let count):
-            break
-        }
+        currentRelayResponse = response
     }
     
     private func evaluateEvent(_ event: RelayEvent) {
-        print("### EvaluateEvent: \(event)")
+        currentRelayEvent = event
     }
 }
 
@@ -187,6 +197,7 @@ extension NWC: RelayDelegate {
         case .connected:
             break
         case .error(let error):
+            print(error.localizedDescription)
             break // TODO: log this error
         }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 @main
 @MainActor
 struct BoostzApp: App {
+    @State private var state = AppState()
     @State private var reachability = Reachability()
     @State private var nwc = NWC()
     
@@ -17,7 +18,7 @@ struct BoostzApp: App {
         WindowGroup {
             AppPresenter()
                 .setTheme()
-                .setupAppState()
+                .environment(state)
                 .setupModel()
                 .environment(\.nwc, nwc)
                 .environment(\.reachability, reachability)

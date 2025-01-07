@@ -121,7 +121,6 @@ fileprivate struct ReceiveView: View {
 }
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     ReceivePresenter()
-        .environment(ReceiveState(parentState: .init(parentState: .init(nwc: nwc))))
+        .environment(ReceiveState(parentState: .init(parentState: .init())))
 }

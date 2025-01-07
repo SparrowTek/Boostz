@@ -67,9 +67,8 @@ struct SendConfirmationView: View {
 }
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     SendConfirmationView(invoice: "lnbc20u1pn2hnhmpp5hf964hhc77lf4vjpltdnuma0fdl2pp2afagzueg8h2gv8x2ju5tqdpzw3jhxarfdenjqnzyfvsxjm3qgfhk7um50gcqzzsxqyz5vqsp5a8ayrhgzyhgce6y49m9z5ypvngslkkajjfz8dx3qeg94gtl6dg9q9qxpqysgq53s3ddmvy0x2lq3jm06lh9eul0w8mtmgpct09g68uuketgw2xvsyfwmm6qjj9t7hrtu8ul859c93ggaz69quj9ltpszt4022cca6znsq9v2lmp")
-        .environment(SendState(parentState: .init(parentState: .init(nwc: nwc))))
+        .environment(SendState(parentState: .init(parentState: .init())))
 }
 
 struct Bolt11Invoice {

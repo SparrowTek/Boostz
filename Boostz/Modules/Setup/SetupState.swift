@@ -19,13 +19,17 @@ class SetupState {
     }
     
     var sheet: Sheet?
-    var nwc: NWC
+    var foundQRCode: String?
     @ObservationIgnored
     lazy var scanQRCodeState = ScanQRCodeState(parentState: self)
     
-    init(parentState: AppState, nwc: NWC) {
+    init(parentState: AppState) {
         self.parentState = parentState
-        self.nwc = nwc
+    }
+    
+    func walletSuccessfullyConnected() {
+        sheet = nil
+        // TODO: parent state gets notified of success
     }
 }
 
@@ -35,11 +39,6 @@ extension SetupState: ScanQRCodeStateParent {
     func postQRCodeScanComplete() {}
     
     func foundQRCode(_ code: String) {
-        do {
-            try nwc.connectToWallet(code: code)
-        } catch {
-            // TODO: handle error
-            print("ERROR: \(error)")
-        }
+        foundQRCode = code
     }
 }

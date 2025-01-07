@@ -64,7 +64,6 @@ struct CreateInvoiceView: View {
 }
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     CreateInvoiceView()
-        .environment(ReceiveState(parentState: .init(parentState: .init(nwc: nwc))))
+        .environment(ReceiveState(parentState: .init(parentState: .init())))
 }

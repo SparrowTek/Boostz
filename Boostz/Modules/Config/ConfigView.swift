@@ -44,5 +44,5 @@ struct ConfigView: View {
 
 #Preview {
     ConfigView()
-        .setupAppState()
+        .environment(AppState())
 }

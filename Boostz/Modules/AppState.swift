@@ -21,16 +21,11 @@ public class AppState {
     
     var route: Route = .setup
     var triggerDataSync = false
-    private let nwc: NWC
     
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
     @ObservationIgnored
-    lazy var setupState = SetupState(parentState: self, nwc: nwc)
-    
-    init(nwc: NWC) {
-        self.nwc = nwc
-    }
+    lazy var setupState = SetupState(parentState: self)
     
     func onOpenURL(_ url: URL) async {
         guard url.scheme == "boostz" else { return }
@@ -39,20 +34,5 @@ public class AppState {
         default:
             break
         }
-    }
-}
-
-struct AppStateViewModifier: ViewModifier {
-    @Environment(\.nwc) private var nwc
-    
-    func body(content: Content) -> some View {
-        content
-            .environment(AppState(nwc: nwc))
-    }
-}
-
-extension View {
-    func setupAppState() -> some View {
-        modifier(AppStateViewModifier())
     }
 }

@@ -52,10 +52,9 @@ struct AppPresenter: View {
 }
 
 #Preview {
-    @Previewable @Environment(\.nwc) var nwc
     AppPresenter()
         .setupModel()
-        .environment(nwc)
-        .environment(AppState(nwc: nwc))
-        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init(nwc: nwc), nwc: nwc)))
+        .environment(\.nwc, NWC())
+        .environment(AppState())
+        .environment(ScanQRCodeState(parentState: SetupState(parentState: .init())))
 }
