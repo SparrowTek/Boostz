@@ -66,6 +66,15 @@ class NWC {
         publishEvent(walletConnectEvent)
     }
     
+    func getWalletInfo() throws (NWCError) {
+        // NWCCode needs to be persisted because walletCode will only be around when you first parse the wallet code
+        guard let walletCode else { throw .noWalletCode }
+        let nwcCode = try parseCode(walletCode)
+        guard let keypair = Keypair(hex: nwcCode.secret) else { throw .badKeypair }
+        guard let walletConnectInfoEvent = try? WalletConnectInfoEvent(capabilities: [], signedBy: keypair) else { throw .badWalletConnectEvent }
+        publishEvent(walletConnectInfoEvent)
+    }
+    
     private func publishEvent(_ event: NostrEvent) {
         currentPublishedEvent = event
         relayPool?.publishEvent(event)

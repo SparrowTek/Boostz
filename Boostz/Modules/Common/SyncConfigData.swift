@@ -10,13 +10,14 @@ import SwiftUI
 @MainActor
 fileprivate struct SyncConfigData: ViewModifier {
     @Environment(AppState.self) private var state
+    @Environment(\.nwc) private var nwc
     @State private var dataSyncTrigger = PlainTaskTrigger()
     
     func body(content: Content) -> some View {
         content
             .onChange(of: state.triggerDataSync, triggerDataSync)
-            .task { await getAccountInfo() }
-            .task($dataSyncTrigger) { await getAccountInfo() }
+            .task { await getWalletInfo() }
+            .task($dataSyncTrigger) { await getWalletInfo() }
     }
     
     private func triggerDataSync() {
@@ -25,8 +26,12 @@ fileprivate struct SyncConfigData: ViewModifier {
         dataSyncTrigger.trigger()
     }
     
-    private func getAccountInfo() async {
-        // TODO: get wallet info
+    private func getWalletInfo() async {
+        do {
+            try nwc.getWalletInfo()
+        } catch {
+            // TODO: handle error
+        }
     }
 }
 
@@ -40,4 +45,5 @@ extension View {
     Text("Sync Config Data")
         .syncConfigData()
         .environment(AppState())
+        .environment(\.nwc, NWC())
 }
