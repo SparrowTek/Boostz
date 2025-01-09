@@ -29,7 +29,7 @@ class SetupState {
     
     func walletSuccessfullyConnected() {
         sheet = nil
-        // TODO: parent state gets notified of success
+        parentState.walletSuccessfullyConnected()
     }
 }
 

@@ -35,4 +35,12 @@ public class AppState {
             break
         }
     }
+    
+    func walletSuccessfullyConnected() {
+        route = .config
+    }
+    
+    func configSuccessful() {
+        route = .wallet
+    }
 }

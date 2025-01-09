@@ -70,18 +70,28 @@ fileprivate struct SetupView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .task(id: state.foundQRCode) { await connectToWallet() }
+            .onChange(of: state.foundQRCode) { parseWalletCode() }
+            .onChange(of: nwc.hasConnected) { connectToWallet() }
     }
     
     private func tappedScanQR() {
         state.sheet = .scanQR
     }
     
-    private func connectToWallet() async {
+    private func parseWalletCode() {
         guard let code = state.foundQRCode else { return }
         
         do {
-            try await nwc.connectToWallet(code: code)
+            try nwc.parseWalletCode(code)
+        } catch {
+            // TODO: handle error
+            print("ERROR: \(error)")
+        }
+    }
+    
+    private func connectToWallet() {
+        do {
+            try nwc.connectToWallet()
         } catch {
             // TODO: handle error
             print("ERROR: \(error)")
