@@ -12,6 +12,8 @@ import Vault
 enum NWCError: Error {
     case noPubKey
     case noSecret
+    case noSecretToParse
+    case failedToSaveSecret
     case noRelay
     case badKeypair
     case badWalletConnectEvent
@@ -38,6 +40,9 @@ class NWC {
     private var walletRelays: [Relay] = []
     private var continuation: CheckedContinuation<Void, Never>?
     private var walletCode: String?
+    private var secret: String? {
+        try? Vault.getPrivateKey()
+    }
     
     func connectToRelays(with urls: [String]) throws {
         var relays: Set<Relay> = []
@@ -52,25 +57,23 @@ class NWC {
         relayPool?.connect()
     }
     
-    func parseWalletCode(_ code: String) throws (NWCError) {
+    func parseWalletCode(_ code: String) throws (NWCError) -> NWCCode {
         walletCode = code
         let nwcCode = try parseCode(code)
         nwcCode.relays.forEach { try? addRelay(for: $0) }
+        return nwcCode
     }
     
-    func connectToWallet() throws (NWCError) {
-        guard let walletCode else { throw .noWalletCode }
-        let nwcCode = try parseCode(walletCode)
-        guard let keypair = Keypair(hex: nwcCode.secret) else { throw .badKeypair }
-        guard let walletConnectEvent = try? WalletConnectRequestEvent(walletPubkey: nwcCode.pubKey, method: WalletConnectType.getInfo.rawValue, params: [:], signedBy: keypair) else { throw .badWalletConnectEvent }
+    func connectToWallet(pubKey: String) throws (NWCError) {
+        guard let secret else { throw .noSecret }
+        guard let keypair = Keypair(hex: secret) else { throw .badKeypair }
+        guard let walletConnectEvent = try? WalletConnectRequestEvent(walletPubkey: pubKey, method: WalletConnectType.getInfo.rawValue, params: [:], signedBy: keypair) else { throw .badWalletConnectEvent }
         publishEvent(walletConnectEvent)
     }
     
     func getWalletInfo() throws (NWCError) {
-        // NWCCode needs to be persisted because walletCode will only be around when you first parse the wallet code
-        guard let walletCode else { throw .noWalletCode }
-        let nwcCode = try parseCode(walletCode)
-        guard let keypair = Keypair(hex: nwcCode.secret) else { throw .badKeypair }
+        guard let secret else { throw .noSecret }
+        guard let keypair = Keypair(hex: secret) else { throw .badKeypair }
         guard let walletConnectInfoEvent = try? WalletConnectInfoEvent(capabilities: [], signedBy: keypair) else { throw .badWalletConnectEvent }
         publishEvent(walletConnectInfoEvent)
     }
@@ -95,20 +98,19 @@ class NWC {
         guard let pubKeyRange = code.range(of: "://([^?]+)", options: .regularExpression), let pubKey = code[pubKeyRange].split(separator: "/").last else { throw NWCError.noPubKey }
         guard let relayRange = code.range(of: "relay=([^&]+)", options: .regularExpression), let relay = code[relayRange].split(separator: "=").last else { throw NWCError.noRelay }
         let relays = String(relay).split(separator: ",").map { String($0) }
-        guard let secretRange = code.range(of: "secret=([^&]+)", options: .regularExpression), let secret = code[secretRange].split(separator: "=").last else { throw NWCError.noSecret }
+        guard let secretRange = code.range(of: "secret=([^&]+)", options: .regularExpression), let secret = code[secretRange].split(separator: "=").last else { throw NWCError.noSecretToParse }
         var lud16: String?
         if let lud16Range = code.range(of: "lud16=([^&]+)", options: .regularExpression), let lud16Value = code[lud16Range].split(separator: "=").last {
             lud16 = String(lud16Value)
         }
         
-        return NWCCode(pubKey: String(pubKey), relays: relays, secret: String(secret), lud16: lud16)
-    }
-    
-    struct NWCCode {
-        let pubKey: String
-        let relays: [String]
-        let secret: String
-        let lud16: String?
+        do {
+            try saveSecret(String(secret))
+        } catch {
+            throw .failedToSaveSecret
+        }
+            
+        return NWCCode(pubKey: String(pubKey), relays: relays, lud16: lud16)
     }
     
     private func evaluateResponse(_ response: RelayResponse) {

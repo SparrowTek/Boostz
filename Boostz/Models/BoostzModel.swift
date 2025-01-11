@@ -12,6 +12,7 @@ struct BoostzDataContainerViewModifier: ViewModifier {
     let container: ModelContainer
     let schema = Schema([
         RelayURL.self,
+        NWCCode.self,
     ])
     
     init(inMemory: Bool) {

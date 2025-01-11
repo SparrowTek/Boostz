@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import NostrSDK
 
 struct SetupPresenter: View {
@@ -46,6 +47,8 @@ struct SetupPresenter: View {
 fileprivate struct SetupView: View {
     @Environment(SetupState.self) private var state
     @Environment(\.nwc) private var nwc
+    @Environment(\.modelContext) private var context
+    @Query private var nwcCodes: [NWCCode]
     
     var body: some View {
         VStack {
@@ -82,7 +85,9 @@ fileprivate struct SetupView: View {
         guard let code = state.foundQRCode else { return }
         
         do {
-            try nwc.parseWalletCode(code)
+            let nwcCode = try nwc.parseWalletCode(code)
+            context.insert(nwcCode)
+            try context.save()
         } catch {
             // TODO: handle error
             print("ERROR: \(error)")
@@ -90,8 +95,9 @@ fileprivate struct SetupView: View {
     }
     
     private func connectToWallet() {
+        guard let nwcCode = nwcCodes.first else { return }
         do {
-            try nwc.connectToWallet()
+            try nwc.connectToWallet(pubKey: nwcCode.pubKey)
         } catch {
             // TODO: handle error
             print("ERROR: \(error)")
