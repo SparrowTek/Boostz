@@ -116,8 +116,8 @@ fileprivate struct QrCodeScannerView: UIViewRepresentable {
         uiView.layer.addSublayer(previewLayer)
         uiView.previewLayer = previewLayer
         
-        Task.detached { @MainActor in
-            session.startRunning()
+        Task.detached {
+            await session.startRunning()
         }
     }
     

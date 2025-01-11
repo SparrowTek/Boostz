@@ -60,7 +60,7 @@ class NWC {
     func parseWalletCode(_ code: String) throws (NWCError) -> NWCCode {
         walletCode = code
         let nwcCode = try parseCode(code)
-        nwcCode.relays.forEach { try? addRelay(for: $0) }
+        nwcCode.relays.forEach { try? addRelay(for: $0.url) }
         return nwcCode
     }
     
@@ -110,7 +110,8 @@ class NWC {
             throw .failedToSaveSecret
         }
             
-        return NWCCode(pubKey: String(pubKey), relays: relays, lud16: lud16)
+        let relayURLs = relays.map { RelayURL(url: $0) }
+        return NWCCode(pubKey: String(pubKey), relays: relayURLs, lud16: lud16)
     }
     
     private func evaluateResponse(_ response: RelayResponse) {

@@ -10,10 +10,10 @@ import SwiftData
 @Model
 class NWCCode {
     var pubKey: String
-    var relays: [String]
+    var relays: [RelayURL]
     var lud16: String?
     
-    init(pubKey: String, relays: [String], lud16: String?) {
+    init(pubKey: String, relays: [RelayURL], lud16: String?) {
         self.pubKey = pubKey
         self.relays = relays
         self.lud16 = lud16
