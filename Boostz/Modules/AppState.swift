@@ -36,6 +36,15 @@ public class AppState {
         }
     }
     
+    func determineRoute() {
+        do {
+            let _ = try Vault.getPrivateKey(keychainConfiguration: .nwcSecret)
+            route = .config
+        } catch {
+            route = .setup
+        }
+    }
+    
     func walletSuccessfullyConnected() {
         route = .config
     }

@@ -31,7 +31,12 @@ struct AppPresenter: View {
             }
         }
         .onOpenURL()
+        .onAppear(perform: determineRoute)
         .task { await setupNWC() }
+    }
+    
+    private func determineRoute() {
+        state.determineRoute()
     }
     
     private func setupNWC() async {
