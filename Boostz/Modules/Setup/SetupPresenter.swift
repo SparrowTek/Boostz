@@ -30,7 +30,9 @@ struct SetupPresenter: View {
     }
     
     private func evaluateNWCResponse() {
-        guard nwc.currentPublishedEvent is WalletConnectInfoEvent else { return }
+        #warning("This logic needs to be gated somehow for only certain types.. oh maybe by using the eventID?")
+        print("currentPublishedEvent: \(String(describing: nwc.currentPublishedEvent?.kind))")
+//        guard nwc.currentPublishedEvent is WalletConnectInfoEvent else { return }
         switch nwc.currentRelayResponse {
         case .ok(let eventId, let success, let message):
             // TODO: maybe log eventId and message?
@@ -88,6 +90,7 @@ fileprivate struct SetupView: View {
             let nwcCode = try nwc.parseWalletCode(code)
             context.insert(nwcCode)
             try context.save()
+            connectToWallet()
         } catch {
             // TODO: handle error
             print("ERROR: \(error)")

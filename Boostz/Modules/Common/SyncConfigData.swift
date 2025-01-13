@@ -11,22 +11,22 @@ import SwiftUI
 fileprivate struct SyncConfigData: ViewModifier {
     @Environment(AppState.self) private var state
     @Environment(\.nwc) private var nwc
-    @State private var dataSyncTrigger = PlainTaskTrigger()
+    @State private var dataSyncTrigger = false
     
     func body(content: Content) -> some View {
         content
             .onChange(of: state.triggerDataSync, triggerDataSync)
-            .task { await getWalletInfo() }
-            .task($dataSyncTrigger) { await getWalletInfo() }
+            .task { getWalletInfo() }
+            .onChange(of: dataSyncTrigger) { getWalletInfo() }
     }
     
     private func triggerDataSync() {
         guard state.triggerDataSync else { return }
         state.triggerDataSync = false
-        dataSyncTrigger.trigger()
+        dataSyncTrigger.toggle()
     }
     
-    private func getWalletInfo() async {
+    private func getWalletInfo() {
         do {
             try nwc.getWalletInfo()
         } catch {

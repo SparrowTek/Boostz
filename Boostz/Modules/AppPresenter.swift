@@ -48,9 +48,9 @@ struct AppPresenter: View {
     
     private func seedRelayURLs() throws {
         guard relayURLs.isEmpty else { return }
-        let boostzRelay = RelayURL(url: "wss://relay.boostz.xyz/v1")
+//        let boostzRelay = RelayURL(url: "wss://relay.boostz.xyz/v1")
         let albyRelay = RelayURL(url: "wss://relay.getalby.com/v1")
-        modelContext.insert(boostzRelay)
+//        modelContext.insert(boostzRelay)
         modelContext.insert(albyRelay)
         try modelContext.save()
     }

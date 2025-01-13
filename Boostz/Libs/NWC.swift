@@ -38,10 +38,9 @@ class NWC {
     var currentRelayEvent: RelayEvent?
     var hasConnected = false
     private var walletRelays: [Relay] = []
-    private var continuation: CheckedContinuation<Void, Never>?
     private var walletCode: String?
     private var secret: String? {
-        try? Vault.getPrivateKey()
+        try? Vault.getPrivateKey(keychainConfiguration: .nwcSecret)
     }
     
     func connectToRelays(with urls: [String]) throws {
@@ -131,22 +130,18 @@ extension NWC: RelayDelegate {
         case .connecting:
             break
         case .connected:
-            for walletRelay in walletRelays {
-                if relay == walletRelay {
-                    hasConnected = true
-                    break
-                }
-            }
+            guard walletRelays.contains(relay) else { return }
+            hasConnected = true
         case .error(let error):
             print(error.localizedDescription)
-            break // TODO: log this error
+            break
         }
     }
-
+    
     func relay(_ relay: Relay, didReceive response: RelayResponse) {
         receivedResponses.insert(response)
     }
-
+        
     func relay(_ relay: Relay, didReceive event: RelayEvent) {
         receivedEvents.insert(event)
     }
