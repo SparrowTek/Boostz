@@ -1,5 +1,5 @@
 # Boostz
-An open source custodial Bitcoin lightning wallet using [Alby](https://getalby.com)
+An open source Bitcoin lightning wallet via [Nostr Wallet Connect (NWC)](https://nwc.dev/)
 
 ## Project State
 
@@ -13,7 +13,7 @@ By participating in this project you agree to abide by the [Contributor Code of 
 
 ### Building
 
-**Note**: requires Xcode 15 and macOS 14
+**Note**: requires Xcode 16.2, macOS 15, and Swift 6.
 
 - clone the repo
 - `cp User.xcconfig.template User.xcconfig`
