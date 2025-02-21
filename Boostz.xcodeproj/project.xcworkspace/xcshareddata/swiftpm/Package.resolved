@@ -1,13 +1,13 @@
 {
-  "originHash" : "e0e0183f50ed57b17edbc2ef14e132210f38bfe1917b6e2308d9d9c2ccea64ba",
+  "originHash" : "d039500f5cbfba360ee50e4c38c199de899f7b4f4368abdc554677448e87d888",
   "pins" : [
     {
       "identity" : "cryptoswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
       "state" : {
-        "revision" : "678d442c6f7828def400a70ae15968aef67ef52d",
-        "version" : "1.8.3"
+        "revision" : "729e01bc9b9dab466ac85f21fb9ee2bc1c61b258",
+        "version" : "1.8.4"
       }
     },
     {
@@ -20,21 +20,12 @@
       }
     },
     {
-      "identity" : "nostr-sdk-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "git@github.com:radmakr/nostr-sdk-ios.git",
-      "state" : {
-        "branch" : "rademaker/nip-47",
-        "revision" : "f870743ba3ccf2819f6c16975ae2de263f29848d"
-      }
-    },
-    {
       "identity" : "secp256k1.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/GigaBitcoin/secp256k1.swift",
       "state" : {
-        "revision" : "57ce9af6db14e0114af631ace25231a9d0ccccbd",
-        "version" : "0.18.0"
+        "revision" : "1a14e189def5eaa92f839afdd2faad8e43b61a6e",
+        "version" : "0.12.2"
       }
     },
     {

@@ -20,6 +20,7 @@ class SetupState {
     
     var sheet: Sheet?
     var foundQRCode: String?
+    var connectionSecret = ""
     @ObservationIgnored
     lazy var scanQRCodeState = ScanQRCodeState(parentState: self)
     

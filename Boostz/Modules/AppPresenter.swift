@@ -32,28 +32,28 @@ struct AppPresenter: View {
         }
         .onOpenURL()
         .onAppear(perform: determineRoute)
-        .task { await setupNWC() }
+//        .task { await setupNWC() }
     }
     
     private func determineRoute() {
         state.determineRoute()
     }
     
-    private func setupNWC() async {
-        do {
-            try seedRelayURLs()
-            try nwc.connectToRelays(with: relayURLs.map { $0.url } )
-        } catch {}
-    }
+//    private func setupNWC() async {
+//        do {
+//            try seedRelayURLs()
+//            try nwc.connectToRelays(with: relayURLs.map { $0.url } )
+//        } catch {}
+//    }
     
-    private func seedRelayURLs() throws {
-        guard relayURLs.isEmpty else { return }
-//        let boostzRelay = RelayURL(url: "wss://relay.boostz.xyz/v1")
-        let albyRelay = RelayURL(url: "wss://relay.getalby.com/v1")
-//        modelContext.insert(boostzRelay)
-        modelContext.insert(albyRelay)
-        try modelContext.save()
-    }
+//    private func seedRelayURLs() throws {
+//        guard relayURLs.isEmpty else { return }
+////        let boostzRelay = RelayURL(url: "wss://relay.boostz.xyz/v1")
+//        let albyRelay = RelayURL(url: "wss://relay.getalby.com/v1")
+////        modelContext.insert(boostzRelay)
+//        modelContext.insert(albyRelay)
+//        try modelContext.save()
+//    }
 }
 
 #Preview {

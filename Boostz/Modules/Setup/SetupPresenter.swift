@@ -31,7 +31,7 @@ struct SetupPresenter: View {
     
     private func evaluateNWCResponse() {
         #warning("This logic needs to be gated somehow for only certain types.. oh maybe by using the eventID?")
-        print("currentPublishedEvent: \(String(describing: nwc.currentPublishedEvent?.kind))")
+//        print("currentPublishedEvent: \(String(describing: nwc.currentPublishedEvent?.kind))")
 //        guard nwc.currentPublishedEvent is WalletConnectInfoEvent else { return }
         switch nwc.currentRelayResponse {
         case .ok(let eventId, let success, let message):
@@ -53,30 +53,50 @@ fileprivate struct SetupView: View {
     @Query private var nwcCodes: [NWCCode]
     
     var body: some View {
+        @Bindable var state = state
+        
         VStack {
-            Button("Scan QR", systemImage: "camera.viewfinder", action: tappedScanQR)
+            HStack {
+                TextField("enter connection secret", text: $state.connectionSecret)
+                    .textFieldStyle(.roundedBorder)
+                Button("enter", action: evaluateConnectionSecret)
+                    .buttonStyle(.borderedProminent)
+            }
+            .padding()
+            
+            Text("or")
+                .font(.subheadline)
+                .padding()
+            
+            Button("scan QR", systemImage: "camera.viewfinder", action: tappedScanQR)
                 .buttonStyle(.borderedProminent)
         }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        Text("Boostz")
-                            .font(.largeTitle)
-                            .bold()
-                        
-                        Image(systemName: "bolt.fill")
-                            .imageScale(.large)
-                            .foregroundStyle(Color.yellow)
-                        Image(systemName: "bolt.fill")
-                            .imageScale(.large)
-                            .foregroundStyle(Color.yellow)
-                    }
-                    .setForegroundStyle()
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text("Boostz")
+                        .font(.largeTitle)
+                        .bold()
+                    
+                    Image(systemName: "bolt.fill")
+                        .imageScale(.large)
+                        .foregroundStyle(Color.yellow)
+                    Image(systemName: "bolt.fill")
+                        .imageScale(.large)
+                        .foregroundStyle(Color.yellow)
                 }
+                .setForegroundStyle()
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .onChange(of: state.foundQRCode) { parseWalletCode() }
-            .onChange(of: nwc.hasConnected) { connectToWallet() }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: state.foundQRCode) { parseWalletCode() }
+        .onChange(of: nwc.hasConnected) { connectToWallet() }
+        .fullScreenColorView()
+    }
+    
+    private func evaluateConnectionSecret() {
+        guard !state.connectionSecret.isEmpty else { return }
+        parseWalletCode(state.connectionSecret)
     }
     
     private func tappedScanQR() {
@@ -85,12 +105,14 @@ fileprivate struct SetupView: View {
     
     private func parseWalletCode() {
         guard let code = state.foundQRCode else { return }
-        
+        parseWalletCode(code)
+    }
+    
+    private func parseWalletCode(_ code: String) {
         do {
             let nwcCode = try nwc.parseWalletCode(code)
             context.insert(nwcCode)
             try context.save()
-            connectToWallet()
         } catch {
             // TODO: handle error
             print("ERROR: \(error)")

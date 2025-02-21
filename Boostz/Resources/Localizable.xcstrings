@@ -58,6 +58,12 @@
     "Done" : {
 
     },
+    "enter" : {
+
+    },
+    "enter connection secret" : {
+
+    },
     "for e.g. who is sending this payment?" : {
 
     },
@@ -86,6 +92,9 @@
 
     },
     "OK" : {
+
+    },
+    "or" : {
 
     },
     "OR:" : {
@@ -119,9 +128,6 @@
 
     },
     "scan QR" : {
-
-    },
-    "Scan QR" : {
 
     },
     "selected color scheme" : {
