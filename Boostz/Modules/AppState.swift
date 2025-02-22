@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Vault
+import NostrSDK
 
 @Observable
 @MainActor
@@ -52,5 +53,9 @@ public class AppState {
     
     func configSuccessful() {
         route = .wallet
+    }
+    
+    func saveInfo(_ info: GetInfoResponse) {
+        configSuccessful()
     }
 }

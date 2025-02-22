@@ -10,12 +10,27 @@ import SwiftData
 @Model
 class NWCCode {
     var pubKey: String
-    var relays: [RelayURL]
+    var relay: String
     var lud16: String?
     
-    init(pubKey: String, relays: [RelayURL], lud16: String?) {
+    init(pubKey: String, relay: String, lud16: String?) {
         self.pubKey = pubKey
-        self.relays = relays
+        self.relay = relay
         self.lud16 = lud16
     }
 }
+
+//@Model
+//class NWCURI {
+//    var publicKey: String
+//    var relayUrl: String
+//    var lud16: String?
+//    
+//    init(publicKey: String, relayUrl: String, lud16: String?) {
+//        self.publicKey = publicKey
+//        self.relayUrl = relayUrl
+//        self.lud16 = lud16
+//    }
+//}
+
+//init(publicKey: PublicKey, relayUrl: String, randomSecretKey: SecretKey, lud16: String?)throws  {

@@ -4,7 +4,7 @@
 //
 //  Created by Thomas Rademaker on 1/8/25.
 //
-
+/*
 import NostrSDK
 
 extension RelayResponse: @retroactive Equatable {}
@@ -63,3 +63,4 @@ extension RelayResponse: @retroactive Hashable {
         }
     }
 }
+*/

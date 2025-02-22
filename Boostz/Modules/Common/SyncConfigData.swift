@@ -7,59 +7,41 @@
 
 import SwiftUI
 import SwiftData
+import NostrSDK
 
 @MainActor
 fileprivate struct SyncConfigData: ViewModifier {
     @Environment(AppState.self) private var state
     @Environment(\.nwc) private var nwc
     @Query private var nwcCodes: [NWCCode]
-    @State private var dataSyncTrigger = false
+//    @State private var dataSyncTrigger = false
     
     func body(content: Content) -> some View {
         content
-            .onChange(of: state.triggerDataSync, triggerDataSync)
-            .task { getWalletInfo() }
-            .onChange(of: dataSyncTrigger) { getWalletInfo() }
-            .onChange(of: nwc.currentRelayResponse) { evaluateNWCResponse() }
+//            .onChange(of: state.triggerDataSync, triggerDataSync)
+            .task { await getWalletInfo() }
+//            .onChange(of: dataSyncTrigger) { await getWalletInfo() }
+//            .task(id: dataSyncTrigger) { await getWalletInfo() }
     }
     
-    private func triggerDataSync() {
-        guard state.triggerDataSync else { return }
-        state.triggerDataSync = false
-        dataSyncTrigger.toggle()
-    }
+//    private func triggerDataSync() {
+//        guard state.triggerDataSync else { return }
+//        state.triggerDataSync = false
+//        dataSyncTrigger.toggle()
+//    }
     
-    private func getWalletInfo() {
-        guard let nwcCode = nwcCodes.first else { return }
+    private func getWalletInfo() async {
         do {
-//            try nwc.getWalletInfo()
-//            try nwc.listTransactions(pubKey: nwcCode.pubKey)
-            try nwc.getBalance(pubKey: nwcCode.pubKey)
+            let info = try await nwc.getInfo()
+            let balance = try await nwc.getBalance()
+            let transactions = try await nwc.listTransactions(from: Timestamp.fromSecs(secs: 1693876973), until: .now(), limit: 10, offset: 0, unpaid: nil, transactionType: .incoming)
+            print("INFO: \(info)")
+            print("BALANCE: \(balance)")
+            print("TRANSACTIONS: \(transactions)")
+            state.configSuccessful()
         } catch {
             // TODO: handle error
             print("ERROR listing transactions: \(error.localizedDescription)")
-        }
-    }
-    
-    private func evaluateNWCResponse() {
-        #warning("This logic needs to be gated somehow for only certain types.. oh maybe by using the eventID?")
-//        print("currentPublishedEvent: \(String(describing: nwc.currentPublishedEvent?.kind))")
-//        guard nwc.currentPublishedEvent is WalletConnectInfoEvent else { return }
-        switch nwc.currentRelayResponse {
-        case .ok(let eventId, let success, let message):
-            break
-//            print("eventId: \(eventId)")
-//            print("success: \(success)")
-//            print("message: \(message)")
-            
-            // TODO: maybe log eventId and message?
-//            if success {
-//                // TODO: something!!
-//                state.configSuccessful()
-//            } else {
-//                // TODO: handle error
-//            }
-        default: break
         }
     }
 }

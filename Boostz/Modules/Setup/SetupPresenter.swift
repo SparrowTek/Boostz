@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import NostrSDK
 
 struct SetupPresenter: View {
     @Environment(SetupState.self) private var state
@@ -25,23 +24,6 @@ struct SetupPresenter: View {
                             .environment(state.scanQRCodeState)
                     }
                 }
-                .onChange(of: nwc.currentRelayResponse) { evaluateNWCResponse() }
-        }
-    }
-    
-    private func evaluateNWCResponse() {
-        #warning("This logic needs to be gated somehow for only certain types.. oh maybe by using the eventID?")
-//        print("currentPublishedEvent: \(String(describing: nwc.currentPublishedEvent?.kind))")
-//        guard nwc.currentPublishedEvent is WalletConnectInfoEvent else { return }
-        switch nwc.currentRelayResponse {
-        case .ok(let eventId, let success, let message):
-            // TODO: maybe log eventId and message?
-            if success {
-                state.walletSuccessfullyConnected()
-            } else {
-                // TODO: handle error
-            }
-        default: break
         }
     }
 }
@@ -90,7 +72,7 @@ fileprivate struct SetupView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: state.foundQRCode) { parseWalletCode() }
-        .onChange(of: nwc.hasConnected) { connectToWallet() }
+        .onChange(of: nwc.hasConnected) { configApp() }
         .fullScreenColorView()
     }
     
@@ -113,20 +95,15 @@ fileprivate struct SetupView: View {
             let nwcCode = try nwc.parseWalletCode(code)
             context.insert(nwcCode)
             try context.save()
+            try nwc.initializeNWCClient(with: nwcCode)
         } catch {
             // TODO: handle error
             print("ERROR: \(error)")
         }
     }
     
-    private func connectToWallet() {
-        guard let nwcCode = nwcCodes.first else { return }
-        do {
-            try nwc.connectToWallet(pubKey: nwcCode.pubKey)
-        } catch {
-            // TODO: handle error
-            print("ERROR: \(error)")
-        }
+    private func configApp() {
+        state.walletSuccessfullyConnected()
     }
 }
 
