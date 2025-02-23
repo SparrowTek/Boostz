@@ -54,48 +54,50 @@ fileprivate struct ReceiveView: View {
     
     var body: some View {
         VStack {
-            QRCodeImage(code: lightningAddress)
-                .frame(width: 200, height: 200)
-                .padding()
+//            QRCodeImage(code: lightningAddress)
+//                .frame(width: 200, height: 200)
+//                .padding()
+//            
+//            ZStack {
+//                Button(action: copyLightningAddress) {
+//                    HStack {
+//                        Text(lightningAddressMinusPrefix)
+//                        Image(systemName: "doc.on.doc")
+//                    }
+//                }
+//                .opacity(lightningAddressCopied ? 0 : 1)
+//                
+//                Text("copied!")
+//                    .foregroundStyle(Color.green)
+//                    .opacity(lightningAddressCopied ? 1 : 0)
+//            }
+//            .padding()
+//            
+//            Button(action: createLightningInvoice) {
+//                HStack {
+//                    ZStack {
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .fill(Color.yellow)
+//                            .frame(width: 50)
+//                            .padding(.vertical, 4)
+//                        Image(systemName: "bolt")
+//                    }
+//                    
+//                    VStack(alignment: .leading) {
+//                        Text("lightning invoice")
+//                            .font(.headline)
+//                        Text("request instant and specific amount payment")
+//                            .font(.caption)
+//                            .foregroundStyle(Color.gray)
+//                    }
+//                    
+//                    Image(systemName: "chevron.right")
+//                }
+//            }
+//            .padding()
+//            .buttonStyle(.boostz)
             
-            ZStack {
-                Button(action: copyLightningAddress) {
-                    HStack {
-                        Text(lightningAddressMinusPrefix)
-                        Image(systemName: "doc.on.doc")
-                    }
-                }
-                .opacity(lightningAddressCopied ? 0 : 1)
-                
-                Text("copied!")
-                    .foregroundStyle(Color.green)
-                    .opacity(lightningAddressCopied ? 1 : 0)
-            }
-            .padding()
-            
-            Button(action: createLightningInvoice) {
-                HStack {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.yellow)
-                            .frame(width: 50)
-                            .padding(.vertical, 4)
-                        Image(systemName: "bolt")
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("lightning invoice")
-                            .font(.headline)
-                        Text("request instant and specific amount payment")
-                            .font(.caption)
-                            .foregroundStyle(Color.gray)
-                    }
-                    
-                    Image(systemName: "chevron.right")
-                }
-            }
-            .padding()
-            .buttonStyle(.boostz)
+            Text("Comming soon..")
             
         }
         .toolbar {
