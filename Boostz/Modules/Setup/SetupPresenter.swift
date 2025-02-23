@@ -32,7 +32,7 @@ fileprivate struct SetupView: View {
     @Environment(SetupState.self) private var state
     @Environment(\.nwc) private var nwc
     @Environment(\.modelContext) private var context
-    @Query private var nwcCodes: [NWCCode]
+    @Query private var nwcCodes: [NWCConnection]
     
     var body: some View {
         @Bindable var state = state

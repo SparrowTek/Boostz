@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 //struct TransactionsPresenter: View {
 //    var body: some View {
@@ -16,12 +17,12 @@ import SwiftUI
 //    }
 //}
 
-@MainActor
 struct TransactionsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(WalletState.self) private var state
     @State private var page = 1
     @State private var requestInProgress = false
+    @Query(sort: \Transaction.createdAt, order: .forward) private var transactions: [Transaction]
     
 //    private var sortedInvoices: [Invoice] {
 //        state.invoiceHistory.sorted(by: { ($0.createdAt ?? .now) > ($1.createdAt ?? .now) })
@@ -29,9 +30,26 @@ struct TransactionsView: View {
     
     var body: some View {
         VStack {
-//            if state.invoiceHistory.isEmpty && requestInProgress {
-//                ProgressView()
-//            } else if state.invoiceHistory.isEmpty {
+            if transactions.isEmpty && requestInProgress {
+                ProgressView()
+            } else {
+                List {
+//                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
+//                        .listRowBackground(Color.clear)
+//                        .listRowSeparator(.hidden)
+//                        .opacity(transactions.isEmpty ? 1 : 0)
+                    
+                    ForEach(transactions) {
+                        TransactionCell(transaction: $0)
+                    }
+                    .opacity(transactions.isEmpty ? 0 : 1)
+                }
+                .listStyle(.plain)
+                .background(Color.clear)
+                
+                
+                
+            }
 //                List {
 //                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
 //                        .listRowBackground(Color.clear)
@@ -67,9 +85,9 @@ struct TransactionsView: View {
 //            
 //            Spacer()
         }
-//        .ignoresSafeArea()
-//        .syncTransactionData(requestInProgress: $requestInProgress)
-//        .refreshable { await refresh() }
+        .fullScreenColorView()
+        .syncTransactionData(requestInProgress: $requestInProgress)
+        .refreshable { await refresh() }
     }
     
     private func refresh() async {
@@ -77,42 +95,42 @@ struct TransactionsView: View {
         state.triggerDataSync()
     }
 }
-/*
-@MainActor
+
+
 fileprivate struct TransactionCell: View {
     @Environment(WalletState.self) private var state
-    private let timer = Timer.publish(every: 0.75, on: .main, in: .common).autoconnect()
-    @State var startDate = Date.now
-    @State var timeElapsed: Int = 0
-    @State private var blink = false
-    var invoice: Invoice
+//    private let timer = Timer.publish(every: 0.75, on: .main, in: .common).autoconnect()
+//    @State var startDate = Date.now
+//    @State var timeElapsed: Int = 0
+//    @State private var blink = false
+    var transaction: Transaction
     
-    private var isTopCell: Bool {
-        state.invoiceHistory.first == invoice
-    }
+//    private var isTopCell: Bool {
+//        state.invoiceHistory.first == invoice
+//    }
     
     private var title: String {
-        if !invoice.isInoming {
-            "sent"
-        } else if let memo = invoice.memo, !memo.isEmpty {
-            memo
-        } else if let comment = invoice.comment, !comment.isEmpty {
-            comment
-        } else {
-            "received"
+        switch transaction.transactionType {
+        case .incoming: "sent"
+        case .outgoing: "received"
+        case .none: transaction.transactionDescription ?? ""
         }
     }
     
     private var arrow: String {
-        invoice.isInoming ? "arrowshape.down.circle" : "arrowshape.up.circle"
+        switch transaction.transactionType {
+        case .incoming: "arrowshape.down.circle"
+        case .outgoing: "arrowshape.up.circle"
+        case .none: ""
+        }
     }
     
     private var color: Color {
-        invoice.isInoming ? .green : .red
-    }
-    
-    private var currency: String {
-        invoice.amount == 1 ? "sat" : "sats"
+        switch transaction.transactionType {
+        case .incoming: .green
+        case .outgoing: .red
+        case .none: .gray
+        }
     }
     
     var body: some View {
@@ -126,58 +144,58 @@ fileprivate struct TransactionCell: View {
                     Text(title)
                         .font(.headline)
                     
-                    Text(invoice.createdAt?.invoiceFormat ?? "")
+                    Text(transaction.createdAt?.invoiceFormat ?? "")
                         .font(.footnote)
                         .foregroundStyle(.gray)
                 }
                 
                 Spacer()
                 
-                Text("\(invoice.isInoming ? "+" : "-")\(invoice.amount ?? 0) \(currency)")
+                Text("\(transaction.transactionType == .incoming ? "+" : "-")\(transaction.amount.millisatsToSats().currency)")
                     .font(.title3)
                     .foregroundStyle(color)
             }
         }
-        .onReceive(timer) { firedDate in
-            withAnimation(.linear(duration: 0.75)) {
-                timeElapsed = Int(firedDate.timeIntervalSince(startDate))
-                guard state.highlightTopTransaction, isTopCell, timeElapsed < 5 else {
-                    timer.upstream.connect().cancel()
-                    blink = false
-                    state.highlightTopTransaction = false
-                    return
-                }
-                
-                blink.toggle()
-            }
-        }
-        .listRowBackground(blink ? Color.yellow : Color.clear)
+        .listRowBackground(Color.clear)
     }
+//        .onReceive(timer) { firedDate in
+//            withAnimation(.linear(duration: 0.75)) {
+//                timeElapsed = Int(firedDate.timeIntervalSince(startDate))
+//                guard state.highlightTopTransaction, isTopCell, timeElapsed < 5 else {
+//                    timer.upstream.connect().cancel()
+//                    blink = false
+//                    state.highlightTopTransaction = false
+//                    return
+//                }
+//                
+//                blink.toggle()
+//            }
+//        }
+//        .listRowBackground(blink ? Color.yellow : Color.clear)
+    
+    
     
     private func openInvoice() {
         print("OPEN")
     }
 }
 
-extension Invoice {
-    var isInoming: Bool {
-        type?.lowercased() == "incoming"
-    }
-}
+//extension Invoice {
+//    var isInoming: Bool {
+//        type?.lowercased() == "incoming"
+//    }
+//}
+//
+//extension Invoice: Identifiable {
+//    public var id: String {
+//        identifier ?? ""
+//    }
+//}
 
-extension Invoice: Identifiable {
-    public var id: String {
-        identifier ?? ""
-    }
+#if DEBUG
+#Preview(traits: .sampleTransactions) {
+    TransactionsView()
+        .environment(AppState())
+        .environment(WalletState(parentState: .init()))
 }
- */
-
-#Preview {
-    Text("wallet")
-        .sheet(isPresented: .constant(true)) {
-            TransactionsView()
-                .interactiveDismissDisabled()
-                .environment(AppState())
-                .environment(WalletState(parentState: .init()))
-        }
-}
+#endif

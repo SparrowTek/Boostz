@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @MainActor
 struct WalletPresenter: View {
@@ -40,6 +41,7 @@ struct WalletPresenter: View {
 struct WalletView: View {
     @Environment(\.reachability) private var reachability
     @Environment(WalletState.self) private var state
+    @Query private var wallets: [Wallet]
     
     var body: some View {
         VStack {
@@ -47,16 +49,11 @@ struct WalletView: View {
                 NetworkNotReachable()
                     .transition(.move(edge: .top))
             }
-//            if let accountBalance = state.accountBalance {
-//                Text("\(accountBalance.balance ?? 0) Sats")
-//                    .font(.title)
-//                    .padding()
-//            } else {
-                Text("NO INTERNET Sats")
-                    .font(.title)
-                    .redacted(reason: .placeholder)
-                    .padding()
-//            }
+            
+            Text((wallets.first?.balance.millisatsToSats() ?? 0).currency)
+                .font(.title)
+                .redacted(reason: wallets.first != nil ? .invalidated : .placeholder)
+                .padding()
             
             HStack {
                 Button("send", systemImage: "arrow.up.circle", action: sendSats)
@@ -125,9 +122,11 @@ fileprivate struct NetworkNotReachable: View {
     }
 }
 
-#Preview {
+#if DEBUG
+#Preview(traits: .sampleWallet, .sampleTransactions) {
     WalletPresenter()
         .environment(AppState())
         .environment(WalletState(parentState: .init()))
         .environment(\.reachability, Reachability())
 }
+#endif

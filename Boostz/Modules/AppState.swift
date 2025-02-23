@@ -38,13 +38,12 @@ public class AppState {
     }
     
     func determineRoute() {
-        try? Vault.deletePrivateKey(keychainConfiguration: .nwcSecret)
-//        do {
-//            let _ = try Vault.getPrivateKey(keychainConfiguration: .nwcSecret)
-//            route = .config
-//        } catch {
-//            route = .setup
-//        }
+        do {
+            let _ = try Vault.getPrivateKey(keychainConfiguration: .nwcSecret)
+            route = .config
+        } catch {
+            route = .setup
+        }
     }
     
     func walletSuccessfullyConnected() {
@@ -57,5 +56,10 @@ public class AppState {
     
     func saveInfo(_ info: GetInfoResponse) {
         configSuccessful()
+    }
+    
+    func logout() {
+        try? Vault.deletePrivateKey(keychainConfiguration: .nwcSecret)
+        route = .config
     }
 }

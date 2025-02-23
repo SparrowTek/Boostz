@@ -20,8 +20,6 @@ enum NWCError: Error {
     case nostrSDK(Error)
 }
 
-//extension GetInfoResponse: @unchecked Sendable {}
-
 @Observable
 @MainActor
 class NWC {
@@ -30,13 +28,13 @@ class NWC {
     private var nwc: Nwc?
     var hasConnected = false
     
-    func parseWalletCode(_ code: String) throws (NWCError) -> NWCCode {
+    func parseWalletCode(_ code: String) throws (NWCError) -> NWCConnection {
         guard let parsedCode = try? NostrWalletConnectUri.parse(uri: code) else { throw .failedToParse }
         try saveSecret(parsedCode.secret().toHex())
-        return NWCCode(pubKey: parsedCode.publicKey().toHex(), relay: parsedCode.relayUrl(), lud16: parsedCode.lud16())
+        return NWCConnection(pubKey: parsedCode.publicKey().toHex(), relay: parsedCode.relayUrl(), lud16: parsedCode.lud16())
     }
     
-    func initializeNWCClient(with nwcCode: NWCCode) throws (NWCError) {
+    func initializeNWCClient(with nwcCode: NWCConnection) throws (NWCError) {
         guard let publicKey = try? PublicKey.parse(publicKey: nwcCode.pubKey) else { throw .publicKey }
         guard let secret else { throw .noSecret }
         guard let secretKey = try? SecretKey.parse(secretKey: secret) else { throw .failedToCreateNWCSecretKey }

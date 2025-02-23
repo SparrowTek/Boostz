@@ -11,7 +11,9 @@ import SwiftData
 struct BoostzDataContainerViewModifier: ViewModifier {
     let container: ModelContainer
     let schema = Schema([
-        NWCCode.self,
+        NWCConnection.self,
+        Transaction.self,
+        Wallet.self,
     ])
     
     init(inMemory: Bool) {
