@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+@preconcurrency import AVFoundation
 
 struct SetupPresenter: View {
     @Environment(SetupState.self) private var state
@@ -33,6 +34,7 @@ fileprivate struct SetupView: View {
     @Environment(\.nwc) private var nwc
     @Environment(\.modelContext) private var context
     @Query private var nwcCodes: [NWCConnection]
+    @State private var requestCameraAccessTrigger = PlainTaskTrigger()
     
     var body: some View {
         @Bindable var state = state
@@ -73,6 +75,7 @@ fileprivate struct SetupView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: state.foundQRCode) { parseWalletCode() }
         .onChange(of: nwc.hasConnected) { configApp() }
+        .task($requestCameraAccessTrigger) { await requestCameraAccess() }
         .fullScreenColorView()
     }
     
@@ -82,7 +85,25 @@ fileprivate struct SetupView: View {
     }
     
     private func tappedScanQR() {
-        state.sheet = .scanQR
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        if cameraAuthorizationStatus == .authorized {
+            state.sheet = .scanQR
+        } else {
+            triggerRequestCameraAccess()
+        }
+    }
+    
+    private func triggerRequestCameraAccess() {
+        requestCameraAccessTrigger.trigger()
+    }
+    
+    private func requestCameraAccess() async {
+        let isPermissionGranted = await AVCaptureDevice.requestAccess(for: .video)
+        
+        if isPermissionGranted {
+            state.sheet = .scanQR
+        }
     }
     
     private func parseWalletCode() {

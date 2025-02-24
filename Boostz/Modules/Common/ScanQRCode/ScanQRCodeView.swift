@@ -123,32 +123,17 @@ fileprivate struct QrCodeScannerView: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<QrCodeScannerView>) -> QrCodeScannerView.UIViewType {
         let cameraView = CameraPreview(session: session)
-        
-#if targetEnvironment(simulator)
-        cameraView.createSimulatorView(delegate: self.delegate)
-#else
-        checkCameraAuthorizationStatus(cameraView)
-#endif
+        setupCamera(cameraView)
+
+        #if targetEnvironment(simulator)
+                cameraView.createSimulatorView(delegate: self.delegate)
+        #endif
         
         return cameraView
     }
     
     static func dismantleUIView(_ uiView: CameraPreview, coordinator: ()) {
         uiView.session.stopRunning()
-    }
-    
-    private func checkCameraAuthorizationStatus(_ uiView: CameraPreview) {
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        if cameraAuthorizationStatus == .authorized {
-            setupCamera(uiView)
-        } else {
-            AVCaptureDevice.requestAccess(for: .video) { granted in
-                DispatchQueue.main.sync {
-                    guard granted else { return }
-                    setupCamera(uiView)
-                }
-            }
-        }
     }
     
     func updateUIView(_ uiView: CameraPreview, context: UIViewRepresentableContext<QrCodeScannerView>) {
