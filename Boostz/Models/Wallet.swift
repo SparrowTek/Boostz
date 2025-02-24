@@ -8,6 +8,21 @@
 import SwiftData
 import NostrSDK
 
+#warning("gate functionality based on the methods approved by the wallet")
+enum WalletMethod: String {
+    case payInvoice = "pay_invoice"
+    case payKeysend = "pay_keysend"
+    case multiPayInvoice = "multi_pay_invoice"
+    case multiPayKeysend = "multi_pay_keysend"
+    case getInfo = "get_info"
+    case getBalance = "get_balance"
+    case makeInvoice = "make_invoice"
+    case lookupInvoice = "lookup_invoice"
+    case listTransactions = "list_transactions"
+    case signMessage = "sign_message"
+    case getBudget = "get_budget"
+}
+
 @Model
 class Wallet {
     /// Currnet wallet balance in Milisats

@@ -41,13 +41,13 @@
     "color scheme" : {
 
     },
+    "Comming soon.." : {
+
+    },
     "confirm" : {
 
     },
     "Confirm invoice:" : {
-
-    },
-    "copied!" : {
 
     },
     "create invoice" : {
@@ -77,19 +77,10 @@
     "for e.g. who is sending this payment?" : {
 
     },
-    "go" : {
-
-    },
-    "invoice, lightning address, or LNURL" : {
-
-    },
     "light" : {
 
     },
     "light mode tint" : {
-
-    },
-    "lightning invoice" : {
 
     },
     "logout" : {
@@ -102,9 +93,6 @@
 
     },
     "or" : {
-
-    },
-    "OR:" : {
 
     },
     "poor network connection" : {
@@ -120,9 +108,6 @@
 
     },
     "receive" : {
-
-    },
-    "request instant and specific amount payment" : {
 
     },
     "reset theme" : {
