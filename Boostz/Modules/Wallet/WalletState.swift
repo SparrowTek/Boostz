@@ -51,6 +51,10 @@ class WalletState {
         triggerDataSync()
         highlightTopTransaction = true
     }
+    
+    func disconnectNWC() {
+        parentState.logout()
+    }
 }
 
 extension WalletState: ReachabilityDelegate {

@@ -25,6 +25,6 @@ class SettingsState {
     }
     
     func disconnectNWC() {
-        presentNWCDisconnectDialog = true
+        parentState.disconnectNWC()
     }
 }

@@ -60,6 +60,6 @@ public class AppState {
     
     func logout() {
         try? Vault.deletePrivateKey(keychainConfiguration: .nwcSecret)
-        route = .config
+        route = .setup
     }
 }
