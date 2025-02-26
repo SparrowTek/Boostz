@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
+@preconcurrency import AVFoundation
 
-@MainActor
 struct SendPresenter: View {
     @Environment(SendState.self) private var state
     
@@ -31,32 +31,31 @@ struct SendPresenter: View {
     }
 }
 
-@MainActor
 fileprivate struct SendView: View {
     @Environment(SendState.self) private var state
     @Environment(\.dismiss) private var dismiss
     @State private var lightningInput = ""
+    @State private var requestCameraAccessTrigger = PlainTaskTrigger()
     
     var body: some View {
         @Bindable var state = state
         
         VStack {
-            Text("Comming soon..")
-//            HStack {
-//                TextField("invoice, lightning address, or LNURL", text: $lightningInput)
-//                    .textFieldStyle(.roundedBorder)
-//                    .autocorrectionDisabled()
-//                
-//                Button("go", action: continueWithInput)
-//                    .buttonStyle(.bordered)
-//            }
-//            .padding()
-//            
-//            Text("OR:")
-//                .font(.headline)
-//            
-//            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
-//                .font(.title)
+            HStack {
+                TextField("invoice, lightning address, or LNURL", text: $lightningInput)
+                    .textFieldStyle(.roundedBorder)
+                    .autocorrectionDisabled()
+                
+                Button("go", action: continueWithInput)
+                    .buttonStyle(.bordered)
+            }
+            .padding()
+            
+            Text("OR:")
+                .font(.headline)
+            
+            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
+                .font(.title)
         }
         .fullScreenColorView()
         .navigationTitle("send BTC")
@@ -66,6 +65,7 @@ fileprivate struct SendView: View {
                 Button("Done", action: { dismiss() })
             }
         }
+        .task($requestCameraAccessTrigger) { await requestCameraAccess() }
     }
     
     private func continueWithInput() {
@@ -73,7 +73,25 @@ fileprivate struct SendView: View {
     }
     
     private func scanQR() {
-        state.path.append(.scanQR)
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        if cameraAuthorizationStatus == .authorized {
+            state.path.append(.scanQR)
+        } else {
+            triggerRequestCameraAccess()
+        }
+    }
+    
+    private func triggerRequestCameraAccess() {
+        requestCameraAccessTrigger.trigger()
+    }
+    
+    private func requestCameraAccess() async {
+        let isPermissionGranted = await AVCaptureDevice.requestAccess(for: .video)
+        
+        if isPermissionGranted {
+            state.path.append(.scanQR)
+        }
     }
 }
 
