@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import CoreImage.CIFilterBuiltins
 
 @MainActor
@@ -22,8 +23,8 @@ struct ReceivePresenter: View {
                     case .createInvoice:
                         CreateInvoiceView()
                             .interactiveDismissDisabled()
-//                    case .displayInvoice(let invoice):
-//                        DisplayInvoiceView(invoice: invoice)
+                    case .displayInvoice(let invoice):
+                        DisplayInvoiceView(invoice: invoice)
                     }
                 }
         }
@@ -35,70 +36,64 @@ fileprivate struct ReceiveView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(ReceiveState.self) private var state
     @State private var lightningAddressCopied = false
+    @Query private var nwcConnections: [NWCConnection]
     
-    private var lightningAddress: String {
-        #if DEBUG
-        "lightning:sparrowtek@getalby.com"
-        #else
-        state.lightningAddress
-        #endif
+    private var lud16: String? {
+        isCanvas ? "sparrowtek@getalby.com" : nwcConnection?.lud16
     }
     
-    private var lightningAddressMinusPrefix: String {
-        #if DEBUG
-        "sparrowtek@getalby.com"
-        #else
-        state.lightningAddressMinusPrefix
-        #endif
+    private var nwcConnection: NWCConnection? {
+        nwcConnections.first
     }
     
     var body: some View {
         VStack {
-//            QRCodeImage(code: lightningAddress)
-//                .frame(width: 200, height: 200)
-//                .padding()
-//            
-//            ZStack {
-//                Button(action: copyLightningAddress) {
-//                    HStack {
-//                        Text(lightningAddressMinusPrefix)
-//                        Image(systemName: "doc.on.doc")
-//                    }
-//                }
-//                .opacity(lightningAddressCopied ? 0 : 1)
-//                
-//                Text("copied!")
-//                    .foregroundStyle(Color.green)
-//                    .opacity(lightningAddressCopied ? 1 : 0)
-//            }
-//            .padding()
-//            
-//            Button(action: createLightningInvoice) {
-//                HStack {
-//                    ZStack {
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .fill(Color.yellow)
-//                            .frame(width: 50)
-//                            .padding(.vertical, 4)
-//                        Image(systemName: "bolt")
-//                    }
-//                    
-//                    VStack(alignment: .leading) {
-//                        Text("lightning invoice")
-//                            .font(.headline)
-//                        Text("request instant and specific amount payment")
-//                            .font(.caption)
-//                            .foregroundStyle(Color.gray)
-//                    }
-//                    
-//                    Image(systemName: "chevron.right")
-//                }
-//            }
-//            .padding()
-//            .buttonStyle(.boostz)
-            
-            Text("Comming soon..")
-            
+            if let lud16 {
+                QRCodeImage(code: lud16)
+                    .frame(width: 200, height: 200)
+                    .padding()
+                
+                ZStack {
+                    Button(action: copyLightningAddress) {
+                        HStack {
+                            Text(lud16)
+                            Image(systemName: "doc.on.doc")
+                        }
+                    }
+                    .opacity(lightningAddressCopied ? 0 : 1)
+                    
+                    Text("copied!")
+                        .foregroundStyle(Color.green)
+                        .opacity(lightningAddressCopied ? 1 : 0)
+                }
+                .padding()
+                
+                Button(action: createLightningInvoice) {
+                    HStack {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.yellow)
+                                .frame(width: 50)
+                                .padding(.vertical, 4)
+                            Image(systemName: "bolt")
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("lightning invoice")
+                                .font(.headline)
+                            Text("request instant and specific amount payment")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+                        }
+                        
+                        Image(systemName: "chevron.right")
+                    }
+                }
+                .padding()
+                .buttonStyle(.boostz)
+            } else {
+                CreateInvoiceView()
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -112,7 +107,7 @@ fileprivate struct ReceiveView: View {
     }
     
     private func copyLightningAddress() {
-        UIPasteboard.general.string = lightningAddress
+        UIPasteboard.general.string = lud16
         lightningAddressCopied = true
         
         Task {

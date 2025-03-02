@@ -6,27 +6,19 @@
 //
 
 import Foundation
+import NostrSDK
 
 @Observable
 @MainActor
 class ReceiveState {
     enum NavigationLink: Hashable {
         case createInvoice
-//        case displayInvoice(CreatedInvoice)
+        case displayInvoice(MakeInvoiceResponse)
     }
     
     private unowned let parentState: WalletState
     
     var path: [ReceiveState.NavigationLink] = []
-    var lightningAddress: String {
-//        guard let address = parentState.me?.lightningAddress else { return "" }
-//        return "lightning:\(address)"
-        ""
-    }
-    
-    var lightningAddressMinusPrefix: String {
-        ""
-    }
     
     init(parentState: WalletState) {
         self.parentState = parentState

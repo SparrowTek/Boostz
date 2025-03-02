@@ -41,21 +41,22 @@ fileprivate struct SendView: View {
         @Bindable var state = state
         
         VStack {
-            HStack {
-                TextField("invoice, lightning address, or LNURL", text: $lightningInput)
-                    .textFieldStyle(.roundedBorder)
-                    .autocorrectionDisabled()
-                
-                Button("go", action: continueWithInput)
-                    .buttonStyle(.bordered)
-            }
-            .padding()
-            
-            Text("OR:")
-                .font(.headline)
-            
-            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
-                .font(.title)
+            Text("Comming soon..")
+//            HStack {
+//                TextField("invoice, lightning address, or LNURL", text: $lightningInput)
+//                    .textFieldStyle(.roundedBorder)
+//                    .autocorrectionDisabled()
+//                
+//                Button("go", action: continueWithInput)
+//                    .buttonStyle(.bordered)
+//            }
+//            .padding()
+//            
+//            Text("OR:")
+//                .font(.headline)
+//            
+//            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
+//                .font(.title)
         }
         .fullScreenColorView()
         .navigationTitle("send BTC")

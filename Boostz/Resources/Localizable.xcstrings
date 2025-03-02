@@ -38,6 +38,9 @@
     "cancel" : {
 
     },
+    "check status" : {
+
+    },
     "color scheme" : {
 
     },
@@ -48,6 +51,12 @@
 
     },
     "Confirm invoice:" : {
+
+    },
+    "copied!" : {
+
+    },
+    "copy invoice" : {
 
     },
     "create invoice" : {
@@ -83,6 +92,9 @@
     "light mode tint" : {
 
     },
+    "lightning invoice" : {
+
+    },
     "logout" : {
 
     },
@@ -93,6 +105,9 @@
 
     },
     "or" : {
+
+    },
+    "paid" : {
 
     },
     "poor network connection" : {
@@ -108,6 +123,9 @@
 
     },
     "receive" : {
+
+    },
+    "request instant and specific amount payment" : {
 
     },
     "reset theme" : {
@@ -146,10 +164,16 @@
     "The address you entered is not valid. Please try again." : {
 
     },
+    "There was a problem confirming your payment. Please try again later" : {
+
+    },
     "This address format is currently unsupported" : {
 
     },
     "This policy applies to all information collected or submitted on Boostz’s website and our apps for iPhone and any other devices and platforms." : {
+
+    },
+    "waiting for payment..." : {
 
     }
   },

@@ -10,10 +10,10 @@ import SwiftUI
 @MainActor
 struct CreateInvoiceView: View {
     @Environment(ReceiveState.self) private var state
+    @Environment(\.nwc) private var nwc
     @State private var amount = ""
     @State private var description = ""
     @State private var createInvoiceTrigger = PlainTaskTrigger()
-    @State private var requestInProgress = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,16 +26,9 @@ struct CreateInvoiceView: View {
             TextField("for e.g. who is sending this payment?", text: $description)
                 .textFieldStyle(.roundedBorder)
             
-            Button(action: triggerCreateInvoice) {
-                ZStack {
-                    Text("create invoice")
-                        .opacity(requestInProgress ? 0 : 1)
-                    ProgressView()
-                        .opacity(requestInProgress ? 1 : 0)
-                }
-            }
-            .buttonStyle(.boostz)
-            .padding(.top)
+            Button("create invoice", action: triggerCreateInvoice)
+                .buttonStyle(.boostz)
+                .padding(.top)
         }
         .padding(.horizontal)
         .toolbar {
@@ -55,15 +48,17 @@ struct CreateInvoiceView: View {
     }
     
     private func createInvoice() async {
-//        defer { requestInProgress = false }
-//        requestInProgress = true
-//        guard let amount = Int64(amount) else { return } // TODO: alert user if this fails
-//        guard let invoice = try? await InvoicesService().create(invoice: InvoiceUploadModel(amount: amount, description: description)) else { return } // TODO: alert user of failed invoice creation
-//        state.path.append(.displayInvoice(invoice))
+        // TODO: alert user if guards fail
+        guard let amount = UInt64(amount) else { return }
+        let description: String? = description.isEmpty ? nil : description
+        
+        guard let invoice = try? await nwc.makeInvoice(amount: amount, description: description, descriptionHash: nil, expiry: nil) else { return }
+        state.path.append(.displayInvoice(invoice))
     }
 }
 
 #Preview {
     CreateInvoiceView()
         .environment(ReceiveState(parentState: .init(parentState: .init())))
+        .environment(\.nwc, NWC())
 }
