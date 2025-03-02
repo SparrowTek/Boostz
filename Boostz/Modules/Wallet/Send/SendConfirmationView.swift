@@ -11,6 +11,7 @@ import LightningDevKit
 @MainActor
 struct SendConfirmationView: View {
     @Environment(SendState.self) private var state
+    @Environment(\.nwc) private var nwc
     var invoice: String
 //    @State private var bolt11Payment: Bolt11Payment?
     @State private var confirmationTrigger = PlainTaskTrigger()
@@ -53,11 +54,14 @@ struct SendConfirmationView: View {
         defer { requestInProgress = false }
         requestInProgress = true
         
-//        do {
-//            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice))
-//        } catch {
-//            errorMessage = "There was a problem confirming your payment. Please try again later"
-//        }
+        let amount: UInt64? = Bolt11Invoice(invoice: invoice)?.amount
+        
+        do {
+            let preImage = try await nwc.payInvoice(invoice, amount: amount)
+            print("SUCCESS: \(preImage)")
+        } catch {
+            errorMessage = "There was a problem confirming your payment. Please try again later"
+        }
     }
     
     private func bolt11PaymentChanged() {

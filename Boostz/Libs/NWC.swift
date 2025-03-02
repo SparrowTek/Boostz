@@ -61,7 +61,7 @@ class NWC {
         }
     }
     
-    func payInvoice(_ invoice: String, amount: UInt64?, id: String?) async throws (NWCError) -> PayInvoiceResponse {
+    func payInvoice(_ invoice: String, amount: UInt64?, id: String? = nil) async throws (NWCError) -> PayInvoiceResponse {
         guard let nwc else { throw .noNwc }
         do {
             let payInvoiceRequest = PayInvoiceRequest(id: id, invoice: invoice, amount: amount)
