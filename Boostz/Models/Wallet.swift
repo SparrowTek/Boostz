@@ -9,7 +9,7 @@ import SwiftData
 import NostrSDK
 
 #warning("gate functionality based on the methods approved by the wallet")
-enum WalletMethod: String {
+enum WalletMethod: String, Codable {
     case payInvoice = "pay_invoice"
     case payKeysend = "pay_keysend"
     case multiPayInvoice = "multi_pay_invoice"
@@ -21,6 +21,13 @@ enum WalletMethod: String {
     case listTransactions = "list_transactions"
     case signMessage = "sign_message"
     case getBudget = "get_budget"
+//    case unknown = "unknown"
+//    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.singleValueContainer()
+//        let rawValue = try container.decode(String.self)
+//        self = WalletMethod(rawValue: rawValue) ?? .unknown
+//    }
 }
 
 @Model
@@ -41,7 +48,7 @@ class Wallet {
     var color: String
     
     /// Available methods for this connection
-    var methods: [String]
+    var methods: [WalletMethod]
     
     /// Active network
     var network: String
@@ -49,7 +56,7 @@ class Wallet {
     /// Lightning Node’s public key
     @Attribute(.unique) var pubkey: String
     
-    init(balance: UInt64, alias: String, blockHash: String, blockHeight: UInt32, color: String, methods: [String], network: String, pubkey: String) {
+    init(balance: UInt64, alias: String, blockHash: String, blockHeight: UInt32, color: String, methods: [WalletMethod], network: String, pubkey: String) {
         self.balance = balance
         self.alias = alias
         self.blockHash = blockHash
@@ -66,7 +73,7 @@ class Wallet {
         self.blockHash = info.blockHash
         self.blockHeight = info.blockHeight
         self.color = info.color
-        self.methods = info.methods
+        self.methods = info.methods.compactMap { WalletMethod(rawValue: $0) }
         self.network = info.network
         self.pubkey = info.pubkey
     }

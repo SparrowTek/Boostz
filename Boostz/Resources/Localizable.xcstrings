@@ -44,9 +44,6 @@
     "color scheme" : {
 
     },
-    "Comming soon.." : {
-
-    },
     "confirm" : {
 
     },
@@ -86,6 +83,12 @@
     "for e.g. who is sending this payment?" : {
 
     },
+    "go" : {
+
+    },
+    "invoice, lightning address, or LNURL" : {
+
+    },
     "light" : {
 
     },
@@ -105,6 +108,9 @@
 
     },
     "or" : {
+
+    },
+    "OR:" : {
 
     },
     "paid" : {
