@@ -7,6 +7,7 @@
 
 import SwiftUI
 @preconcurrency import NostrSDK
+import LightningDevKit
 import Vault
 
 enum NWCError: Error {
@@ -61,10 +62,10 @@ class NWC {
         }
     }
     
-    func payInvoice(_ invoice: String, amount: UInt64?, id: String? = nil) async throws (NWCError) -> PayInvoiceResponse {
+    func payInvoice(_ invoice: Bolt11Invoice) async throws (NWCError) -> PayInvoiceResponse {
         guard let nwc else { throw .noNwc }
         do {
-            let payInvoiceRequest = PayInvoiceRequest(id: id, invoice: invoice, amount: amount)
+            let payInvoiceRequest = PayInvoiceRequest(id: nil, invoice: invoice.toStr(), amount: invoice.amountMilliSatoshis())
             return try await nwc.payInvoice(params: payInvoiceRequest)
         } catch {
             throw .nostrSDK(error)

@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import LightningDevKit
 
 @Observable
 @MainActor
 class SendState {
     enum NavigationLink: Hashable {
-        case sendInvoice(String)
-        case getLightningAddressDetails(String)
+        case sendInvoice(Bolt11Invoice)
+//        case getLightningAddressDetails(String)
         case scanQR
     }
     
@@ -48,26 +49,38 @@ class SendState {
     }
     
     func continueWithInput(_ lightningInput: String, replaceCurrentPath: Bool = false) {
-        do {
-            switch try findLightningAddressInText(lightningInput) {
-            case .bolt11Invoice(let invoice):
-                if replaceCurrentPath {
-                    path[path.index(before: path.endIndex)] = .sendInvoice(invoice)
-                } else {
-                    path.append(.sendInvoice(invoice))
-                }
-            case .bolt11LookupRequired(let lightningAddress):
-                if replaceCurrentPath {
-                    path[path.index(before: path.endIndex)] = .getLightningAddressDetails(lightningAddress)
-                } else {
-                    path.append(.getLightningAddressDetails(lightningAddress))
-                }
-            }
-        } catch LightningAddressError.unsupported {
-            errorMessage = "This address format is currently unsupported"
-        } catch {
+//        do {
+//            switch try findLightningAddressInText(lightningInput) {
+//            case .bolt11Invoice(let invoice):
+//                if replaceCurrentPath {
+//                    path[path.index(before: path.endIndex)] = .sendInvoice(invoice)
+//                } else {
+//                    path.append(.sendInvoice(invoice))
+//                }
+//            case .bolt11LookupRequired(let lightningAddress):
+//                if replaceCurrentPath {
+//                    path[path.index(before: path.endIndex)] = .getLightningAddressDetails(lightningAddress)
+//                } else {
+//                    path.append(.getLightningAddressDetails(lightningAddress))
+//                }
+//            }
+//        } catch LightningAddressError.unsupported {
+//            errorMessage = "This address format is currently unsupported"
+//        } catch {
+//            badLightningAddress()
+//        }
+        
+        guard let bolt11 = Bolt11Invoice.fromStr(s: lightningInput).getValue() else {
             badLightningAddress()
+            return
         }
+        
+        if replaceCurrentPath {
+            path[path.index(before: path.endIndex)] = .sendInvoice(bolt11)
+        } else {
+            path.append(.sendInvoice(bolt11))
+        }
+        
     }
     
     private func badLightningAddress() {

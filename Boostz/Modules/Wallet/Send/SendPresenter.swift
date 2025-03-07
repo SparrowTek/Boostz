@@ -18,10 +18,10 @@ struct SendPresenter: View {
             SendView()
                 .navigationDestination(for: SendState.NavigationLink.self) {
                     switch $0 {
-                    case .getLightningAddressDetails(let address):
-                        SendDetailsView(lightningAddress: address)
-                    case .sendInvoice(let invoice):
-                        SendConfirmationView(invoice: invoice)
+//                    case .getLightningAddressDetails(let address):
+//                        SendDetailsView(lightningAddress: address)
+                    case .sendInvoice(let bolt11):
+                        SendConfirmationView(bolt11: bolt11)
                     case .scanQR:
                         ScanQRCodeView()
                             .environment(state.scanQRCodeState)
@@ -41,22 +41,21 @@ fileprivate struct SendView: View {
         @Bindable var state = state
         
         VStack {
-            Text("Comming soon..")
-//            HStack {
-//                TextField("invoice, lightning address, or LNURL", text: $lightningInput)
-//                    .textFieldStyle(.roundedBorder)
-//                    .autocorrectionDisabled()
-//                
-//                Button("go", action: continueWithInput)
-//                    .buttonStyle(.bordered)
-//            }
-//            .padding()
-//            
-//            Text("OR:")
-//                .font(.headline)
-//            
-//            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
-//                .font(.title)
+            HStack {
+                TextField("LNURL", text: $lightningInput)
+                    .textFieldStyle(.roundedBorder)
+                    .autocorrectionDisabled()
+                
+                Button("go", action: continueWithInput)
+                    .buttonStyle(.bordered)
+            }
+            .padding()
+            
+            Text("OR:")
+                .font(.headline)
+            
+            Button("scan QR", systemImage: "qrcode.viewfinder", action: scanQR)
+                .font(.title)
         }
         .fullScreenColorView()
         .navigationTitle("send BTC")

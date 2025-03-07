@@ -12,8 +12,7 @@ import LightningDevKit
 struct SendConfirmationView: View {
     @Environment(SendState.self) private var state
     @Environment(\.nwc) private var nwc
-    var invoice: String
-//    @State private var bolt11Payment: Bolt11Payment?
+    var bolt11: Bolt11Invoice
     @State private var confirmationTrigger = PlainTaskTrigger()
     @State private var requestInProgress = false
     @State private var errorMessage: LocalizedStringResource?
@@ -23,11 +22,11 @@ struct SendConfirmationView: View {
             Text("Confirm invoice:")
                 .bold()
                 .padding(.horizontal)
-            Text("\(Bolt11Invoice(invoice: invoice)?.amount ?? 0) sats")
+            Text("\((bolt11.amountMilliSatoshis() ?? 0) / 1000) sats")
                 .bold()
                 .padding([.horizontal, .bottom])
             
-            Text(invoice)
+            Text(bolt11.toStr())
                 .padding(.horizontal)
             
             Button(action: triggerConfirmation) {
@@ -41,7 +40,6 @@ struct SendConfirmationView: View {
             .buttonStyle(.boostz)
             .padding()
         }
-//        .onChange(of: bolt11Payment, bolt11PaymentChanged)
         .task($confirmationTrigger) { await confirm() }
         .alert($errorMessage)
     }
@@ -54,36 +52,16 @@ struct SendConfirmationView: View {
         defer { requestInProgress = false }
         requestInProgress = true
         
-        let amount: UInt64? = Bolt11Invoice(invoice: invoice)?.amount
-        
         do {
-            let preImage = try await nwc.payInvoice(invoice, amount: amount)
+            let preImage = try await nwc.payInvoice(bolt11)
             print("SUCCESS: \(preImage)")
         } catch {
             errorMessage = "There was a problem confirming your payment. Please try again later"
         }
     }
-    
-    private func bolt11PaymentChanged() {
-//        guard bolt11Payment != nil else { return }
-//        state.paymentSent()
-    }
 }
 
 #Preview {
-    SendConfirmationView(invoice: "lnbc20u1pn2hnhmpp5hf964hhc77lf4vjpltdnuma0fdl2pp2afagzueg8h2gv8x2ju5tqdpzw3jhxarfdenjqnzyfvsxjm3qgfhk7um50gcqzzsxqyz5vqsp5a8ayrhgzyhgce6y49m9z5ypvngslkkajjfz8dx3qeg94gtl6dg9q9qxpqysgq53s3ddmvy0x2lq3jm06lh9eul0w8mtmgpct09g68uuketgw2xvsyfwmm6qjj9t7hrtu8ul859c93ggaz69quj9ltpszt4022cca6znsq9v2lmp")
+    SendConfirmationView(bolt11: Bolt11Invoice.fromStr(s: "lnbc20u1pn2hnhmpp5hf964hhc77lf4vjpltdnuma0fdl2pp2afagzueg8h2gv8x2ju5tqdpzw3jhxarfdenjqnzyfvsxjm3qgfhk7um50gcqzzsxqyz5vqsp5a8ayrhgzyhgce6y49m9z5ypvngslkkajjfz8dx3qeg94gtl6dg9q9qxpqysgq53s3ddmvy0x2lq3jm06lh9eul0w8mtmgpct09g68uuketgw2xvsyfwmm6qjj9t7hrtu8ul859c93ggaz69quj9ltpszt4022cca6znsq9v2lmp").getValue()!)
         .environment(SendState(parentState: .init(parentState: .init())))
-}
-
-struct Bolt11Invoice {
-    var amount: UInt64?
-    
-    init?(invoice: String) {
-        amount = getSatsFromInvoice(bolt11: invoice)
-    }
-    
-    func getSatsFromInvoice(bolt11: String) -> UInt64? {
-        guard let milliSats = LightningDevKit.Bolt11Invoice.fromStr(s: bolt11).getValue()?.amountMilliSatoshis() else { return nil }
-        return milliSats / 1000
-    }
 }
