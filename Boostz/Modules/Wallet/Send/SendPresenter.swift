@@ -18,8 +18,8 @@ struct SendPresenter: View {
             SendView()
                 .navigationDestination(for: SendState.NavigationLink.self) {
                     switch $0 {
-//                    case .getLightningAddressDetails(let address):
-//                        SendDetailsView(lightningAddress: address)
+                    case .getLightningAddressDetails(let address):
+                        SendDetailsView(lightningAddress: address)
                     case .sendInvoice(let bolt11):
                         SendConfirmationView(bolt11: bolt11)
                     case .scanQR:
@@ -42,7 +42,7 @@ fileprivate struct SendView: View {
         
         VStack {
             HStack {
-                TextField("LNURL", text: $lightningInput)
+                TextField("invoice, lightning address, or LNURL", text: $lightningInput)
                     .textFieldStyle(.roundedBorder)
                     .autocorrectionDisabled()
                 

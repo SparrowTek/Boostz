@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import LightningDevKit
+import AlbyKit
+import NostrSDK
 
 @MainActor
 struct SendDetailsView: View {
     @Environment(SendState.self) private var state
+    @Environment(\.nwc) private var nwc
     var lightningAddress: String
     @State private var amount = ""
     @State private var requestInProgress = false
     @State private var confirmationTrigger = PlainTaskTrigger()
-//    @State private var bolt11Payment: Bolt11Payment?
+    @State private var payInvoiceResponse: PayInvoiceResponse?
     @State private var errorMessage: LocalizedStringResource?
     
     var body: some View {
@@ -69,14 +73,14 @@ struct SendDetailsView: View {
         }
         .navigationTitle("send")
         .alert($errorMessage)
-//        .onChange(of: bolt11Payment, bolt11PaymentChanged)
+        .onChange(of: payInvoiceResponse, payInvoiceResponseChanged)
         .task($confirmationTrigger) { await confirm() }
     }
     
-//    private func bolt11PaymentChanged() {
-//        guard bolt11Payment != nil else { return }
-//        state.paymentSent()
-//    }
+    private func payInvoiceResponseChanged() {
+        guard payInvoiceResponse != nil else { return }
+        state.paymentSent()
+    }
     
     private func setAmount(_ amount: Int) {
         self.amount = "\(amount)"
@@ -112,14 +116,20 @@ struct SendDetailsView: View {
         
         let millisats = satsToMillisats(sats: amount)
         
-//        do {
-//            let invoice = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil)
-//            bolt11Payment = try await PaymentsService().bolt11Payment(uploadModel: Bolt11PaymentUploadModel(invoice: invoice.invoice?.pr ?? ""))
-//        } catch {
-//            errorMessage = "There was a problem sending your sats. Please try again later."
-//        }
+        do {
+            let invoicePR = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil).invoice?.pr ?? ""
+            guard let invoice = Bolt11Invoice.fromStr(s: invoicePR).getValue() else {
+#warning("think of an appropriate error message")
+                errorMessage = "TODO"
+                return
+            }
+            payInvoiceResponse = try await nwc.payInvoice(invoice)
+        } catch {
+            errorMessage = "There was a problem sending your sats. Please try again later."
+        }
     }
     
+#warning("does similar logic live in lightning dev kit?")
     private func satsToMillisats(sats: String) -> String {
         guard let sats = Int(sats) else { return sats }
         return "\(sats * 1000)"

@@ -13,7 +13,7 @@ import LightningDevKit
 class SendState {
     enum NavigationLink: Hashable {
         case sendInvoice(Bolt11Invoice)
-//        case getLightningAddressDetails(String)
+        case getLightningAddressDetails(String)
         case scanQR
     }
     
@@ -70,19 +70,20 @@ class SendState {
 //            badLightningAddress()
 //        }
         
-        guard let bolt11 = Bolt11Invoice.fromStr(s: lightningInput).getValue() else {
-            badLightningAddress()
-            return
+        let navigationPath: NavigationLink = if let bolt11 = Bolt11Invoice.fromStr(s: lightningInput).getValue() {
+            .sendInvoice(bolt11)
+        } else {
+            .getLightningAddressDetails(lightningInput)
         }
         
         if replaceCurrentPath {
-            path[path.index(before: path.endIndex)] = .sendInvoice(bolt11)
+            path[path.index(before: path.endIndex)] = navigationPath
         } else {
-            path.append(.sendInvoice(bolt11))
+            path.append(navigationPath)
         }
-        
     }
     
+    /*
     private func badLightningAddress() {
         errorMessage = "The address you entered is not valid. Please try again."
     }
@@ -144,7 +145,7 @@ class SendState {
         }
         
         return .bolt11LookupRequired(text)
-    }
+    }*/
     
     private func setAccountBalance() -> String {
 //        let balance = parentState.accountBalance?.balance ?? 0
