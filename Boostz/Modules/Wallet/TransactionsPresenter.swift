@@ -22,33 +22,22 @@ struct TransactionsView: View {
     @Environment(WalletState.self) private var state
     @State private var page = 1
     @State private var requestInProgress = false
-    @Query(sort: \Transaction.createdAt, order: .forward) private var transactions: [Transaction]
-    
-//    private var sortedInvoices: [Invoice] {
-//        state.invoiceHistory.sorted(by: { ($0.createdAt ?? .now) > ($1.createdAt ?? .now) })
-//    }
+    @Query(sort: \Transaction.createdAt, order: .reverse) private var transactions: [Transaction]
     
     var body: some View {
         VStack {
             if transactions.isEmpty && requestInProgress {
                 ProgressView()
+            } else if transactions.isEmpty {
+                ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
             } else {
                 List {
-//                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
-//                        .listRowBackground(Color.clear)
-//                        .listRowSeparator(.hidden)
-//                        .opacity(transactions.isEmpty ? 1 : 0)
-                    
                     ForEach(transactions) {
                         TransactionCell(transaction: $0)
                     }
-                    .opacity(transactions.isEmpty ? 0 : 1)
                 }
                 .listStyle(.plain)
                 .background(Color.clear)
-                
-                
-                
             }
 //                List {
 //                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
