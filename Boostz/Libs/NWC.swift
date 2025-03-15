@@ -24,8 +24,6 @@ enum NWCError: Error {
 @Observable
 @MainActor
 class NWC {
-    // TODO: get a list of relays that support NWC
-    // TODO: setup a Boostz owned relay that supports NWC
     private var nwc: Nwc?
     var hasConnected = false
     
