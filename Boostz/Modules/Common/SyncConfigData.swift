@@ -52,9 +52,7 @@ fileprivate struct SyncConfigData: ViewModifier {
         do {
             let info = try await nwc.getInfo()
             let balance = try await nwc.getBalance()
-            let transactions = try await nwc.listTransactions(from: nil, until: nil, limit: 10, offset: 0, unpaid: nil, transactionType: .incoming)
             try saveWallet(info: info, balance: balance)
-            try saveTransactions(transactions)
             state.configSuccessful()
         } catch {
             // TODO: handle error
@@ -65,15 +63,6 @@ fileprivate struct SyncConfigData: ViewModifier {
     private func saveWallet(info: GetInfoResponse, balance: UInt64) throws {
         let wallet = Wallet(info: info, balance: balance)
         context.insert(wallet)
-        try context.save()
-    }
-    
-    private func saveTransactions(_ lookupInvoiceResponses: [LookupInvoiceResponse]) throws {
-        for lookupInvoiceResponse in lookupInvoiceResponses {
-            let transaction = Transaction(lookupInvoiceResponse: lookupInvoiceResponse)
-            context.insert(transaction)
-        }
-        
         try context.save()
     }
 }

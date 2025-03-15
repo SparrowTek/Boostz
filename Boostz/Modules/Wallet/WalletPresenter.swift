@@ -41,6 +41,7 @@ struct WalletPresenter: View {
 struct WalletView: View {
     @Environment(\.reachability) private var reachability
     @Environment(WalletState.self) private var state
+    @State private var requestInProgress = false
     @Query private var wallets: [Wallet]
     
     var body: some View {
@@ -87,7 +88,7 @@ struct WalletView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .syncConfigData()
+        .syncTransactionData(requestInProgress: $requestInProgress)
         .task { await reachability.startMonitoring() }
     }
     

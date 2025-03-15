@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import NostrSDK
 
 @MainActor
 fileprivate struct SyncTransactionData: ViewModifier {
     @Environment(WalletState.self) private var state
+    @Environment(\.modelContext) private var context
+    @Environment(\.nwc) private var nwc
     @State private var transactionSyncTrigger = PlainTaskTrigger()
     @Binding var requestInProgress: Bool
     
@@ -30,22 +33,23 @@ fileprivate struct SyncTransactionData: ViewModifier {
         defer { requestInProgress = false }
         requestInProgress = true
         
-//        guard let invoiceHistory = try? await InvoicesService().getAllInvoiceHistory(with: InvoiceHistoryUploadModel(page: state.transactionDataSyncPage, items: 50)) else { return }
-//        
-//        if state.invoiceHistory.isEmpty {
-//            state.invoiceHistory = invoiceHistory
-//        } else {
-//            state.invoiceHistory.append(contentsOf: newInvoices(from: invoiceHistory))
-//        }
+        do {
+            let transactions = try await nwc.listTransactions(from: nil, until: nil, limit: 10, offset: 0, unpaid: nil, transactionType: nil)
+            try saveTransactions(transactions)
+        } catch {
+            // TODO: handle error
+            print("ERROR: \(error.localizedDescription)")
+        }
     }
     
-//    private func newInvoices(from invoices: [Invoice]) -> [Invoice] {
-//        invoices.filter { newInvoice in
-//            !state.invoiceHistory.contains { existingInvoice in
-//                existingInvoice == newInvoice
-//            }
-//        }
-//    }
+    private func saveTransactions(_ lookupInvoiceResponses: [LookupInvoiceResponse]) throws {
+        for lookupInvoiceResponse in lookupInvoiceResponses {
+            let transaction = Transaction(lookupInvoiceResponse: lookupInvoiceResponse)
+            context.insert(transaction)
+        }
+        
+        try context.save()
+    }
 }
 
 extension View {
