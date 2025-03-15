@@ -34,7 +34,7 @@ fileprivate struct SyncTransactionData: ViewModifier {
         requestInProgress = true
         
         do {
-            let transactions = try await nwc.listTransactions(from: nil, until: nil, limit: 10, offset: 0, unpaid: nil, transactionType: nil)
+            let transactions = try await nwc.listTransactions(from: nil, until: nil, limit: state.transactionDataLimit, offset: state.transactionDataOffset, unpaid: nil, transactionType: nil)
             try saveTransactions(transactions)
         } catch {
             // TODO: handle error

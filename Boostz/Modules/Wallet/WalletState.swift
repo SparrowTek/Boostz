@@ -21,7 +21,8 @@ class WalletState {
     var sheet: Sheet?
     var triggerTransactionSync = false
     var highlightTopTransaction = false
-    var transactionDataSyncPage = 1
+    var transactionDataLimit: UInt64 = 20
+    var transactionDataOffset: UInt64 = 0
     
     private unowned let parentState: AppState
     
@@ -49,6 +50,12 @@ class WalletState {
     
     func disconnectNWC() {
         parentState.logout()
+    }
+    
+    func getMoreTransactions() {
+        transactionDataOffset = transactionDataLimit
+        transactionDataLimit += 20
+        triggerTransactionSync = true
     }
 }
 
