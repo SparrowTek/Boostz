@@ -1,5 +1,5 @@
 //
-//  TransactionsPresenter.swift
+//  TransactionsView.swift
 //  Boostz
 //
 //  Created by Thomas Rademaker on 1/9/24.
@@ -7,15 +7,6 @@
 
 import SwiftUI
 import SwiftData
-
-//struct TransactionsPresenter: View {
-//    var body: some View {
-//        NavigationStack {
-//            TransactionsView()
-//        }
-//            
-//    }
-//}
 
 struct TransactionsView: View {
     @Environment(\.dismiss) private var dismiss
@@ -75,7 +66,6 @@ struct TransactionsView: View {
 //            Spacer()
         }
         .fullScreenColorView()
-        .syncTransactionData(requestInProgress: $requestInProgress)
         .refreshable { await refresh() }
     }
     

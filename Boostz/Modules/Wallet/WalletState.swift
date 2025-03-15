@@ -19,11 +19,6 @@ class WalletState {
     }
     
     var sheet: Sheet?
-//    var accountSummary: AccountSummary?
-//    var accountBalance: AccountBalance?
-//    var me: PersonalInformation?
-//    var keysend: Keysend?
-//    var invoiceHistory: [Invoice] = []
     var triggerTransactionSync = false
     var highlightTopTransaction = false
     var transactionDataSyncPage = 1

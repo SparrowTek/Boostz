@@ -35,11 +35,11 @@ class NWC {
         return NWCConnection(pubKey: parsedCode.publicKey().toHex(), relay: parsedCode.relayUrl(), lud16: parsedCode.lud16())
     }
     
-    func initializeNWCClient(with nwcCode: NWCConnection) throws (NWCError) {
-        guard let publicKey = try? PublicKey.parse(publicKey: nwcCode.pubKey) else { throw .publicKey }
+    func initializeNWCClient(pubKey: String, relay: String, lud16: String?) throws (NWCError) {
+        guard let publicKey = try? PublicKey.parse(publicKey: pubKey) else { throw .publicKey }
         guard let secret else { throw .noSecret }
         guard let secretKey = try? SecretKey.parse(secretKey: secret) else { throw .failedToCreateNWCSecretKey }
-        guard let nwcUri = try? NostrWalletConnectUri(publicKey: publicKey, relayUrl: nwcCode.relay, randomSecretKey: secretKey, lud16: nwcCode.lud16) else { throw .failedToCreateNWCUri }
+        guard let nwcUri = try? NostrWalletConnectUri(publicKey: publicKey, relayUrl: relay, randomSecretKey: secretKey, lud16: lud16) else { throw .failedToCreateNWCUri }
         nwc = Nwc(uri: nwcUri)
         hasConnected = true
     }

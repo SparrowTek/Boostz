@@ -116,7 +116,7 @@ fileprivate struct SetupView: View {
             let nwcCode = try nwc.parseWalletCode(code)
             context.insert(nwcCode)
             try context.save()
-            try nwc.initializeNWCClient(with: nwcCode)
+            try nwc.initializeNWCClient(pubKey: nwcCode.pubKey, relay: nwcCode.relay, lud16: nwcCode.lud16)
         } catch {
             // TODO: handle error
             print("ERROR: \(error)")

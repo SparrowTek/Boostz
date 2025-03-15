@@ -34,7 +34,7 @@ fileprivate struct SyncConfigData: ViewModifier {
     private func getWalletInfo() async {
         do {
             if let nwcCode = nwcCodes.first {
-                try nwc.initializeNWCClient(with: nwcCode)
+                try nwc.initializeNWCClient(pubKey: nwcCode.pubKey, relay: nwcCode.relay, lud16: nwcCode.lud16)
             } else {
                 state.logout()
                 return

@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @MainActor
 struct AppPresenter: View {
     @Environment(AppState.self) private var state
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.nwc) private var nwc
     
     var body: some View {

@@ -86,6 +86,9 @@
     "go" : {
 
     },
+    "invoice, lightning address, or LNURL" : {
+
+    },
     "light" : {
 
     },
@@ -93,9 +96,6 @@
 
     },
     "lightning invoice" : {
-
-    },
-    "LNURL" : {
 
     },
     "logout" : {
@@ -165,6 +165,9 @@
 
     },
     "system" : {
+
+    },
+    "there is no transaction history available" : {
 
     },
     "There was a problem confirming your payment. Please try again later" : {
