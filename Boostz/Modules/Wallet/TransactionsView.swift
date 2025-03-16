@@ -90,8 +90,8 @@ fileprivate struct TransactionCell: View {
     
     private var title: String {
         switch transaction.transactionType {
-        case .incoming: "sent"
-        case .outgoing: "received"
+        case .incoming: "received"
+        case .outgoing: "sent"
         case .none: transaction.transactionDescription ?? ""
         }
     }
