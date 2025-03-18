@@ -23,55 +23,36 @@ struct TransactionsView: View {
                 ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
             } else {
                 List {
-                    ForEach(transactions) {
-                        TransactionCell(transaction: $0)
+                    ForEach(transactions) { transaction in
+                        TransactionCell(transaction: transaction)
+                            .onAppear { checkIfAtBottomAndFetchMore(transaction) }
+                    }
+                    
+                    if requestInProgress {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                     }
                 }
                 .listStyle(.plain)
                 .background(Color.clear)
             }
-//                List {
-//                    ContentUnavailableView("there is no transaction history available", systemImage: "bolt.slash.fill")
-//                        .listRowBackground(Color.clear)
-//                        .listRowSeparator(.hidden)
-//                }
-//                .listStyle(.plain)
-//                .background(Color.clear)
-//            } else {
-//                List {
-//                    ForEach(sortedInvoices) { invoice in
-//                        TransactionCell(invoice: invoice)
-//                            .onAppear {
-//                                if invoice == sortedInvoices.last {
-//                                    state.transactionDataSyncPage += 1
-//                                    state.triggerTransactionSync = true
-//                                }
-//                            }
-//                    }
-                    
-//                    if requestInProgress {
-//                        HStack {
-//                            Spacer()
-//                            ProgressView()
-//                            Spacer()
-//                        }
-//                        .listRowBackground(Color.clear)
-//                        .listRowSeparator(.hidden)
-//                    }
-//                }
-//                .listStyle(.plain)
-//                .background(Color.clear)
-//            }
-//            
-//            Spacer()
         }
         .fullScreenColorView()
         .refreshable { await refresh() }
     }
     
     private func refresh() async {
-        state.triggerTransactionSync = true
-        state.triggerDataSync()
+        state.refresh()
+    }
+    
+    private func checkIfAtBottomAndFetchMore(_ transaction: Transaction) {
+        guard transactions.last == transaction else { return }
+        state.getMoreTransactions()
     }
 }
 

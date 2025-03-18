@@ -53,8 +53,13 @@ class WalletState {
     }
     
     func getMoreTransactions() {
-        transactionDataOffset = transactionDataLimit
-        transactionDataLimit += 20
+        transactionDataOffset += transactionDataLimit
+        triggerTransactionSync = true
+    }
+    
+    func refresh() {
+        transactionDataOffset = 0
+        triggerDataSync()
         triggerTransactionSync = true
     }
 }
