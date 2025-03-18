@@ -136,21 +136,9 @@ fileprivate struct TransactionCell: View {
     
     
     private func openInvoice() {
-        print("OPEN")
+        state.sheet = .open(transaction)
     }
 }
-
-//extension Invoice {
-//    var isInoming: Bool {
-//        type?.lowercased() == "incoming"
-//    }
-//}
-//
-//extension Invoice: Identifiable {
-//    public var id: String {
-//        identifier ?? ""
-//    }
-//}
 
 #if DEBUG
 #Preview(traits: .sampleTransactions) {

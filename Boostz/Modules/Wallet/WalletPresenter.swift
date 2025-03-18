@@ -30,7 +30,10 @@ struct WalletPresenter: View {
                         ReceivePresenter()
                             .environment(state.receiveState)
                             .interactiveDismissDisabled()
-//                            .presentationDragIndicator(.visible)
+                    case .open(let transaction):
+                        TransactionDetailsView(transaction: transaction)
+                            .presentationDragIndicator(.visible)
+                            .presentationDetents([.medium])
                     }
                 }
         }

@@ -10,12 +10,20 @@ import Foundation
 @Observable
 @MainActor
 class WalletState {
-    enum Sheet: Int, Identifiable {
+    enum Sheet: Identifiable {
         case settings
         case send
         case receive
+        case open(Transaction)
         
-        var id: Int { rawValue }
+        var id: Int {
+            switch self {
+            case .settings: 0
+            case .send: 1
+            case .receive: 2
+            case .open: 3
+            }
+        }
     }
     
     var sheet: Sheet?
