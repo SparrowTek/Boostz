@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import LightningDevKit
 import AlbyKit
 import NostrSDK
@@ -20,6 +21,11 @@ struct SendDetailsView: View {
     @State private var confirmationTrigger = PlainTaskTrigger()
     @State private var payInvoiceResponse: PayInvoiceResponse?
     @State private var errorMessage: LocalizedStringResource?
+    @Query private var wallets: [Wallet]
+    
+    private var wallet: Wallet? {
+        wallets.first
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -108,11 +114,10 @@ struct SendDetailsView: View {
             return
         }
         
-        // TODO: check if the balance supports the send amount
-//        guard let balance = Int(state.accountBalance), amountAsInt <= balance else {
-//            errorMessage = "Please select an amount less than or equal to your current Sat balance"
-//            return
-//        }
+        guard let wallet, amountAsInt <= wallet.balance else {
+            errorMessage = "Please select an amount less than or equal to your current Sat balance"
+            return
+        }
         
         let millisats = satsToMillisats(sats: amount)
         

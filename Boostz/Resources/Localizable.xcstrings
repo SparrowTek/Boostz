@@ -116,6 +116,9 @@
     "paid" : {
 
     },
+    "Please select an amount less than or equal to your current Sat balance" : {
+
+    },
     "poor network connection" : {
 
     },
