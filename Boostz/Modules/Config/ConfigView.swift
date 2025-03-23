@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 struct ConfigView: View {
     @Environment(AppState.self) private var state
     

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 struct CreateInvoiceView: View {
     @Environment(ReceiveState.self) private var state
     @Environment(\.nwc) private var nwc

@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 import CoreImage.CIFilterBuiltins
 
-@MainActor
 struct ReceivePresenter: View {
     @Environment(ReceiveState.self) private var state
     
@@ -31,7 +30,6 @@ struct ReceivePresenter: View {
     }
 }
 
-@MainActor
 fileprivate struct ReceiveView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(ReceiveState.self) private var state

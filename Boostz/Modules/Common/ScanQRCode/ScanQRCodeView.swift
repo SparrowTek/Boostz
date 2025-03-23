@@ -8,7 +8,6 @@
 import SwiftUI
 @preconcurrency import AVFoundation
 
-@MainActor
 struct ScanQRCodeView: View {
     @Environment(ScanQRCodeState.self) private var state
     @Environment(\.dismiss) private var dismiss
@@ -37,7 +36,6 @@ struct ScanQRCodeView: View {
     }
 }
 
-@MainActor
 fileprivate struct ScannerView: View {
     @Environment(ScanQRCodeState.self) private var state
     private let scanInterval: Double = 1.0
@@ -70,7 +68,6 @@ fileprivate struct ScannerView: View {
     }
 }
 
-@MainActor
 fileprivate struct QrCodeScannerView: UIViewRepresentable {
     
     var supportedBarcodeTypes: [AVMetadataObject.ObjectType] = [.qr]

@@ -8,7 +8,6 @@
 import SwiftUI
 
 @main
-@MainActor
 struct BoostzApp: App {
     @State private var state = AppState()
     @State private var reachability = Reachability()

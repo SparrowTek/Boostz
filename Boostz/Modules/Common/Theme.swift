@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 fileprivate struct AdaptiveFontColorWithThemeColorBackgroundViewModifier: ViewModifier {
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
@@ -24,7 +23,6 @@ fileprivate struct AdaptiveFontColorWithThemeColorBackgroundViewModifier: ViewMo
     }
 }
 
-@MainActor
 fileprivate struct AdaptiveFontColorViewModifier: ViewModifier {
     @Environment(\.self) var environment
     let backgroundColor: Color
@@ -35,7 +33,6 @@ fileprivate struct AdaptiveFontColorViewModifier: ViewModifier {
     }
 }
 
-@MainActor
 fileprivate struct SetForegroundStyleViewModifier: ViewModifier {
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?
@@ -47,7 +44,6 @@ fileprivate struct SetForegroundStyleViewModifier: ViewModifier {
     }
 }
 
-@MainActor
 fileprivate struct SetThemeViewModifier: ViewModifier {
     @AppStorage(Build.Constants.UserDefault.lightThemeColor) private var lightThemeColor: String?
     @AppStorage(Build.Constants.UserDefault.darkThemeColor) private var darkThemeColor: String?

@@ -7,7 +7,6 @@
 
 //import SwiftUI
 //
-//@MainActor
 //fileprivate struct SetupAlbyKit: ViewModifier {
 //    @Environment(AppState.self) private var state
 //    

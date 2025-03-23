@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 struct AppPresenter: View {
     @Environment(AppState.self) private var state
     @Environment(\.nwc) private var nwc

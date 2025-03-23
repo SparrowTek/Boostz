@@ -11,7 +11,6 @@ import LightningDevKit
 import AlbyKit
 import NostrSDK
 
-@MainActor
 struct SendDetailsView: View {
     @Environment(SendState.self) private var state
     @Environment(\.nwc) private var nwc
@@ -141,7 +140,6 @@ struct SendDetailsView: View {
     }
 }
 
-@MainActor
 fileprivate struct PresetSatVauleButton: View {
     var value: String
     var action: () -> Void

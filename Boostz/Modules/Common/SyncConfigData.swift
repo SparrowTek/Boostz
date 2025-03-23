@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 import NostrSDK
 
-@MainActor
 fileprivate struct SyncConfigData: ViewModifier {
     @Environment(AppState.self) private var state
     @Environment(\.nwc) private var nwc

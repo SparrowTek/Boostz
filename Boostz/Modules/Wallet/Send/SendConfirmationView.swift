@@ -8,7 +8,6 @@
 import SwiftUI
 import LightningDevKit
 
-@MainActor
 struct SendConfirmationView: View {
     @Environment(SendState.self) private var state
     @Environment(\.nwc) private var nwc

@@ -8,7 +8,6 @@
 import SwiftUI
 import NostrSDK
 
-@MainActor
 fileprivate struct SyncTransactionData: ViewModifier {
     @Environment(WalletState.self) private var state
     @Environment(\.modelContext) private var context
