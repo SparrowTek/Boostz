@@ -123,8 +123,7 @@ struct SendDetailsView: View {
         do {
             let invoicePR = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil).invoice?.pr ?? ""
             guard let invoice = Bolt11Invoice.fromStr(s: invoicePR).getValue() else {
-#warning("think of an appropriate error message")
-                errorMessage = "TODO"
+                errorMessage = "Failed to create an invoice. Please try again."
                 return
             }
             payInvoiceResponse = try await nwc.payInvoice(invoice)

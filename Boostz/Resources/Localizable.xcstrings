@@ -83,6 +83,9 @@
     "Failed to connect to your wallet" : {
 
     },
+    "Failed to create an invoice. Please try again." : {
+
+    },
     "failed to initzilize NWC wallet connection" : {
 
     },
@@ -189,9 +192,6 @@
 
     },
     "This policy applies to all information collected or submitted on Boostz’s website and our apps for iPhone and any other devices and platforms." : {
-
-    },
-    "TODO" : {
 
     },
     "waiting for payment..." : {

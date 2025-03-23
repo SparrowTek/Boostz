@@ -146,7 +146,16 @@ class SendState {
         }
         
         return .bolt11LookupRequired(text)
-    }*/
+    }
+     
+     extension String {
+         mutating func removePrefix(_ prefix: String) {
+             if self.hasPrefix(prefix) {
+                 self = String(self.dropFirst(prefix.count))
+             }
+         }
+     }
+     */
     
     private func setAccountBalance() -> String {
 //        let balance = parentState.accountBalance?.balance ?? 0

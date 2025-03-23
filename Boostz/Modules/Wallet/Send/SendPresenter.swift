@@ -95,15 +95,6 @@ fileprivate struct SendView: View {
     }
 }
 
-// TODO: move this to a new file
-extension String {
-    mutating func removePrefix(_ prefix: String) {
-        if self.hasPrefix(prefix) {
-            self = String(self.dropFirst(prefix.count))
-        }
-    }
-}
-
 #Preview {
     Text("wallet")
         .sheet(isPresented: .constant(true)) {
