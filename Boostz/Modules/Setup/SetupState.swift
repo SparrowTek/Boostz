@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @Observable
 @MainActor
@@ -21,6 +22,7 @@ class SetupState {
     var sheet: Sheet?
     var foundQRCode: String?
     var connectionSecret = ""
+    var errorMessage: LocalizedStringKey?
     @ObservationIgnored
     lazy var scanQRCodeState = ScanQRCodeState(parentState: self)
     

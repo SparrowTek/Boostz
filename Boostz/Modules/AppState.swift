@@ -58,7 +58,8 @@ public class AppState {
         configSuccessful()
     }
     
-    func logout() {
+    func logout(error: LocalizedStringKey? = nil) {
+        setupState.errorMessage = error
         try? Vault.deletePrivateKey(keychainConfiguration: .nwcSecret)
         route = .setup
     }

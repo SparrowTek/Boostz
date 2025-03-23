@@ -20,7 +20,7 @@ struct SendDetailsView: View {
     @State private var requestInProgress = false
     @State private var confirmationTrigger = PlainTaskTrigger()
     @State private var payInvoiceResponse: PayInvoiceResponse?
-    @State private var errorMessage: LocalizedStringResource?
+    @State private var errorMessage: LocalizedStringKey?
     @Query private var wallets: [Wallet]
     
     private var wallet: Wallet? {

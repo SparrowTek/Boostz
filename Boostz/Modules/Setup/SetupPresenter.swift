@@ -25,6 +25,7 @@ struct SetupPresenter: View {
                             .environment(state.scanQRCodeState)
                     }
                 }
+                .alert($state.errorMessage)
         }
     }
 }

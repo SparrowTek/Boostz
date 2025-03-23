@@ -15,6 +15,7 @@ fileprivate struct SyncConfigData: ViewModifier {
     @Environment(\.nwc) private var nwc
     @Environment(\.modelContext) private var context
     @Query private var nwcCodes: [NWCConnection]
+    @Query private var wallets: [Wallet]
 //    @State private var dataSyncTrigger = false
     
     func body(content: Content) -> some View {
@@ -55,8 +56,11 @@ fileprivate struct SyncConfigData: ViewModifier {
             try saveWallet(info: info, balance: balance)
             state.configSuccessful()
         } catch {
-            // TODO: handle error
-            print("ERROR listing transactions: \(error.localizedDescription)")
+            if wallets.count > 0 {
+                state.configSuccessful()
+            } else {
+                state.logout(error: "Failed to connect to your wallet")
+            }
         }
     }
     

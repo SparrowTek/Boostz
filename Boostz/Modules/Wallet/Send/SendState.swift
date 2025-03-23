@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import LightningDevKit
 
 @Observable
@@ -30,7 +31,7 @@ class SendState {
     private unowned let parentState: WalletState
     var path: [SendState.NavigationLink] = []
     var accountBalance = ""
-    var errorMessage: LocalizedStringResource?
+    var errorMessage: LocalizedStringKey?
     @ObservationIgnored
     lazy var scanQRCodeState = ScanQRCodeState(parentState: self)
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    func alert(_ errorMessage: Binding<LocalizedStringResource?>) -> some View {
+    func alert(_ errorMessage: Binding<LocalizedStringKey?>) -> some View {
         let binding = Binding(
             get: { errorMessage.wrappedValue != nil },
             set: { isPresented in

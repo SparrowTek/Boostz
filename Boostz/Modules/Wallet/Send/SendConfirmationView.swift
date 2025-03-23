@@ -15,7 +15,7 @@ struct SendConfirmationView: View {
     var bolt11: Bolt11Invoice
     @State private var confirmationTrigger = PlainTaskTrigger()
     @State private var requestInProgress = false
-    @State private var errorMessage: LocalizedStringResource?
+    @State private var errorMessage: LocalizedStringKey?
     
     var body: some View {
         VStack(alignment: .leading) {

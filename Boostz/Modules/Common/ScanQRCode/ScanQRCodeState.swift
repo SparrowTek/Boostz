@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 protocol ScanQRCodeStateParent: AnyObject {
@@ -26,7 +27,7 @@ class ScanQRCodeState {
     }
     
     var sheet: Sheet?
-    var errorMessage: LocalizedStringResource?
+    var errorMessage: LocalizedStringKey?
     
     init(parentState: ScanQRCodeStateParent) {
         self.parentState = parentState
