@@ -47,8 +47,11 @@ struct CreateInvoiceView: View {
     }
     
     private func createInvoice() async {
-        // TODO: alert user if guards fail
-        guard let amount = UInt64(amount) else { return }
+        guard let amount = UInt64(amount) else {
+            state.errorMessage = "Please enter a real number for the amount"
+            return
+        }
+        
         let description: String? = description.isEmpty ? nil : description
         
         guard let invoice = try? await nwc.makeInvoice(amount: amount, description: description, descriptionHash: nil, expiry: nil) else { return }

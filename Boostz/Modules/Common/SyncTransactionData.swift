@@ -36,8 +36,7 @@ fileprivate struct SyncTransactionData: ViewModifier {
             let transactions = try await nwc.listTransactions(from: nil, until: nil, limit: state.transactionDataLimit, offset: state.transactionDataOffset, unpaid: nil, transactionType: nil)
             try saveTransactions(transactions)
         } catch {
-            // TODO: handle error
-            print("ERROR: \(error.localizedDescription)")
+            return // intentionally not handling errors
         }
     }
     

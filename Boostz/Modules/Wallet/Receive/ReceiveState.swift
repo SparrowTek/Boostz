@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import NostrSDK
 
 @Observable
@@ -19,6 +20,7 @@ class ReceiveState {
     private unowned let parentState: WalletState
     
     var path: [ReceiveState.NavigationLink] = []
+    var errorMessage: LocalizedStringKey?
     
     init(parentState: WalletState) {
         self.parentState = parentState

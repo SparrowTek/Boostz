@@ -37,9 +37,13 @@ class SetupState {
 }
 
 extension SetupState: ScanQRCodeStateParent {
-    // TODO: These all need to be implemented
-    func exitScanQRCode() {}
-    func postQRCodeScanComplete() {}
+    func exitScanQRCode() {
+        sheet = nil
+    }
+    
+    func postQRCodeScanComplete() {
+        sheet = nil
+    }
     
     func foundQRCode(_ code: String) {
         foundQRCode = code

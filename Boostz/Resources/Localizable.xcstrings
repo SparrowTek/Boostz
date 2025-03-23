@@ -83,6 +83,9 @@
     "Failed to connect to your wallet" : {
 
     },
+    "failed to initzilize NWC wallet connection" : {
+
+    },
     "for e.g. who is sending this payment?" : {
 
     },
@@ -117,6 +120,9 @@
 
     },
     "paid" : {
+
+    },
+    "Please enter a real number for the amount" : {
 
     },
     "Please select an amount less than or equal to your current Sat balance" : {

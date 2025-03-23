@@ -119,8 +119,7 @@ fileprivate struct SetupView: View {
             try context.save()
             try nwc.initializeNWCClient(pubKey: nwcCode.pubKey, relay: nwcCode.relay, lud16: nwcCode.lud16)
         } catch {
-            // TODO: handle error
-            print("ERROR: \(error)")
+            state.errorMessage = "failed to initzilize NWC wallet connection"
         }
     }
     

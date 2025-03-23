@@ -26,6 +26,7 @@ struct ReceivePresenter: View {
                         DisplayInvoiceView(invoice: invoice)
                     }
                 }
+                .alert($state.errorMessage)
         }
     }
 }
