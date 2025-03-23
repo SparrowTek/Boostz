@@ -37,7 +37,7 @@ struct SampleDataTransactions: PreviewModifier {
 struct SampleDataWallet: PreviewModifier {
     static func makeSharedContext() async throws -> ModelContainer {
         let container = try ModelContainer(for: Wallet.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-        let wallet = Wallet(balance: 234553, alias: "My Wallet", blockHash: "ereijr03r4i8", blockHeight: 3452234, color: "0x34534", methods: [], network: "wowow", pubkey: "efjngfdg492")
+        let wallet = Wallet(balance: 234553, alias: "My Wallet", blockHash: "ereijr03r4i8", blockHeight: 3452234, color: "0x34534", methods: [.getBalance, .listTransactions], network: "wowow", pubkey: "efjngfdg492")
         container.mainContext.insert(wallet)
         do {
             try container.mainContext.save()

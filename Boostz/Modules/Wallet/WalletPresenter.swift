@@ -35,6 +35,7 @@ struct WalletPresenter: View {
                             .presentationDetents([.medium])
                     }
                 }
+                .alert($state.errorMessage)
         }
     }
 }
@@ -45,6 +46,15 @@ struct WalletView: View {
     @State private var requestInProgress = false
     @Query private var wallets: [Wallet]
     
+    private var wallet: Wallet? {
+        wallets.first
+    }
+    
+    private var redacted: Bool {
+        guard let wallet else { return true }
+        return !wallet.methods.contains(where: { $0 == .getBalance } )
+    }
+    
     var body: some View {
         VStack {
             if reachability.connectionState != .good {
@@ -54,7 +64,9 @@ struct WalletView: View {
             
             Text((wallets.first?.balance.millisatsToSats() ?? 0).currency)
                 .font(.title)
-                .redacted(reason: wallets.first != nil ? .invalidated : .placeholder)
+                .redacted(reason: redacted ? .placeholder : .invalidated)
+                .contentShape(Rectangle())
+                .onTapGesture(perform: tappedBalance)
                 .padding()
             
             HStack {
@@ -64,7 +76,11 @@ struct WalletView: View {
             .buttonStyle(.boostz)
             .padding()
             
-            TransactionsView()
+            if let wallet, wallet.methods.contains(where: { $0 == .listTransactions }) {
+                TransactionsView()
+            } else {
+                ContentUnavailableView("The currect NWC wallet connection does not have permission to see transaction data", systemImage: "lock.slash.fill")
+            }
         }
         .fullScreenColorView()
         .toolbar {
@@ -93,12 +109,25 @@ struct WalletView: View {
         .task { await reachability.startMonitoring() }
     }
     
+    private func tappedBalance() {
+        guard redacted else { return }
+        state.errorMessage = "The current NWC wallet connection does not have permission to see your balance"
+    }
+    
     private func sendSats() {
-        state.sheet = .send
+        if let wallet, wallet.methods.contains(where: { $0 == .payInvoice }) {
+            state.sheet = .send
+        } else {
+            state.errorMessage = "The currect NWC wallet connection does not have permission to send sats"
+        }
     }
     
     private func receiveSats() {
-        state.sheet = .receive
+        if let wallet, wallet.methods.contains(where: { $0 == .makeInvoice }) {
+            state.sheet = .receive
+        } else {
+            state.errorMessage = "The currect NWC wallet connection does not have permission to make an invoice"
+        }
     }
     
     private func openSettings() {

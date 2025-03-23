@@ -32,6 +32,7 @@ class WalletState {
     var highlightTopTransaction = false
     var transactionDataLimit: UInt64 = 20
     var transactionDataOffset: UInt64 = 0
+    var errorMessage: LocalizedStringKey?
     
     private unowned let parentState: AppState
     
