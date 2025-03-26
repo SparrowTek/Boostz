@@ -7,6 +7,7 @@
 
 import SwiftData
 import NostrSDK
+import SwiftUI
 
 enum BoostzTransactionType: String, Codable {
     case incoming
@@ -16,6 +17,34 @@ enum BoostzTransactionType: String, Codable {
         self = switch transactionType {
         case .incoming: .incoming
         case .outgoing: .outgoing
+        }
+    }
+    
+    var title: LocalizedStringKey {
+        switch self {
+        case .incoming: "received"
+        case .outgoing: "sent"
+        }
+    }
+    
+    var arrow: String {
+        switch self {
+        case .incoming: "arrowshape.down.circle"
+        case .outgoing: "arrowshape.up.circle"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .incoming: .green
+        case .outgoing: .red
+        }
+    }
+    
+    var plusOrMinus: String {
+        switch self {
+        case .incoming: "+"
+        case .outgoing: "-"
         }
     }
 }

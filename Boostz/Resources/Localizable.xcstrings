@@ -4,17 +4,13 @@
     "" : {
 
     },
-    "%@%@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@%2$@"
-          }
-        }
-      }
+    "-" : {
+
     },
     "%llu sats" : {
+
+    },
+    "+" : {
 
     },
     "about" : {
@@ -146,6 +142,9 @@
     "receive" : {
 
     },
+    "received" : {
+
+    },
     "request instant and specific amount payment" : {
 
     },
@@ -173,6 +172,9 @@
     "sending to:" : {
 
     },
+    "sent" : {
+
+    },
     "settings" : {
 
     },
@@ -180,6 +182,18 @@
 
     },
     "system" : {
+
+    },
+    "The currect NWC wallet connection does not have permission to make an invoice" : {
+
+    },
+    "The currect NWC wallet connection does not have permission to see transaction data" : {
+
+    },
+    "The currect NWC wallet connection does not have permission to send sats" : {
+
+    },
+    "The current NWC wallet connection does not have permission to see your balance" : {
 
     },
     "there is no transaction history available" : {

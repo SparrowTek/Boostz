@@ -69,39 +69,15 @@ fileprivate struct TransactionCell: View {
 //        state.invoiceHistory.first == invoice
 //    }
     
-    private var title: String {
-        switch transaction.transactionType {
-        case .incoming: "received"
-        case .outgoing: "sent"
-        case .none: transaction.transactionDescription ?? ""
-        }
-    }
-    
-    private var arrow: String {
-        switch transaction.transactionType {
-        case .incoming: "arrowshape.down.circle"
-        case .outgoing: "arrowshape.up.circle"
-        case .none: ""
-        }
-    }
-    
-    private var color: Color {
-        switch transaction.transactionType {
-        case .incoming: .green
-        case .outgoing: .red
-        case .none: .gray
-        }
-    }
-    
     var body: some View {
         Button(action: openInvoice) {
             HStack {
-                Image(systemName: arrow)
-                    .foregroundStyle(color)
+                Image(systemName: transaction.transactionType?.arrow ?? "")
+                    .foregroundStyle(transaction.transactionType?.color ?? .gray)
                     .font(.title)
                 
                 VStack(alignment: .leading) {
-                    Text(title)
+                    Text(transaction.transactionType?.title ?? LocalizedStringKey(transaction.transactionDescription ?? ""))
                         .font(.headline)
                     
                     Text(transaction.createdAt?.invoiceFormat ?? "")
@@ -111,9 +87,9 @@ fileprivate struct TransactionCell: View {
                 
                 Spacer()
                 
-                Text("\(transaction.transactionType == .incoming ? "+" : "-")\(transaction.amount.millisatsToSats().currency)")
+                Text("\(transaction.transactionType?.plusOrMinus ?? "")\(transaction.amount.millisatsToSats().currency)")
                     .font(.title3)
-                    .foregroundStyle(color)
+                    .foregroundStyle(transaction.transactionType?.color ?? .gray)
             }
         }
         .listRowBackground(Color.clear)
