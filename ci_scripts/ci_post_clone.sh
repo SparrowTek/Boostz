@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 #  ci_post_clone.sh
-#  Boostz
+#  Avocadough
 #
 #  Created by Thomas Rademaker on 1/9/24.
 #  

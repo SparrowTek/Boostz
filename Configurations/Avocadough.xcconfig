@@ -1,0 +1,10 @@
+//
+//  Avocadough.xcconfig
+//  Avocadough
+//
+//  Created by Thomas Rademaker on 12/10/23.
+//
+
+#include "User.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = $(BUNDLE_ID_PREFIX).avocadough

@@ -1,0 +1,235 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    ":" : {
+
+    },
+    "%@%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$@"
+          }
+        }
+      }
+    },
+    "%llu sats" : {
+
+    },
+    "about" : {
+
+    },
+    "amount" : {
+
+    },
+    "amount in satoshi" : {
+
+    },
+    "amount:" : {
+
+    },
+    "Avocadough" : {
+
+    },
+    "between 1 and 500,000 sats" : {
+
+    },
+    "cancel" : {
+
+    },
+    "check status" : {
+
+    },
+    "color scheme" : {
+
+    },
+    "confirm" : {
+
+    },
+    "Confirm invoice:" : {
+
+    },
+    "copied!" : {
+
+    },
+    "copy invoice" : {
+
+    },
+    "create invoice" : {
+
+    },
+    "dark" : {
+
+    },
+    "dark mode tint" : {
+
+    },
+    "description" : {
+
+    },
+    "disconnect and clear all data" : {
+
+    },
+    "Done" : {
+
+    },
+    "enter" : {
+
+    },
+    "enter connection secret" : {
+
+    },
+    "Failed to connect to your wallet" : {
+
+    },
+    "Failed to create an invoice. Please try again." : {
+
+    },
+    "failed to initzilize NWC wallet connection" : {
+
+    },
+    "fees paid" : {
+
+    },
+    "for e.g. who is sending this payment?" : {
+
+    },
+    "go" : {
+
+    },
+    "invoice, lightning address, or LNURL" : {
+
+    },
+    "light" : {
+
+    },
+    "light mode tint" : {
+
+    },
+    "lightning invoice" : {
+
+    },
+    "logout" : {
+
+    },
+    "logout?" : {
+
+    },
+    "OK" : {
+
+    },
+    "or" : {
+
+    },
+    "OR:" : {
+
+    },
+    "paid" : {
+
+    },
+    "payment hash" : {
+
+    },
+    "Please enter a real number for the amount" : {
+
+    },
+    "Please select an amount less than or equal to your current Sat balance" : {
+
+    },
+    "poor network connection" : {
+
+    },
+    "preimage" : {
+
+    },
+    "preparing your wallet" : {
+
+    },
+    "privacy" : {
+
+    },
+    "Privacy Policy" : {
+
+    },
+    "receive" : {
+
+    },
+    "received" : {
+
+    },
+    "request instant and specific amount payment" : {
+
+    },
+    "reset theme" : {
+
+    },
+    "Sat amount can not be empty" : {
+
+    },
+    "Sat amount must be a number between 1 and 5,000,000" : {
+
+    },
+    "scan QR" : {
+
+    },
+    "selected color scheme" : {
+
+    },
+    "send" : {
+
+    },
+    "send BTC" : {
+
+    },
+    "sending to:" : {
+
+    },
+    "sent" : {
+
+    },
+    "settings" : {
+
+    },
+    "settled at" : {
+
+    },
+    "Source (Github)" : {
+
+    },
+    "system" : {
+
+    },
+    "The currect NWC wallet connection does not have permission to make an invoice" : {
+
+    },
+    "The currect NWC wallet connection does not have permission to see transaction data" : {
+
+    },
+    "The currect NWC wallet connection does not have permission to send sats" : {
+
+    },
+    "The current NWC wallet connection does not have permission to see your balance" : {
+
+    },
+    "there is no transaction history available" : {
+
+    },
+    "There was a problem confirming your payment. Please try again later" : {
+
+    },
+    "There was a problem sending your sats. Please try again later." : {
+
+    },
+    "This policy applies to all information collected or submitted on Avocadough’s website and our apps for iPhone and any other devices and platforms." : {
+
+    },
+    "waiting for payment..." : {
+
+    }
+  },
+  "version" : "1.0"
+}
