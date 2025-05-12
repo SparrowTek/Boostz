@@ -87,7 +87,7 @@ fileprivate struct TransactionCell: View {
                 
                 Spacer()
                 
-                Text("\(transaction.transactionType?.plusOrMinus ?? "")\(transaction.amount.millisatsToSats().currency)")
+                Text("\(transaction.transactionType?.plusOrMinus ?? "")\(transaction.amount.millisatsToSats.currency)")
                     .font(.title3)
                     .foregroundStyle(transaction.transactionType?.color ?? .gray)
             }

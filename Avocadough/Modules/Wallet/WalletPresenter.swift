@@ -55,6 +55,10 @@ struct WalletView: View {
         return !wallet.methods.contains(where: { $0 == .getBalance } )
     }
     
+    private var redactDollarText: Bool {
+        wallet == nil && state.btcPrice == nil
+    }
+    
     var body: some View {
         VStack {
             if reachability.connectionState != .good {
@@ -62,12 +66,18 @@ struct WalletView: View {
                     .transition(.move(edge: .top))
             }
             
-            Text((wallets.first?.balance.millisatsToSats() ?? 0).currency)
+            Text((wallet?.balance.millisatsToSats ?? 0).currency)
                 .font(.title)
                 .redacted(reason: redacted ? .placeholder : .invalidated)
                 .contentShape(Rectangle())
                 .onTapGesture(perform: tappedBalance)
-                .padding()
+                .padding([.horizontal, .top])
+            
+            Text(state.btcPrice?.amount.asDollars(for: (wallet?.balance.millisatsToSats) ?? 0) ?? "")
+                .redacted(reason: redactDollarText ? .placeholder : .invalidated)
+                .font(.title3)
+                .foregroundStyle(Color.gray)
+                .bold()
             
             HStack {
                 Button("send", systemImage: "arrow.up.circle", action: sendSats)
@@ -107,6 +117,13 @@ struct WalletView: View {
         .navigationBarTitleDisplayMode(.inline)
         .syncTransactionData(requestInProgress: $requestInProgress)
         .task { await reachability.startMonitoring() }
+        .onAppear(perform: setBTCPrice)
+    }
+    
+    private func setBTCPrice() {
+        if isCanvas {
+            state.isCanvasSetBTCPrice()
+        }
     }
     
     private func tappedBalance() {

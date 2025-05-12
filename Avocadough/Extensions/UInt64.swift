@@ -23,11 +23,11 @@ extension UInt64 {
         self == 1 ? "\(self.formatted()) sat" : "\(self.formatted()) sats"
     }
     
-    func satsToMillisats() -> UInt64 {
+    var satsToMillisats: UInt64 {
         self * 1000
     }
     
-    func millisatsToSats() -> UInt64 {
+    var millisatsToSats: UInt64 {
         self / 1000
     }
 }

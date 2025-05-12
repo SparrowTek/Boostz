@@ -58,6 +58,10 @@ public class AppState {
         configSuccessful()
     }
     
+    func savePrice(_ price: BTCPrice?) {
+        walletState.btcPrice = price
+    }
+    
     func logout(error: LocalizedStringKey? = nil) {
         setupState.errorMessage = error
         try? Vault.deletePrivateKey(keychainConfiguration: .nwcSecret)

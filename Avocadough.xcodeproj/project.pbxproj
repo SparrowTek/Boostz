@@ -285,6 +285,8 @@
 		};
 		6CDD4BF72B25210F00C6C324 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 6CD88DC02CF191E700E9B653 /* Configurations */;
+			baseConfigurationReferenceRelativePath = Avocadough.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -320,6 +322,8 @@
 		};
 		6CDD4BF82B25210F00C6C324 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 6CD88DC02CF191E700E9B653 /* Configurations */;
+			baseConfigurationReferenceRelativePath = Avocadough.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

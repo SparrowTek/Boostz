@@ -33,6 +33,7 @@ class WalletState {
     var transactionDataLimit: UInt64 = 20
     var transactionDataOffset: UInt64 = 0
     var errorMessage: LocalizedStringKey?
+    var btcPrice: BTCPrice?
     
     private unowned let parentState: AppState
     
@@ -46,6 +47,10 @@ class WalletState {
     
     init(parentState: AppState) {
         self.parentState = parentState
+    }
+    
+    func isCanvasSetBTCPrice() {
+        btcPrice = BTCPrice(amount: "85000", lastUpdatedAtInUtcEpochSeconds: "", currency: "USD", version: "1", base: "BTC")
     }
     
     func closeSheet() {

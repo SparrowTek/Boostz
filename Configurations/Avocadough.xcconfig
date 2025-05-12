@@ -7,4 +7,4 @@
 
 #include "User.xcconfig"
 
-PRODUCT_BUNDLE_IDENTIFIER = $(BUNDLE_ID_PREFIX).avocadough
+PRODUCT_BUNDLE_IDENTIFIER = $(BUNDLE_ID_PREFIX).boostz

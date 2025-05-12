@@ -21,6 +21,7 @@ fileprivate struct SyncConfigData: ViewModifier {
         content
 //            .onChange(of: state.triggerDataSync, triggerDataSync)
             .task { await getWalletInfo() }
+            .task { await getBTCPrice(content.isCanvas) }
 //            .onChange(of: dataSyncTrigger) { await getWalletInfo() }
 //            .task(id: dataSyncTrigger) { await getWalletInfo() }
     }
@@ -67,6 +68,16 @@ fileprivate struct SyncConfigData: ViewModifier {
         let wallet = Wallet(info: info, balance: balance)
         context.insert(wallet)
         try context.save()
+    }
+    
+    private func getBTCPrice(_ isCanvas: Bool) async {
+        let price = if isCanvas {
+            BTCPrice(amount: "83939.07", lastUpdatedAtInUtcEpochSeconds: "1744395173", currency: "USD", version: "1", base: "BTC")
+        } else {
+            try? await BlockBTCPriceService().getCurrentPrice()
+        }
+        
+        state.savePrice(price)
     }
 }
 

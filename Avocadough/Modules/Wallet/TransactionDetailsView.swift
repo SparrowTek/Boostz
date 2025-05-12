@@ -19,7 +19,7 @@ struct TransactionDetailsView: View {
                 .bold()
                 .padding(.bottom)
             
-            Text("\(transaction.transactionType?.plusOrMinus ?? "")\(transaction.amount.millisatsToSats().currency)")
+            Text("\(transaction.transactionType?.plusOrMinus ?? "")\(transaction.amount.millisatsToSats.currency)")
                 .font(.title)
             
             ScrollView(showsIndicators: false) {

@@ -54,7 +54,7 @@ struct SettingsView: View {
         Form {
             Section {
                 
-                if let url = URL(string: "https://github.com/sparrowtek/boostz") {
+                if let url = URL(string: "https://github.com/sparrowtek/avocadough-ios") {
                     Link(destination: url) {
                         Label("Source (Github)", systemImage: "link")
                     }
@@ -195,7 +195,7 @@ By using our site or apps, you consent to our privacy policy.
 """)
                 
                 WebSectionView(title: "Contacting Us", content: """
-If you have questions regarding this privacy policy, you may email contact@sparrowTek.com.
+If you have questions regarding this privacy policy, you may email contact@sparrowtek.com.
 """)
                 
                 WebSectionView(title: "Changes to this policy", content: """
