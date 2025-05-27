@@ -35,6 +35,12 @@
     "Avocadough" : {
 
     },
+    "balance: %llu sats" : {
+
+    },
+    "balance: 1 sat" : {
+
+    },
     "between 1 and 500,000 sats" : {
 
     },
