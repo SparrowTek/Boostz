@@ -30,14 +30,12 @@ class SendState {
     
     private unowned let parentState: WalletState
     var path: [SendState.NavigationLink] = []
-    var accountBalance = ""
     var errorMessage: LocalizedStringKey?
     @ObservationIgnored
     lazy var scanQRCodeState = ScanQRCodeState(parentState: self)
     
     init(parentState: WalletState) {
         self.parentState = parentState
-        self.accountBalance = setAccountBalance()
     }
     
     func cancel() {
@@ -156,12 +154,6 @@ class SendState {
          }
      }
      */
-    
-    private func setAccountBalance() -> String {
-//        let balance = parentState.accountBalance?.balance ?? 0
-//        return "balance: \(balance) sats"
-        return "balance: 100 sats"
-    }
     
     private func clearPathAndCloseSheet() {
         path = []

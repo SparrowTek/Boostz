@@ -25,6 +25,14 @@ struct SendDetailsView: View {
         wallets.first
     }
     
+    private var balance: LocalizedStringKey {
+        if wallet?.balance ?? 0 == 1 {
+            "balance: 1 sat"
+        } else {
+            "balance: \(wallet?.balance ?? 0) sats"
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -42,7 +50,7 @@ struct SendDetailsView: View {
                 TextField("between 1 and 500,000 sats", text: $amount)
                     .font(.subheadline)
                     .textFieldStyle(.roundedBorder)
-                Text(state.accountBalance)
+                Text(balance)
                     .font(.subheadline)
             }
             .padding(.horizontal)
