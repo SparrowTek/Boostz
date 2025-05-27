@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6C590DC52D67DB6D00419205 /* NostrSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6C590DC42D67DB6D00419205 /* NostrSDK */; };
-		6C63CDC62D7BDFEF001D6BE6 /* AlbyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6C63CDC52D7BDFEF001D6BE6 /* AlbyKit */; };
 		6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */ = {isa = PBXBuildFile; productRef = 6C73E5F72B3F0F3B0073C816 /* Vault */; };
 		6CECC8AA2C5C03E7000F688B /* LightningDevKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CECC8A92C5C03E7000F688B /* LightningDevKit */; };
 		6CF5B9F62D68F64600BC6416 /* NostrSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6CF5B9F52D68F64600BC6416 /* NostrSDK */; };
@@ -41,7 +40,6 @@
 			files = (
 				6CF5B9F62D68F64600BC6416 /* NostrSDK in Frameworks */,
 				6C73E5F82B3F0F3B0073C816 /* Vault in Frameworks */,
-				6C63CDC62D7BDFEF001D6BE6 /* AlbyKit in Frameworks */,
 				6CECC8AA2C5C03E7000F688B /* LightningDevKit in Frameworks */,
 				6C590DC52D67DB6D00419205 /* NostrSDK in Frameworks */,
 			);
@@ -92,7 +90,6 @@
 				6CECC8A92C5C03E7000F688B /* LightningDevKit */,
 				6C590DC42D67DB6D00419205 /* NostrSDK */,
 				6CF5B9F52D68F64600BC6416 /* NostrSDK */,
-				6C63CDC52D7BDFEF001D6BE6 /* AlbyKit */,
 			);
 			productName = Boostz;
 			productReference = 6CDD4BE82B25210E00C6C324 /* Avocadough.app */;
@@ -126,7 +123,6 @@
 				6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */,
 				6CECC8A82C5C03E7000F688B /* XCRemoteSwiftPackageReference "ldk-swift" */,
 				6CF5B9F42D68F64600BC6416 /* XCRemoteSwiftPackageReference "nostr-sdk-swift" */,
-				6C63CDC42D7BDFEF001D6BE6 /* XCRemoteSwiftPackageReference "AlbyKit" */,
 			);
 			productRefGroup = 6CDD4BE92B25210E00C6C324 /* Products */;
 			projectDirPath = "";
@@ -381,14 +377,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6C63CDC42D7BDFEF001D6BE6 /* XCRemoteSwiftPackageReference "AlbyKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SparrowTek/AlbyKit";
-			requirement = {
-				branch = LightningAddressDetailsProxyService_only;
-				kind = branch;
-			};
-		};
 		6C73E5F62B3F0F3B0073C816 /* XCRemoteSwiftPackageReference "Vault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SparrowTek/Vault";
@@ -419,11 +407,6 @@
 		6C590DC42D67DB6D00419205 /* NostrSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NostrSDK;
-		};
-		6C63CDC52D7BDFEF001D6BE6 /* AlbyKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6C63CDC42D7BDFEF001D6BE6 /* XCRemoteSwiftPackageReference "AlbyKit" */;
-			productName = AlbyKit;
 		};
 		6C73E5F72B3F0F3B0073C816 /* Vault */ = {
 			isa = XCSwiftPackageProductDependency;

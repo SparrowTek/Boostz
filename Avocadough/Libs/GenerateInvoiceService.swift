@@ -10,12 +10,13 @@ import Foundation
 struct GenerateInvoiceService {
     enum GenerateInvoiceError: Error {
         case badURL
+        case badURLComponent
         case noStatusCode
         case badStatusCode(Int)
     }
     
-    func generateInvoice() async throws -> GeneratedInvoice {
-        let request = try await buildRequest()
+    func generateInvoice(lightningAddress: String, amount: String, comment: String?) async throws -> GeneratedInvoice {
+        let request = try await buildRequest(lightningAddress: lightningAddress, amount: amount, comment: comment)
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else { throw GenerateInvoiceError.noStatusCode }
         
@@ -29,8 +30,15 @@ struct GenerateInvoiceService {
         }
     }
     
-    private func buildRequest() async throws -> URLRequest {
-        guard let url = URL(string: "") else { throw GenerateInvoiceError.badURL }
+    private func buildRequest(lightningAddress: String, amount: String, comment: String?) async throws -> URLRequest {
+        guard var urlComponents = URLComponents(string: "https://dsivu5l6kg4vsyjwdisypik4bq0dtzns.lambda-url.us-east-1.on.aws") else { throw GenerateInvoiceError.badURLComponent }
+        urlComponents.queryItems = [
+            URLQueryItem(name: "ln", value: lightningAddress),
+            URLQueryItem(name: "amount", value: amount),
+            URLQueryItem(name: "comment", value: comment ?? ""),
+        ]
+        
+        guard let url = urlComponents.url else { throw GenerateInvoiceError.badURL }
         var request = URLRequest(url: url,
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 10.0)

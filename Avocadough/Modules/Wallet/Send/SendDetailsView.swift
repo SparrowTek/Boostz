@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 import LightningDevKit
-import AlbyKit
 import NostrSDK
 
 struct SendDetailsView: View {
@@ -121,7 +120,8 @@ struct SendDetailsView: View {
         let millisats = satsToMillisats(sats: amount)
         
         do {
-            let invoicePR = try await LightningAddressDetailsProxyService().requestInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil).invoice?.pr ?? ""
+            let invoicePR = try await GenerateInvoiceService().generateInvoice(lightningAddress: lightningAddress, amount: millisats, comment: nil).pr ?? ""
+            
             guard let invoice = Bolt11Invoice.fromStr(s: invoicePR).getValue() else {
                 errorMessage = "Failed to create an invoice. Please try again."
                 return
