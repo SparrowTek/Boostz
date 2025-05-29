@@ -54,7 +54,7 @@ struct SettingsView: View {
         Form {
             Section {
                 
-                if let url = URL(string: "https://github.com/sparrowtek/avocadough-ios") {
+                if let url = URL(string: "https://github.com/sparrowtek/avocadough") {
                     Link(destination: url) {
                         Label("Source (Github)", systemImage: "link")
                     }
