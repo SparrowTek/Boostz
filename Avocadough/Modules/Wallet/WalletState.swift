@@ -77,6 +77,11 @@ class WalletState {
         triggerDataSync()
         triggerTransactionSync = true
     }
+    
+    func routeToSupport() {
+        sheet = .send
+        sendState.routeToSupport()
+    }
 }
 
 extension WalletState: ReachabilityDelegate {

@@ -14,6 +14,7 @@ class SettingsState {
         case about
         case privacy
         case theme
+        case support
     }
     
     private unowned let parentState: WalletState
@@ -26,5 +27,10 @@ class SettingsState {
     
     func disconnectNWC() {
         parentState.disconnectNWC()
+    }
+    
+    func routeToSupport() {
+        path = []
+        parentState.routeToSupport()
     }
 }

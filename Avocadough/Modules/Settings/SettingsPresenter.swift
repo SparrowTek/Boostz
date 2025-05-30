@@ -27,6 +27,9 @@ struct SettingsPresenter: View {
                     case .about:
                         Text("about")
                             .interactiveDismissDisabled()
+                    case .support:
+                        SupportView()
+                            .interactiveDismissDisabled()
                     case .theme:
                         ThemeSettingsView()
                             .interactiveDismissDisabled()
@@ -66,6 +69,10 @@ struct SettingsView: View {
                 
                 NavigationLink(value: SettingsState.NavigationLink.about) {
                     Label("about", systemImage: "info")
+                }
+                
+                NavigationLink(value: SettingsState.NavigationLink.support) {
+                    Label("support avocadough", systemImage: "bitcoinsign")
                 }
             }
             
@@ -134,6 +141,29 @@ struct WebSectionView: View {
             Text(content)
                 .fixedSize(horizontal: false, vertical: true)
         }
+    }
+}
+
+struct SupportView: View {
+    @Environment(SettingsState.self) private var state
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            WebSectionView(title: "support avocadough", content: """
+            Avocadoguh is a free and open source application. Please consider sending some sats to help support ongoing development efforts.
+            """)
+            
+            Button("support", systemImage: "bitcoinsign", action: routeToSupportApp)
+                .buttonStyle(.avocadough)
+            
+            Spacer()
+        }
+        
+        .padding(.horizontal)
+    }
+    
+    private func routeToSupportApp() {
+        state.routeToSupport()
     }
 }
 

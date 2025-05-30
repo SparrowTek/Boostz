@@ -159,6 +159,10 @@ class SendState {
         path = []
         parentState.sheet = nil
     }
+    
+    func routeToSupport() {
+        path.append(.getLightningAddressDetails("sparrowtek@getalby.com"))
+    }
 }
 
 extension SendState: ScanQRCodeStateParent {
