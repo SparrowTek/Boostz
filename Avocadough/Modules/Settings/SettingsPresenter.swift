@@ -25,7 +25,7 @@ struct SettingsPresenter: View {
                         PrivacyPolicyView()
                             .interactiveDismissDisabled()
                     case .about:
-                        Text("about")
+                        AboutView()
                             .interactiveDismissDisabled()
                     case .support:
                         SupportView()
@@ -130,8 +130,8 @@ struct SettingsView: View {
 }
 
 struct WebSectionView: View {
-    var title: String
-    var content: String
+    var title: LocalizedStringKey
+    var content: LocalizedStringKey
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -234,7 +234,29 @@ If we decide to change our privacy policy, we will post those changes on this pa
             }
             .padding([.horizontal, .bottom])
             .navigationBarTitleDisplayMode(.inline)
+            .fullScreenColorView()
         }
+    }
+}
+
+struct AboutView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("avocadough")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                
+                Text("Avocadough is developed by SparrowTek LLC.")
+                
+                WebSectionView(title: "Attribution", content: """
+                Avocadough uses [rust-nostr](https://rust-nostr.org) for NWC functionality and we get the current Bitcoin price from [Block](block.xyz)'s pricing API. 
+                """)
+            }
+        }
+        .padding([.horizontal, .bottom])
+        .navigationBarTitleDisplayMode(.inline)
+        .fullScreenColorView()
     }
 }
 
