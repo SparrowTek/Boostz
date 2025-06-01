@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct TransactionDetailsView: View {
+    @Environment(WalletState.self) private var state
     var transaction: Transaction
     
     var body: some View {
@@ -19,8 +20,15 @@ struct TransactionDetailsView: View {
                 .bold()
                 .padding(.bottom)
             
-            Text("\(transaction.transactionType?.plusOrMinus ?? "")\(transaction.amount.millisatsToSats.currency)")
-                .font(.title)
+            HStack {
+                Text("\(transaction.transactionType?.plusOrMinus ?? "")\(transaction.amount.millisatsToSats.currency)")
+                    .font(.title)
+                
+                Text(state.btcPrice?.amount.asDollars(for: transaction.amount.millisatsToSats) ?? "")
+                    .font(.title3)
+                    .foregroundStyle(Color.gray)
+                    .bold()
+            }
             
             ScrollView(showsIndicators: false) {
                 TransactionDetailSection(title: "payment hash", value: transaction.paymentHash)
@@ -78,6 +86,7 @@ fileprivate struct TransactionDetailSection: View {
             TransactionDetailsView(transaction: transactions.first!)
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.medium])
+                .environment(WalletState(parentState: .init()))
         }
 }
 #endif
