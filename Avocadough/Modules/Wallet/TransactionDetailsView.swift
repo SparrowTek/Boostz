@@ -26,7 +26,7 @@ struct TransactionDetailsView: View {
                 TransactionDetailSection(title: "payment hash", value: transaction.paymentHash)
                 
                 if transaction.feesPaid > 0 {
-                    TransactionDetailSection(title: "fees paid", value: transaction.feesPaid.currency)
+                    TransactionDetailSection(title: "fees paid", value: transaction.feesPaid.millisatsToSats.currency)
                 }
                 
                 if let settledAt = transaction.settledAt {
