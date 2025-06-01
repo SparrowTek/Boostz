@@ -21,8 +21,10 @@ struct SetupPresenter: View {
                 .sheet(item: $state.sheet) {
                     switch $0 {
                     case .scanQR:
-                        ScanQRCodeView()
-                            .environment(state.scanQRCodeState)
+                        NavigationStack {
+                            ScanQRCodeView()
+                                .environment(state.scanQRCodeState)
+                        }
                     }
                 }
                 .alert($state.errorMessage)

@@ -52,8 +52,7 @@ struct SendConfirmationView: View {
         requestInProgress = true
         
         do {
-            let preImage = try await nwc.payInvoice(bolt11)
-            print("SUCCESS: \(preImage)")
+            try await nwc.payInvoice(bolt11)
         } catch {
             errorMessage = "There was a problem confirming your payment. Please try again later"
         }

@@ -13,18 +13,16 @@ struct ScanQRCodeView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationStack {
-            ScannerView()
-                .fullScreenColorView()
-                .navigationBarTitleDisplayMode(.inline)
-                .onDisappear(perform: onDisappear)
-                .onChange(of: state.errorMessage, exitView)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Done", action: { dismiss() })
-                    }
+        ScannerView()
+            .fullScreenColorView()
+            .navigationBarTitleDisplayMode(.inline)
+            .onDisappear(perform: onDisappear)
+            .onChange(of: state.errorMessage, exitView)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done", action: { dismiss() })
                 }
-        }
+            }
     }
     
     private func exitView() {

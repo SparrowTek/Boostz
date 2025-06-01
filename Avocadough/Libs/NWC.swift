@@ -60,6 +60,7 @@ class NWC {
         }
     }
     
+    @discardableResult
     func payInvoice(_ invoice: Bolt11Invoice) async throws (NWCError) -> PayInvoiceResponse {
         guard let nwc else { throw .noNwc }
         do {
