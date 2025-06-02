@@ -6,27 +6,49 @@
 //
 
 import SwiftUI
+import SwiftData
 import NostrSDK
+import LightningDevKit
 
 struct DisplayInvoiceView: View {
     var invoice: MakeInvoiceResponse
     @State private var invoiceCopied = false
     @State private var checkInvoiceTrigger = PlainTaskTrigger()
-//    @State private var invoiceResponse: Invoice?
     @Environment(ReceiveState.self) private var state
     @State private var requestInProgress = false
+    @State private var bolt11: Bolt11Invoice?
+    @Query private var transactions: [Transaction]
+    
+    private var thisTransaction: Transaction? {
+        for transaction in transactions {
+            if transaction.invoice == invoice.invoice {
+                return transaction
+            }
+        }
+        
+        return nil
+    }
     
     private var isSettled: Bool {
-//        invoiceResponse != nil && invoiceResponse?.state == .settled
-        false
+        guard let thisTransaction else { return false }
+        return thisTransaction.settledAt != nil
+    }
+    
+    private var sats: LocalizedStringKey {
+        let sats = bolt11?.amountMilliSatoshis() ?? 0
+        return if sats == 1 {
+            "1 SAT"
+        } else {
+            "\(sats) SATS"
+        }
     }
     
     var body: some View {
         VStack {
             QRCodeImage(code: invoice.invoice)
-//            Text("\(invoice.amount ?? 0) SATS")
-//                .bold()
-//                .padding()
+            Text(sats)
+                .bold()
+                .padding()
             
             Text(isSettled ? "paid" : "waiting for payment...")
             Button(action: triggerCheckInvoiceStatus) {
@@ -64,6 +86,12 @@ struct DisplayInvoiceView: View {
             }
         }
         .task($checkInvoiceTrigger) { await checkInvoiceStatus() }
+        .onAppear(perform: setupBolt11)
+        .syncTransactionData(requestInProgress: $requestInProgress)
+    }
+    
+    private func setupBolt11() {
+        bolt11 = Bolt11Invoice.fromStr(s: invoice.invoice).getValue()
     }
     
     private func doneTapped() {
@@ -75,20 +103,17 @@ struct DisplayInvoiceView: View {
     }
     
     private func checkInvoiceStatus() async {
-        defer { requestInProgress = false }
-        requestInProgress = true
-//        guard let invoice = try? await InvoicesService().getInvoice(withHash: invoice.paymentHash ?? "") else { return }
-//        invoiceResponse = invoice
+        state.refreshTransactions()
     }
     
     private func copyInvoice() {
-//        UIPasteboard.general.string = invoice.paymentRequest
-//        invoiceCopied = true
-//        
-//        Task {
-//            try? await Task.sleep(nanoseconds: 1_000_000_000)
-//            invoiceCopied = false
-//        }
+        UIPasteboard.general.string = bolt11?.toStr()
+        invoiceCopied = true
+        
+        Task {
+            try? await Task.sleep(nanoseconds: 1_000_000_000)
+            invoiceCopied = false
+        }
     }
 }
 

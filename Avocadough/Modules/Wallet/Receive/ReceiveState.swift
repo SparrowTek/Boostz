@@ -30,4 +30,8 @@ class ReceiveState {
         parentState.closeSheet()
         path = []
     }
+    
+    func refreshTransactions() {
+        parentState.refresh()
+    }
 }
