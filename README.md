@@ -3,7 +3,7 @@ An open source Bitcoin lightning wallet via [Nostr Wallet Connect (NWC)](https:/
 
 ## Project State
 
-The code in this repo should be considered **non-functional** right now.
+The code in this repo is prodution ready.
 
 ## Contributing
 
