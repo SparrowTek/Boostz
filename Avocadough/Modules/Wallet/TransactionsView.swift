@@ -116,10 +116,8 @@ fileprivate struct TransactionCell: View {
     }
 }
 
-#if DEBUG
 #Preview(traits: .sampleTransactions) {
     TransactionsView()
         .environment(AppState())
         .environment(WalletState(parentState: .init()))
 }
-#endif

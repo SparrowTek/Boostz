@@ -20,12 +20,6 @@ final class Build: Sendable {
     /// Current environment
     let environment: Environment
     
-    /// Namespace
-//    let nameSpace =  "com.sparrowtek.vocadough"
-//
-//    /// Shared app group
-//    let appGroup = "group.com.sparrowtek.avocadough"
-    
     /// Version / Build number
     let version: String
     let build: String

@@ -169,11 +169,9 @@ fileprivate struct NetworkNotReachable: View {
     }
 }
 
-#if DEBUG
 #Preview(traits: .sampleComposite) {
     WalletPresenter()
         .environment(AppState())
         .environment(WalletState(parentState: .init()))
         .environment(\.reachability, Reachability())
 }
-#endif

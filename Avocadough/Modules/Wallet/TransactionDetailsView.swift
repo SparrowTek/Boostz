@@ -75,7 +75,6 @@ fileprivate struct TransactionDetailSection: View {
     }
 }
 
-#if DEBUG
 #Preview(traits: .sampleTransactions) {
     @Previewable @Query var transactions: [Transaction]
     
@@ -89,4 +88,3 @@ fileprivate struct TransactionDetailSection: View {
                 .environment(WalletState(parentState: .init()))
         }
 }
-#endif

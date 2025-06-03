@@ -8,7 +8,6 @@
 @preconcurrency import SwiftData
 import NostrSDK
 
-#warning("gate functionality based on the methods approved by the wallet")
 enum WalletMethod: String, Codable {
     case payInvoice = "pay_invoice"
     case payKeysend = "pay_keysend"
@@ -21,13 +20,6 @@ enum WalletMethod: String, Codable {
     case listTransactions = "list_transactions"
     case signMessage = "sign_message"
     case getBudget = "get_budget"
-//    case unknown = "unknown"
-//    
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.singleValueContainer()
-//        let rawValue = try container.decode(String.self)
-//        self = WalletMethod(rawValue: rawValue) ?? .unknown
-//    }
 }
 
 typealias Wallet = WalletSchemaV1.Wallet

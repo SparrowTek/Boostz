@@ -140,7 +140,6 @@ struct SendDetailsView: View {
         }
     }
     
-#warning("does similar logic live in lightning dev kit?")
     private func satsToMillisats(sats: String) -> String {
         guard let sats = Int(sats) else { return sats }
         return "\(sats * 1000)"

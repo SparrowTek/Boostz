@@ -45,4 +45,3 @@ class ScanQRCodeState {
         parentState.foundQRCode(code)
     }
 }
-

@@ -9,8 +9,6 @@ import SwiftUI
 import SwiftData
 import NostrSDK
 
-
-#if DEBUG
 struct SampleDataTransactions: PreviewModifier {
     static func makeSharedContext() async throws -> ModelContainer {
         let container = try ModelContainer(for: Transaction.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
@@ -92,5 +90,3 @@ fileprivate func object<c: Codable>(resourceName: String) -> c? {
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     return try? decoder.decode(c.self, from: data)
 }
-
-#endif

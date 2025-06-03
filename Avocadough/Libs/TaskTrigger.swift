@@ -92,5 +92,3 @@ extension View {
         modifier(TaskTriggerViewModifier(trigger: trigger, action: { _ in await action() }))
     }
 }
-
-

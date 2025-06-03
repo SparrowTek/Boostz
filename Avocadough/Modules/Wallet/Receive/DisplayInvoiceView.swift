@@ -117,7 +117,8 @@ struct DisplayInvoiceView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sampleTransactions) {
     DisplayInvoiceView(invoice: MakeInvoiceResponse(invoice: "mkewr34rt8ug", paymentHash: "fmjnds"))
         .environment(ReceiveState(parentState: .init(parentState: .init())))
+        .environment(WalletState(parentState: .init()))
 }

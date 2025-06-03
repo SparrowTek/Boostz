@@ -15,22 +15,12 @@ fileprivate struct SyncConfigData: ViewModifier {
     @Environment(\.modelContext) private var context
     @Query private var nwcCodes: [NWCConnection]
     @Query private var wallets: [Wallet]
-//    @State private var dataSyncTrigger = false
     
     func body(content: Content) -> some View {
         content
-//            .onChange(of: state.triggerDataSync, triggerDataSync)
             .task { await getWalletInfo() }
             .task { await getBTCPrice(content.isCanvas) }
-//            .onChange(of: dataSyncTrigger) { await getWalletInfo() }
-//            .task(id: dataSyncTrigger) { await getWalletInfo() }
     }
-    
-//    private func triggerDataSync() {
-//        guard state.triggerDataSync else { return }
-//        state.triggerDataSync = false
-//        dataSyncTrigger.toggle()
-//    }
     
     private func getWalletInfo() async {
         do {
