@@ -158,8 +158,8 @@ struct SupportView: View {
             
             Spacer()
         }
-        
         .padding(.horizontal)
+        .fullScreenColorView()
     }
     
     private func routeToSupportApp() {
@@ -179,8 +179,6 @@ struct PrivacyPolicyView: View {
                 
                 WebSectionView(title: "Information we collect", content: """
                 Avocadough does not create any accounts.
-
-                Email addresses are only used for responding to emails that you initiate, and sending notifications that you request. We don’t send promotional emails.
                 """)
                 
                 WebSectionView(title: "Technical basics", content: """
@@ -229,7 +227,7 @@ If you have questions regarding this privacy policy, you may email contact@sparr
 """)
                 
                 WebSectionView(title: "Changes to this policy", content: """
-If we decide to change our privacy policy, we will post those changes on this page. Summary of changes so far: May 10, 2024: First published.
+If we decide to change our privacy policy, we will post those changes on this page. Summary of changes so far: June 3, 2025: First published.
 """)
             }
             .padding([.horizontal, .bottom])
