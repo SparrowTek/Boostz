@@ -22,15 +22,9 @@ enum WalletMethod: String, Codable {
     case getBudget = "get_budget"
 }
 
-typealias Wallet = WalletSchemaV1.Wallet
+typealias Wallet = AvocadoughSchema.Wallet
 
-enum WalletSchemaV1: VersionedSchema, Sendable {
-    static let versionIdentifier = Schema.Version(1, 0, 0)
-    
-    static var models: [any PersistentModel.Type] {
-        [Wallet.self]
-    }
-    
+extension AvocadoughSchema {    
     @Model
     class Wallet {
         /// Currnet wallet balance in Milisats
