@@ -49,15 +49,9 @@ enum AvocadoughTransactionType: String, Codable {
     }
 }
 
-typealias Transaction = TransactionSchemaV1.Transaction
+typealias Transaction = AvocadoughSchema.Transaction
 
-enum TransactionSchemaV1: VersionedSchema, Sendable {
-    static let versionIdentifier = Schema.Version(1, 0, 0)
-    
-    static var models: [any PersistentModel.Type] {
-        [Transaction.self]
-    }
-    
+extension AvocadoughSchema {    
     @Model
     class Transaction {
         var transactionType: AvocadoughTransactionType?

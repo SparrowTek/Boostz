@@ -6,7 +6,22 @@
 //
 
 import SwiftUI
-import SwiftData
+@preconcurrency import SwiftData
+
+typealias AvocadoughSchema = AvocadoughSchemaV1
+
+enum AvocadoughSchemaV1: VersionedSchema, Sendable {
+    static let versionIdentifier = Schema.Version(1, 0, 0)
+
+    static var models: [any PersistentModel.Type] {
+        [
+            NWCConnection.self,
+            Transaction.self,
+            Wallet.self,
+        ]
+    }
+}
+
 
 struct AvocadoughDataContainerViewModifier: ViewModifier {
     let container: ModelContainer

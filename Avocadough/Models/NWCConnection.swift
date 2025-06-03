@@ -7,15 +7,9 @@
 
 @preconcurrency import SwiftData
 
-typealias NWCConnection = NWCConnectionSchemaV1.NWCConnection
+typealias NWCConnection = AvocadoughSchema.NWCConnection
 
-enum NWCConnectionSchemaV1: VersionedSchema, Sendable {
-    static let versionIdentifier = Schema.Version(1, 0, 0)
-
-    static var models: [any PersistentModel.Type] {
-        [NWCConnection.self]
-    }
-
+extension AvocadoughSchema {
     @Model
     class NWCConnection {
         var pubKey: String
