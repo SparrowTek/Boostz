@@ -28,6 +28,7 @@ struct AppPresenter: View {
         }
         .onOpenURL()
         .onAppear(perform: determineRoute)
+        .logoutTracker()
     }
     
     private func determineRoute() {

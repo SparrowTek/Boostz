@@ -22,6 +22,7 @@ public class AppState {
     
     var route: Route = .setup
     var triggerDataSync = false
+    var triggerLogout = false
     
     @ObservationIgnored
     lazy var walletState = WalletState(parentState: self)
@@ -63,6 +64,7 @@ public class AppState {
     }
     
     func logout(error: LocalizedStringKey? = nil) {
+        triggerLogout.toggle()
         setupState.errorMessage = error
         try? Vault.deletePrivateKey(keychainConfiguration: .nwcSecret)
         route = .setup

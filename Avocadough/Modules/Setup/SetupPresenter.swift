@@ -88,6 +88,7 @@ fileprivate struct SetupView: View {
     }
     
     private func tappedScanQR() {
+        state.foundQRCode = nil
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         
         if cameraAuthorizationStatus == .authorized {
