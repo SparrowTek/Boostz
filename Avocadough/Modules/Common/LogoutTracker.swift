@@ -13,6 +13,9 @@ fileprivate struct LogoutTracker: ViewModifier {
     @Environment(\.nwc) private var nwc
     @Environment(\.modelContext) private var context
     @State private var logoutTrigger = PlainTaskTrigger()
+    @Query private var nwcConnections: [NWCConnection]
+    @Query private var transactions: [Transaction]
+    @Query private var wallets: [Wallet]
     
     func body(content: Content) -> some View {
         content
@@ -26,6 +29,10 @@ fileprivate struct LogoutTracker: ViewModifier {
     
     private func logout() async {
         nwc.hasConnected = false
+        nwcConnections.forEach { context.delete($0) }
+        transactions.forEach { context.delete($0) }
+        wallets.forEach { context.delete($0) }
+        try? context.save()
     }
 }
 

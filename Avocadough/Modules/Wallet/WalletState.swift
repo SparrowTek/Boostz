@@ -64,6 +64,7 @@ class WalletState {
     }
     
     func disconnectNWC() {
+        sheet = nil
         parentState.logout()
     }
     
