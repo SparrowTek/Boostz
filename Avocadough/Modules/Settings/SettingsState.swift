@@ -31,6 +31,6 @@ class SettingsState {
     
     func routeToSupport() {
         path = []
-        parentState.routeToSupport()
+//        parentState.routeToSupport()
     }
 }
