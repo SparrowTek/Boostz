@@ -22,3 +22,7 @@ By participating in this project you agree to abide by the [Contributor Code of 
 
 **Tip** for OAUTH_REDIRECT_URI in `User.xccongif` to properly escape forward slashes you'll need to do something like this.
 Assume you want your redirect URI to be avocadough://alby, then `avocadough:/$()/alby` is how you should enter this field. Notice the `$()`
+
+### Support Project
+
+Consider going to our website and supporting the project with a Bitcoin donation - [https://avocadough.xyz/support-project](https://avocadough.xyz/support-project).
