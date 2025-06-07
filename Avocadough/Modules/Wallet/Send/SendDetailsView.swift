@@ -26,10 +26,10 @@ struct SendDetailsView: View {
     }
     
     private var balance: LocalizedStringKey {
-        if wallet?.balance ?? 0 == 1 {
+        if wallet?.balance.millisatsToSats ?? 0 == 1 {
             "balance: 1 sat"
         } else {
-            "balance: \(wallet?.balance ?? 0) sats"
+            "balance: \(wallet?.balance.millisatsToSats ?? 0) sats"
         }
     }
     
