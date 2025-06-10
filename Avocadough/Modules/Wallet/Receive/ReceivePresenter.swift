@@ -46,8 +46,8 @@ fileprivate struct ReceiveView: View {
     }
     
     var body: some View {
-        VStack {
-            if let lud16 {
+        if let lud16 {
+            VStack {
                 QRCodeImage(code: lud16)
                     .frame(width: 200, height: 200)
                     .padding()
@@ -90,14 +90,14 @@ fileprivate struct ReceiveView: View {
                 }
                 .padding()
                 .buttonStyle(.avocadough)
-            } else {
-                CreateInvoiceView()
             }
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("Done", action: { dismiss() })
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done", action: { dismiss() })
+                }
             }
+        } else {
+            CreateInvoiceView()
         }
     }
     

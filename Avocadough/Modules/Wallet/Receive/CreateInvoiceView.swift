@@ -26,9 +26,11 @@ struct CreateInvoiceView: View {
                 .textFieldStyle(.roundedBorder)
             
             Button("create invoice", action: triggerCreateInvoice)
+                .frame(maxWidth: .infinity)
                 .buttonStyle(.avocadough)
                 .padding(.top)
         }
+        .fullScreenColorView()
         .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -60,7 +62,14 @@ struct CreateInvoiceView: View {
 }
 
 #Preview {
-    CreateInvoiceView()
-        .environment(ReceiveState(parentState: .init(parentState: .init())))
-        .environment(\.nwc, NWC())
+    @Previewable @State var present = true
+    
+    Text("wallet")
+        .sheet(isPresented: $present) {
+            NavigationStack {
+                CreateInvoiceView()
+                    .environment(ReceiveState(parentState: .init(parentState: .init())))
+                    .environment(\.nwc, NWC())
+            }
+        }
 }
