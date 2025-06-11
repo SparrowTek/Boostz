@@ -38,15 +38,26 @@ fileprivate struct SetupView: View {
     @Environment(\.modelContext) private var context
     @Query private var nwcCodes: [NWCConnection]
     @State private var requestCameraAccessTrigger = PlainTaskTrigger()
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private var buttonText: Color {
+        colorScheme == .light ? .white : .black
+    }
+    
+    private var promoptText: Color {
+        colorScheme == .light ? .gray : .white.opacity(0.75)
+    }
     
     var body: some View {
         @Bindable var state = state
         
         VStack {
             HStack {
-                TextField("enter connection secret", text: $state.connectionSecret)
+                TextField("", text: $state.connectionSecret, prompt: Text("enter connection secret")
+                    .foregroundStyle(promoptText))
                     .textFieldStyle(.roundedBorder)
                 Button("enter", action: evaluateConnectionSecret)
+                    .foregroundStyle(buttonText)
                     .buttonStyle(.borderedProminent)
             }
             .padding()
@@ -56,6 +67,7 @@ fileprivate struct SetupView: View {
                 .padding()
             
             Button("scan QR", systemImage: "camera.viewfinder", action: tappedScanQR)
+                .foregroundStyle(buttonText)
                 .buttonStyle(.borderedProminent)
         }
         .toolbar {
